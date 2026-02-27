@@ -37,9 +37,9 @@ const Products = () => {
         {/* 1+5 Matrix Visual Section */}
         <div className="mb-24 bg-white border border-stone-200 rounded-xl p-12">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-serif mb-4">1+5 Product Architecture</h2>
+            <h2 className="text-3xl font-serif mb-4">1+5 产品架构</h2>
             <p className="text-stone-500 max-w-2xl mx-auto">
-              AethraCore Energy Hub Agent driving five major application platforms
+              AethraCore 能源中枢Agent 驱动五大应用平台
             </p>
           </div>
           
@@ -52,7 +52,7 @@ const Products = () => {
                 </div>
                 <div>
                   <h3 className="font-serif font-bold text-lg mb-1">AethraSource</h3>
-                  <p className="text-sm text-stone-500">Device Mgmt & Efficiency Optimization</p>
+                  <p className="text-sm text-stone-500">设备管理与能效优化</p>
                 </div>
               </div>
               <div className="card-editorial p-6 flex items-start gap-4 hover:border-accent transition-colors group">
@@ -61,7 +61,7 @@ const Products = () => {
                 </div>
                 <div>
                   <h3 className="font-serif font-bold text-lg mb-1">AethraCarbon</h3>
-                  <p className="text-sm text-stone-500">Smart Carbon Management Platform</p>
+                  <p className="text-sm text-stone-500">智慧碳管理平台</p>
                 </div>
               </div>
             </div>
@@ -73,7 +73,7 @@ const Products = () => {
               <div className="w-48 h-48 bg-stone-900 rounded-full flex flex-col items-center justify-center text-white z-10 shadow-2xl">
                 <Cpu size={48} className="mb-2 text-accent" />
                 <span className="font-serif font-bold text-xl">AethraCore</span>
-                <span className="text-xs text-stone-400 mt-1">Energy Hub Agent</span>
+                <span className="text-xs text-stone-400 mt-1">能源中枢 Agent</span>
               </div>
             </div>
 
@@ -85,7 +85,7 @@ const Products = () => {
                 </div>
                 <div>
                   <h3 className="font-serif font-bold text-lg mb-1">AethraGrid</h3>
-                  <p className="text-sm text-stone-500">Smart Energy Management Platform</p>
+                  <p className="text-sm text-stone-500">智慧能源管理平台</p>
                 </div>
               </div>
               <div className="card-editorial p-6 flex items-start gap-4 hover:border-accent transition-colors group">
@@ -94,7 +94,7 @@ const Products = () => {
                 </div>
                 <div>
                   <h3 className="font-serif font-bold text-lg mb-1">AethraOps</h3>
-                  <p className="text-sm text-stone-500">Intelligent O&M Platform</p>
+                  <p className="text-sm text-stone-500">智能运维平台</p>
                 </div>
               </div>
             </div>
@@ -104,18 +104,18 @@ const Products = () => {
         {/* 6-Dimension Construction System */}
         <div className="mb-24">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-serif mb-4">"6-Dimension" Construction System</h2>
-            <p className="text-stone-500">Benchmarking "Zero-Carbon Factory Guidelines"</p>
+            <h2 className="text-3xl font-serif mb-4">"六维" 建设体系</h2>
+            <p className="text-stone-500">对标“零碳工厂评价规范”</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { title: "Scientific Carbon Accounting", desc: "ISO14064 accounting system, accurate quantification of carbon emissions." },
-              { title: "Source Carbon Reduction", desc: "Distributed PV + Storage + Green Power Direct Connection." },
-              { title: "Process Decarbonization", desc: "AI device-level smart control, millisecond-level optimization, 15% energy drop." },
-              { title: "Intelligent Carbon Control", desc: "Digital carbon center, real-time monitoring and control." },
-              { title: "Collaborative Carbon Reduction", desc: "Product Lifecycle LCA modeling, creating 'Green Product ID'." },
-              { title: "Offset Disclosure", desc: "Connecting with international certification bodies (TUV/SGS)." }
+              { title: "科学算碳", desc: "ISO14064核算体系，精准量化碳排放。" },
+              { title: "源头减碳", desc: "分布式光伏 + 储能 + 绿电直连。" },
+              { title: "过程脱碳", desc: "AI设备级智控，毫秒级寻优，能耗下降15%。" },
+              { title: "智能控碳", desc: "数字化碳中枢，实时监测与调控。" },
+              { title: "协同降碳", desc: "产品全生命周期LCA建模，打造“绿色产品ID”。" },
+              { title: "抵销披露", desc: "对接国际认证机构（TUV/SGS）。" }
             ].map((item, i) => (
               <div key={i} className="bg-white p-8 rounded-xl border border-stone-200 hover:shadow-lg transition-shadow">
                 <div className="w-10 h-10 bg-stone-100 rounded-full flex items-center justify-center text-accent font-serif font-bold text-xl mb-4">

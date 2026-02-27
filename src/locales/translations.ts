@@ -310,5 +310,83 @@ export const translations = {
         button: 'ติดต่อทันที',
       }
     },
+  },
+  DE: {
+    nav: {
+      home: 'Startseite',
+      products: 'Produkte',
+      cases: 'Fälle',
+      news: 'Nachrichten',
+      about: 'Über uns',
+      contact: 'Kontakt',
+    },
+    footer: {
+      desc: 'KI-gesteuerte Energieautonomie, Definition neuer kohlenstofffreier Produktivität.\nWir engagieren uns für führende intelligente Energielösungen.',
+      quickLinks: 'Schnelllinks',
+      solutions: 'Lösungen',
+      contact: 'Kontakt',
+      address: '12F, Gebäude R3-A, Nanshan Science & Technology Park, Shenzhen',
+      rights: '© 2026 Shenzhen AethraVolt Technology Co., Ltd. Alle Rechte vorbehalten.',
+      privacy: 'Datenschutz',
+      terms: 'Nutzungsbedingungen',
+    },
+    home: {
+      hero: {
+        title: 'KI-gesteuerte Energieautonomie',
+        subtitle: 'Definition neuer kohlenstofffreier Produktivität',
+        desc: 'Neugestaltung regionaler Energiesysteme mit KI und Daten zum Aufbau einer grünen, kohlenstofffreien neuen Produktivität.',
+        cta_explore: 'Lösungen erkunden',
+        cta_about: 'Über uns',
+      },
+      solutions: {
+        title: 'Kernlösungen',
+        subtitle: 'Umfassende One-Stop-Energiedienstleistungen basierend auf "Edge-Cloud"-Architektur',
+        solar: 'Verteilte Solar & Speicher',
+        solar_desc: 'Effiziente Nutzung von Dachressourcen, Einsatz von PV- und Speichersystemen für Energieautarkie.',
+        ai: 'KI-Energieoptimierung',
+        ai_desc: 'AethraEdge-Randsteuerung, nicht-invasiver Zugang, Millisekunden-Reaktion, Reduzierung des Energieverbrauchs um 5-15%.',
+        trading: 'Strom-Spot-Handel',
+        trading_desc: 'Intelligente Teilnahme am Strommarkt basierend auf KI-Lastprognosemodellen zur Maximierung der Erträge.',
+        learn_more: 'Mehr erfahren',
+      },
+      benefits: {
+        title: 'Vier Hauptvorteile',
+        subtitle: 'Geld sparen, mehr Einkommen, hohe Effizienz, grüne Marke',
+        cash: 'Geld sparen',
+        cash_desc: 'Energieoptimierung + Lastspitzenkappung',
+        income: 'Mehr Einkommen',
+        income_desc: 'Netzunterstützung + Spot-Handel',
+        efficiency: 'Hohe Effizienz',
+        efficiency_desc: 'KI-Planung + Datengesteuert',
+        brand: 'Grüne Marke',
+        brand_desc: 'CO2-Management + Grünstrom-ESG',
+      },
+      tech: {
+        tag: 'Aethra KI-Gehirn',
+        title: 'KI rekonstruiert Energieplanung',
+        subtitle: 'Präzise Vorhersage, intelligente Entscheidung',
+        desc: 'Anders als bei traditionellen Energieunternehmen liegt unser Kern im AethraCore-Energie-Hub-Großmodell.',
+        stat_accuracy: 'Vorhersagegenauigkeit',
+        stat_speed: 'Reaktionsgeschwindigkeit',
+        stat_efficiency: 'Effizienzsteigerung',
+        industry_leading: 'Branchenführend',
+        dashboard_power: 'Echtzeit-Leistung',
+        dashboard_carbon: 'CO2-Reduktion heute',
+      },
+      global: {
+        title: 'Globale Präsenz',
+      },
+      news: {
+        title: 'Aktuelle Nachrichten',
+        subtitle: 'Verfolgen Sie die neuesten Fortschritte von AethraVolt',
+        view_all: 'Alle ansehen',
+        read_more: 'Weiterlesen',
+      },
+      cta: {
+        title: 'Bereit für Ihre Null-Kohlenstoff-Reise?',
+        desc: 'Kontaktieren Sie unser Expertenteam für einen maßgeschneiderten Plan zur digitalen Energietransformation.',
+        button: 'Jetzt kontaktieren',
+      }
+    },
   }
 };

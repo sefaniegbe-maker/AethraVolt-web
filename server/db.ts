@@ -108,25 +108,25 @@ if (newsCount.count === 0) {
   const insertNews = db.prepare('INSERT INTO news (title, date, summary, content, image_url) VALUES (?, ?, ?, ?, ?)');
 
   insertNews.run(
-    'AethraVolt Announces 10 Billion RMB Global Investment Plan',
+    '合擎源动宣布100亿人民币全球投资计划',
     '2026-01-15',
-    'A 5-year strategic roadmap to invest 10 billion RMB across China, Southeast Asia, Australia, and Europe, targeting 400+ zero-carbon factories and 6GW of green energy assets.',
+    '发布5年战略路线图，计划在中国、东南亚、澳大利亚和欧洲投资100亿人民币，建设400+零碳工厂和6GW绿色能源资产。',
     '详细内容...',
     'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000'
   );
 
   insertNews.run(
-    'Strategic Partnership with Guorui Energy & Zhongshan Public Utilities',
+    '与国瑞能源及中山公用达成战略合作',
     '2025-12-01',
-    'Joined forces with industry giants including CSG subsidiary and Guorui Energy (16GW wind power) to co-develop renewable energy projects and expand regional energy networks.',
+    '与南方电网子公司及国瑞能源（16GW风电）等行业巨头联手，共同开发可再生能源项目，拓展区域能源网络。',
     '详细内容...',
     'https://images.unsplash.com/photo-1521791136064-7985c2718083?auto=format&fit=crop&q=80&w=1000'
   );
   
   insertNews.run(
-    'AethraVolt Secures 7 Core Patents in AI Scheduling',
+    '合擎源动荣获7项AI调度核心专利',
     '2025-11-11',
-    'Successfully obtained 7 core patents including "Smart Energy Management Platform" and "Smart Scheduling Central System", solidifying our technical moat in AI-driven energy autonomy.',
+    '成功获得包括“智慧能源管理平台”和“智能调度中枢系统”在内的7项核心专利，巩固了我们在AI驱动能源自主领域的技术护城河。',
     '详细内容...',
     'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=1000'
   );

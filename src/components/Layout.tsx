@@ -37,8 +37,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const languages = [
     { code: 'CN', label: '简体中文' },
     { code: 'EN', label: 'English' },
-    { code: 'VN', label: 'Tiếng Việt' },
-    { code: 'TH', label: 'ไทย' },
+    { code: 'DE', label: '德语' },
+    { code: 'VN', label: '越南语' },
+    { code: 'TH', label: '泰国语' },
   ];
 
   return (

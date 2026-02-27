@@ -128,10 +128,10 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { val: "15%", label: "Save Cash", desc: "Energy Optimization + Peak Shifting" },
-              { val: "50%", label: "More Revenue", desc: "Grid Ancillary + Spot Trading" },
-              { val: "20%", label: "High Efficiency", desc: "AI Scheduling + Data Driven" },
-              { val: "100%", label: "Green Brand", desc: "Carbon Mgmt + Green Power + ESG" },
+              { val: "15%", label: "省现金", desc: "能耗优化 + 削峰填谷" },
+              { val: "50%", label: "多收入", desc: "电网辅助 + 现货交易" },
+              { val: "20%", label: "高效率", desc: "AI调度 + 数据驱动" },
+              { val: "100%", label: "绿品牌", desc: "能碳管理 + 绿电ESG" },
             ].map((item, i) => (
               <div key={i} className="border-t border-stone-300 pt-6">
                 <div className="text-5xl font-serif text-accent mb-4">{item.val}</div>
@@ -215,9 +215,9 @@ const Home = () => {
       <section className="py-24 bg-white">
         <div className="container mx-auto px-6 md:px-12">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-serif mb-4">Global Layout & Capital Plan</h2>
+            <h2 className="text-3xl font-serif mb-4">全球布局与资本规划</h2>
             <p className="text-stone-500 max-w-2xl mx-auto">
-              Investing 10 Billion RMB over 5 years to build 400+ zero-carbon factories across key global markets.
+              未来5年投资100亿人民币，在全球核心市场建设400+零碳工厂。
             </p>
           </div>
           
@@ -245,11 +245,11 @@ const Home = () => {
              {/* Interactive Points */}
              <div className="absolute inset-0 z-10">
                 {[
-                  { country: "China", city: "Shenzhen (HQ)", x: "78%", y: "35%", active: true },
-                  { country: "Vietnam", city: "Ho Chi Minh City", x: "76%", y: "45%", active: true },
-                  { country: "Thailand", city: "Bangkok", x: "74%", y: "44%", active: true },
-                  { country: "Australia", city: "Sydney", x: "88%", y: "75%", active: true },
-                  { country: "Europe", city: "Germany", x: "50%", y: "25%", active: true },
+                  { country: "中国", city: "深圳 (HQ)", x: "78%", y: "35%", active: true },
+                  { country: "越南", city: "胡志明市", x: "76%", y: "45%", active: true },
+                  { country: "泰国", city: "曼谷", x: "74%", y: "44%", active: true },
+                  { country: "澳大利亚", city: "悉尼", x: "88%", y: "75%", active: true },
+                  { country: "欧洲", city: "德国", x: "50%", y: "25%", active: true },
                 ].map((loc, i) => (
                   <div 
                     key={i}
@@ -279,25 +279,25 @@ const Home = () => {
       <section className="py-24 bg-stone-50 border-t border-stone-200">
         <div className="container mx-auto px-6 md:px-12">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-serif mb-4">Strong Shareholders & Partners</h2>
-            <p className="text-stone-500">Empowered by robust capital and authoritative institutions</p>
+            <h2 className="text-3xl font-serif mb-4">强大的股东与合作伙伴</h2>
+            <p className="text-stone-500">雄厚资本与权威机构赋能</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                name: "Guangzhou Smart Electricity & City Lighting",
-                desc: "CSG subsidiary responsible for integrated energy investment and operation.",
+                name: "广州智慧用电与城市照明",
+                desc: "南方电网子公司，负责综合能源投资运营。",
                 icon: "⚡"
               },
               {
-                name: "Guorui Energy Group",
-                desc: "16GW+ Wind Power Development, covering full renewable energy chain.",
+                name: "国瑞能源集团",
+                desc: "16GW+ 风电开发，覆盖可再生能源全产业链。",
                 icon: "🌪️"
               },
               {
-                name: "Zhongshan Public Utilities",
-                desc: "Local SOE, New Energy Industry Investor.",
+                name: "中山公用",
+                desc: "地方国企，新能源产业投资者。",
                 icon: "🏢"
               }
             ].map((partner, i) => (
