@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Zap, BarChart3, Globe2, ShieldCheck, ChevronRight } from 'lucide-react';
+import { ArrowRight, Zap, BarChart3, Globe2, ShieldCheck, ChevronRight, TrendingUp, Leaf } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
@@ -110,6 +110,41 @@ const Home = () => {
                     了解详情 <ArrowRight size={16} />
                   </Link>
                 </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="py-24 bg-slate-900 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-slate-900 pointer-events-none" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">企业四大收益</h2>
+            <p className="text-slate-400">省现金、多收入、高效率、绿品牌</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { val: "15%", label: "省现金", desc: "能耗优化 + 削峰填谷，多重省电", icon: <Zap className="w-8 h-8 text-yellow-400" /> },
+              { val: "50%", label: "多收入", desc: "电网辅助 + 现货交易，多渠道增收", icon: <TrendingUp className="w-8 h-8 text-green-400" /> },
+              { val: "20%", label: "高效率", desc: "AI调度 + 数据驱动，提高管理效率", icon: <BarChart3 className="w-8 h-8 text-blue-400" /> },
+              { val: "100%", label: "绿品牌", desc: "能碳管理 + 风光绿电，ESG提升品牌形象", icon: <Leaf className="w-8 h-8 text-emerald-400" /> },
+            ].map((item, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-white/5 border border-white/10 p-8 rounded-2xl text-center hover:bg-white/10 transition-colors"
+              >
+                <div className="bg-white/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                  {item.icon}
+                </div>
+                <div className="text-4xl font-bold text-white mb-2">{item.val}</div>
+                <div className="text-xl font-bold text-blue-300 mb-2">{item.label}</div>
+                <p className="text-slate-400 text-sm">{item.desc}</p>
               </motion.div>
             ))}
           </div>
