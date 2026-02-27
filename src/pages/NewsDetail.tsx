@@ -20,57 +20,56 @@ const NewsDetail = () => {
       });
   }, [id]);
 
-  if (loading) return <div className="pt-32 text-center">Loading...</div>;
-  if (!newsItem) return <div className="pt-32 text-center">News not found</div>;
+  if (loading) return <div className="pt-32 text-center text-ink font-serif">Loading...</div>;
+  if (!newsItem) return <div className="pt-32 text-center text-ink font-serif">News not found</div>;
 
   return (
-    <div className="pt-24 pb-20 min-h-screen bg-white">
-      <div className="container mx-auto px-4 max-w-4xl">
-        <Link to="/news" className="inline-flex items-center gap-2 text-slate-500 hover:text-blue-600 mb-8 transition-colors">
-          <ArrowLeft size={18} /> 返回新闻列表
+    <div className="pt-24 pb-20 min-h-screen bg-paper">
+      <div className="container mx-auto px-6 md:px-12 max-w-4xl">
+        <Link to="/news" className="inline-flex items-center gap-2 text-stone-500 hover:text-accent mb-12 transition-colors text-sm uppercase tracking-wide font-medium">
+          <ArrowLeft size={16} /> Back to News
         </Link>
 
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6 leading-tight">
+        <h1 className="text-3xl md:text-5xl font-serif font-medium text-ink mb-8 leading-tight">
           {newsItem.title}
         </h1>
 
-        <div className="flex items-center justify-between border-b border-slate-100 pb-6 mb-8">
-          <div className="flex items-center gap-4 text-sm text-slate-500">
-            <span className="flex items-center gap-1">
-              <Calendar size={16} /> {newsItem.date}
+        <div className="flex items-center justify-between border-b border-stone-200 pb-8 mb-12">
+          <div className="flex items-center gap-6 text-sm text-stone-500 font-medium uppercase tracking-wider">
+            <span className="flex items-center gap-2">
+              <Calendar size={14} /> {newsItem.date}
             </span>
-            <span>|</span>
-            <span>合擎源动新闻中心</span>
+            <span className="w-1 h-1 bg-stone-300 rounded-full" />
+            <span>AethraVolt News</span>
           </div>
-          <button className="text-slate-400 hover:text-blue-600 transition-colors">
+          <button className="text-stone-400 hover:text-accent transition-colors">
             <Share2 size={20} />
           </button>
         </div>
 
-        <div className="prose prose-lg prose-slate max-w-none">
+        <div className="prose prose-lg prose-stone max-w-none font-sans">
           <img 
             src={newsItem.image_url} 
             alt={newsItem.title} 
-            className="w-full h-[400px] object-cover rounded-xl mb-8"
+            className="w-full h-[500px] object-cover rounded-xl mb-12 grayscale hover:grayscale-0 transition-all duration-700"
           />
-          <p className="lead text-xl text-slate-600 mb-8 font-medium">
+          <p className="lead text-xl text-stone-600 mb-10 font-serif italic border-l-4 border-accent pl-6">
             {newsItem.summary}
           </p>
-          <div className="text-slate-700 leading-relaxed space-y-6">
-            {/* In a real app, this would be HTML content */}
+          <div className="text-ink leading-relaxed space-y-8">
             <p>
               {newsItem.content === '详细内容...' 
-                ? '这里是新闻的详细内容。随着全球能源转型的深入，合擎源动始终站在技术创新的前沿...' 
+                ? 'Here is the detailed content of the news. As global energy transition deepens, AethraVolt remains at the forefront of technological innovation...' 
                 : newsItem.content}
             </p>
             <p>
-              作为AI+能源领域的先行者，我们将继续加大研发投入，为客户创造更多价值。
+              As a pioneer in the AI+Energy sector, we will continue to increase R&D investment to create more value for our customers.
             </p>
-            <h3>核心亮点</h3>
-            <ul>
-              <li>技术突破：AI算法效率提升30%</li>
-              <li>市场拓展：新增欧洲战略合作伙伴</li>
-              <li>客户认可：荣获年度最佳能源解决方案奖</li>
+            <h3 className="font-serif text-2xl mt-12 mb-6 text-ink">Key Highlights</h3>
+            <ul className="list-disc pl-6 space-y-2 marker:text-accent">
+              <li>Technological Breakthrough: AI algorithm efficiency increased by 30%</li>
+              <li>Market Expansion: New strategic partners in Europe</li>
+              <li>Customer Recognition: Awarded Annual Best Energy Solution</li>
             </ul>
           </div>
         </div>

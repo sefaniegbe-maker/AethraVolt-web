@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { MapPin, Zap, ArrowRight, Factory, Building, Sun } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Building2, Factory, Leaf } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Cases = () => {
   const [cases, setCases] = useState<any[]>([]);
-  const [filter, setFilter] = useState('全部');
+  const [activeIndustry, setActiveIndustry] = useState('All');
+  const { t } = useLanguage();
 
   useEffect(() => {
     fetch('/api/cases')
@@ -14,32 +15,34 @@ const Cases = () => {
       .catch(err => console.error(err));
   }, []);
 
-  const industries = ['全部', '制造业', '园区', '商业建筑'];
+  const industries = ['All', 'Manufacturing', 'Logistics', 'Commercial'];
 
-  const filteredCases = filter === '全部' 
+  const filteredCases = activeIndustry === 'All' 
     ? cases 
-    : cases.filter(c => c.industry === filter);
+    : cases.filter(c => c.industry === activeIndustry);
 
   return (
-    <div className="pt-24 pb-20 min-h-screen bg-slate-50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold mb-4">成功案例</h1>
-          <p className="text-slate-600 max-w-2xl mx-auto">
-            见证我们如何帮助客户实现零碳转型与降本增效
+    <div className="pt-24 pb-20 bg-paper min-h-screen">
+      <div className="container mx-auto px-6 md:px-12">
+        <div className="mb-16 max-w-3xl">
+          <h1 className="text-4xl md:text-6xl font-serif font-medium mb-6 text-ink">
+            Success Stories
+          </h1>
+          <p className="text-xl text-stone-600 font-sans leading-relaxed">
+            Real-world applications of AethraVolt's zero-carbon solutions across industries.
           </p>
         </div>
 
-        {/* Filter */}
-        <div className="flex justify-center gap-2 mb-12 flex-wrap">
+        {/* Industry Filter */}
+        <div className="flex flex-wrap gap-4 mb-12 border-b border-stone-200 pb-8">
           {industries.map(ind => (
             <button
               key={ind}
-              onClick={() => setFilter(ind)}
+              onClick={() => setActiveIndustry(ind)}
               className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-                filter === ind 
-                  ? 'bg-blue-600 text-white shadow-md' 
-                  : 'bg-white text-slate-600 hover:bg-slate-100'
+                activeIndustry === ind 
+                  ? 'bg-stone-900 text-white' 
+                  : 'bg-white border border-stone-200 text-stone-600 hover:border-stone-400'
               }`}
             >
               {ind}
@@ -47,54 +50,50 @@ const Cases = () => {
           ))}
         </div>
 
-        {/* Case List */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {filteredCases.map((item, index) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all group"
-            >
-              <div className="relative h-64 overflow-hidden">
-                <img 
-                  src={item.image_url} 
-                  alt={item.title} 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-slate-900 uppercase tracking-wide">
-                  {item.industry}
+        {/* Cases Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredCases.map((item) => (
+            <Link key={item.id} to={`/cases/${item.id}`} className="group">
+              <div className="card-editorial h-full flex flex-col p-0 overflow-hidden hover:shadow-md transition-all duration-500">
+                <div className="h-64 overflow-hidden relative">
+                  <img 
+                    src={item.image_url} 
+                    alt={item.title} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 grayscale group-hover:grayscale-0" 
+                  />
+                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-2">
+                    <Factory size={12} />
+                    {item.industry}
+                  </div>
                 </div>
-              </div>
-              <div className="p-8">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-2xl font-bold text-slate-900 leading-tight group-hover:text-blue-600 transition-colors">
+                
+                <div className="p-8 flex-grow flex flex-col">
+                  <div className="flex items-center gap-2 text-stone-500 text-xs mb-4 uppercase tracking-wider font-medium">
+                    <MapPin size={12} />
+                    {item.location}
+                  </div>
+                  
+                  <h3 className="text-xl font-serif font-bold mb-4 group-hover:text-accent transition-colors leading-snug">
                     {item.title}
                   </h3>
-                  <span className="text-slate-400 font-mono text-sm">{item.year}</span>
-                </div>
-                <p className="text-slate-600 mb-8 line-clamp-2">
-                  {item.description}
-                </p>
-                
-                <div className="grid grid-cols-3 gap-4 mb-8 border-t border-slate-100 pt-6">
-                  {item.results?.slice(0, 3).map((res: string, i: number) => (
-                    <div key={i} className="text-center">
-                      <div className="text-blue-600 font-bold text-sm mb-1">{res.split(/(\d+)/)[1] || 'High'}</div>
-                      <div className="text-xs text-slate-400">{res.replace(/\d+/g, '').replace(/[\%\+]/g, '')}</div>
+                  
+                  <div className="grid grid-cols-2 gap-4 mb-6 pt-4 border-t border-stone-100">
+                    <div>
+                      <div className="text-2xl font-serif text-ink">{item.capacity}</div>
+                      <div className="text-xs text-stone-500 uppercase tracking-wide">Capacity</div>
                     </div>
-                  ))}
-                </div>
+                    <div>
+                      <div className="text-2xl font-serif text-accent">{item.savings}</div>
+                      <div className="text-xs text-stone-500 uppercase tracking-wide">Savings</div>
+                    </div>
+                  </div>
 
-                <Link 
-                  to={`/cases/${item.id}`}
-                  className="inline-flex items-center gap-2 text-slate-900 font-semibold hover:gap-3 transition-all"
-                >
-                  查看详情 <ArrowRight size={18} className="text-blue-600" />
-                </Link>
+                  <div className="mt-auto pt-4 flex items-center text-sm font-medium text-ink group-hover:translate-x-1 transition-transform">
+                    View Case Study <ArrowRight size={16} className="ml-2" />
+                  </div>
+                </div>
               </div>
-            </motion.div>
+            </Link>
           ))}
         </div>
       </div>

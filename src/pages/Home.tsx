@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Zap, BarChart3, Globe2, ShieldCheck, ChevronRight, TrendingUp, Leaf } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Home = () => {
   const [news, setNews] = useState<any[]>([]);
+  const { t } = useLanguage();
 
   useEffect(() => {
     fetch('/api/news')
@@ -16,214 +18,193 @@ const Home = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden bg-slate-900 text-white">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 to-slate-900/40 z-10" />
-          <img 
-            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2000" 
-            alt="AI Energy Background" 
-            className="w-full h-full object-cover"
-          />
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-20 pt-20">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-3xl"
-          >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              AI驱动能源自主 <br />
-              <span className="text-blue-400">定义零碳新质生产力</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-slate-300 mb-10 font-light">
-              以数据为关键要素，用AI重构区域能源体系，打造绿色的零碳新质生产力。
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link to="/products" className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-semibold transition-all flex items-center gap-2">
-                探索解决方案 <ArrowRight size={20} />
+      <section className="relative min-h-[90vh] flex items-center pt-20 bg-paper overflow-hidden">
+        <div className="container mx-auto px-6 md:px-12 relative z-10">
+          <div className="max-w-4xl">
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="text-5xl md:text-7xl lg:text-8xl font-serif font-medium leading-[1.1] mb-8 text-ink tracking-tight"
+            >
+              {t('home.hero.title')} <br />
+              <span className="text-stone-500 italic">{t('home.hero.subtitle')}</span>
+            </motion.h1>
+            
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              className="text-xl md:text-2xl text-stone-600 mb-12 max-w-2xl font-sans leading-relaxed"
+            >
+              {t('home.hero.desc')}
+            </motion.p>
+            
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+              className="flex flex-wrap gap-4"
+            >
+              <Link to="/products" className="btn-primary flex items-center gap-2 group">
+                {t('home.hero.cta_explore')} <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </Link>
-              <Link to="/about" className="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white rounded-full font-semibold transition-all">
-                了解我们
+              <Link to="/about" className="btn-outline">
+                {t('home.hero.cta_about')}
               </Link>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <motion.div 
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50"
-        >
-          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
-            <div className="w-1 h-2 bg-white/50 rounded-full" />
-          </div>
-        </motion.div>
+        {/* Abstract Visual Element */}
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1/3 h-full hidden lg:block pointer-events-none opacity-60">
+           <svg viewBox="0 0 400 800" className="w-full h-full">
+             <path d="M200,0 Q300,200 100,400 T200,800" fill="none" stroke="#D97757" strokeWidth="1" className="opacity-30" />
+             <path d="M250,0 Q350,200 150,400 T250,800" fill="none" stroke="#191919" strokeWidth="1" className="opacity-10" />
+             <defs>
+               <radialGradient id="grad1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                 <stop offset="0%" style={{stopColor:'#D97757', stopOpacity:1}} />
+                 <stop offset="100%" style={{stopColor:'#F4F1EA', stopOpacity:0}} />
+               </radialGradient>
+             </defs>
+             <circle cx="100" cy="400" r="150" fill="url(#grad1)" className="opacity-20 mix-blend-multiply" />
+           </svg>
+        </div>
       </section>
 
       {/* Solutions Section */}
-      <section className="py-24 bg-slate-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">核心解决方案</h2>
-            <p className="text-slate-600 max-w-2xl mx-auto">
-              基于 "端-边-云" 三位一体架构，为工商业提供一站式综合能源服务
-            </p>
+      <section className="py-24 bg-white border-t border-stone-200">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+            <div className="max-w-2xl">
+              <h2 className="text-3xl md:text-4xl font-serif mb-6">{t('home.solutions.title')}</h2>
+              <p className="text-stone-600 text-lg leading-relaxed">
+                {t('home.solutions.subtitle')}
+              </p>
+            </div>
+            <Link to="/products" className="text-ink font-medium border-b border-ink pb-1 hover:text-accent hover:border-accent transition-colors">
+              View all solutions
+            </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-stone-200 border border-stone-200">
             {[
               {
-                icon: <Zap className="w-10 h-10 text-blue-600" />,
-                title: "分布式光储",
-                desc: "高效利用屋顶资源，部署光伏与储能系统，实现能源自给自足与削峰填谷。",
-                img: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=800"
+                icon: <Zap className="w-8 h-8" />,
+                title: t('home.solutions.solar'),
+                desc: t('home.solutions.solar_desc'),
               },
               {
-                icon: <BarChart3 className="w-10 h-10 text-blue-600" />,
-                title: "AI节能优化",
-                desc: "AethraEdge边缘控制，非侵入式接入，毫秒级响应，综合能耗降低5-15%。",
-                img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800"
+                icon: <BarChart3 className="w-8 h-8" />,
+                title: t('home.solutions.ai'),
+                desc: t('home.solutions.ai_desc'),
               },
               {
-                icon: <ShieldCheck className="w-10 h-10 text-blue-600" />,
-                title: "电力现货交易",
-                desc: "基于AI负荷预测模型，智能参与电力市场交易，最大化能源资产收益。",
-                img: "https://images.unsplash.com/photo-1611974765270-ca1258634369?auto=format&fit=crop&q=80&w=800"
+                icon: <ShieldCheck className="w-8 h-8" />,
+                title: t('home.solutions.trading'),
+                desc: t('home.solutions.trading_desc'),
               }
             ].map((item, index) => (
-              <motion.div 
-                key={index}
-                whileHover={{ y: -10 }}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all group"
-              >
-                <div className="h-48 overflow-hidden">
-                  <img src={item.img} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                </div>
-                <div className="p-8">
-                  <div className="mb-4 p-3 bg-blue-50 w-fit rounded-lg">{item.icon}</div>
-                  <h3 className="text-xl font-bold mb-3 text-slate-900">{item.title}</h3>
-                  <p className="text-slate-600 leading-relaxed mb-6">{item.desc}</p>
-                  <Link to="/products" className="text-blue-600 font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
-                    了解详情 <ArrowRight size={16} />
-                  </Link>
-                </div>
-              </motion.div>
+              <div key={index} className="bg-white p-10 hover:bg-stone-50 transition-colors group">
+                <div className="mb-6 text-stone-400 group-hover:text-accent transition-colors">{item.icon}</div>
+                <h3 className="text-xl font-serif font-bold mb-4">{item.title}</h3>
+                <p className="text-stone-600 leading-relaxed mb-8">{item.desc}</p>
+                <Link to="/products" className="inline-flex items-center gap-2 text-sm font-medium text-ink group-hover:translate-x-1 transition-transform">
+                  {t('home.solutions.learn_more')} <ArrowRight size={14} />
+                </Link>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Benefits Section */}
-      <section className="py-24 bg-slate-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-slate-900 pointer-events-none" />
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">企业四大收益</h2>
-            <p className="text-slate-400">省现金、多收入、高效率、绿品牌</p>
+      <section className="py-24 bg-paper">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="mb-16">
+            <h2 className="text-3xl md:text-4xl font-serif mb-4">{t('home.benefits.title')}</h2>
+            <p className="text-stone-600">{t('home.benefits.subtitle')}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { val: "15%", label: "省现金", desc: "能耗优化 + 削峰填谷，多重省电", icon: <Zap className="w-8 h-8 text-yellow-400" /> },
-              { val: "50%", label: "多收入", desc: "电网辅助 + 现货交易，多渠道增收", icon: <TrendingUp className="w-8 h-8 text-green-400" /> },
-              { val: "20%", label: "高效率", desc: "AI调度 + 数据驱动，提高管理效率", icon: <BarChart3 className="w-8 h-8 text-blue-400" /> },
-              { val: "100%", label: "绿品牌", desc: "能碳管理 + 风光绿电，ESG提升品牌形象", icon: <Leaf className="w-8 h-8 text-emerald-400" /> },
+              { val: "15%", label: "Save Cash", desc: "Energy Optimization + Peak Shifting" },
+              { val: "50%", label: "More Revenue", desc: "Grid Ancillary + Spot Trading" },
+              { val: "20%", label: "High Efficiency", desc: "AI Scheduling + Data Driven" },
+              { val: "100%", label: "Green Brand", desc: "Carbon Mgmt + Green Power + ESG" },
             ].map((item, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-white/5 border border-white/10 p-8 rounded-2xl text-center hover:bg-white/10 transition-colors"
-              >
-                <div className="bg-white/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                  {item.icon}
-                </div>
-                <div className="text-4xl font-bold text-white mb-2">{item.val}</div>
-                <div className="text-xl font-bold text-blue-300 mb-2">{item.label}</div>
-                <p className="text-slate-400 text-sm">{item.desc}</p>
-              </motion.div>
+              <div key={i} className="border-t border-stone-300 pt-6">
+                <div className="text-5xl font-serif text-accent mb-4">{item.val}</div>
+                <div className="text-lg font-bold text-ink mb-2">{item.label}</div>
+                <p className="text-stone-600 text-sm leading-relaxed">{item.desc}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Technology Section (Dark) */}
-      <section className="py-24 bg-slate-900 text-white overflow-hidden">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center gap-16">
-            <div className="md:w-1/2">
-              <div className="inline-block px-4 py-1 rounded-full bg-blue-900/50 border border-blue-500/30 text-blue-400 text-sm font-medium mb-6">
-                Aethra AI 技术大脑
+      <section className="py-24 bg-stone-900 text-stone-200">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="flex flex-col lg:flex-row gap-20">
+            <div className="lg:w-1/2">
+              <div className="text-accent font-medium mb-6 tracking-wide uppercase text-sm">
+                {t('home.tech.tag')}
               </div>
-              <h2 className="text-3xl md:text-5xl font-bold mb-6">
-                AI重构能源调度 <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
-                  精准预测，智能决策
-                </span>
+              <h2 className="text-4xl md:text-5xl font-serif text-white mb-8 leading-tight">
+                {t('home.tech.title')} <br />
+                <span className="text-stone-500 italic">{t('home.tech.subtitle')}</span>
               </h2>
-              <p className="text-slate-400 text-lg mb-8 leading-relaxed">
-                区别于传统能源公司，我们的核心在于 AethraCore 能源中枢大模型。
-                通过深度学习算法，实现高达 95%+ 的负荷预测准确率，让每一度电都发挥最大价值。
+              <p className="text-stone-400 text-lg mb-12 leading-relaxed max-w-xl">
+                {t('home.tech.desc')}
               </p>
               
-              <div className="space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 {[
-                  { label: "负荷预测准确率", value: "95%+" },
-                  { label: "响应速度", value: "<10ms" },
-                  { label: "节能效率提升", value: "15%" }
+                  { label: t('home.tech.stat_accuracy'), value: "95%+" },
+                  { label: t('home.tech.stat_speed'), value: "<10ms" },
+                  { label: t('home.tech.stat_efficiency'), value: "15%" }
                 ].map((stat, i) => (
-                  <div key={i} className="flex items-center gap-4">
-                    <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center text-blue-400 font-bold text-xl border border-white/10">
-                      {stat.value}
-                    </div>
-                    <div>
-                      <div className="text-lg font-medium text-white">{stat.label}</div>
-                      <div className="text-sm text-slate-500">行业领先水平</div>
-                    </div>
+                  <div key={i} className="border-l border-stone-700 pl-6">
+                    <div className="text-3xl font-serif text-white mb-1">{stat.value}</div>
+                    <div className="text-sm text-stone-500">{stat.label}</div>
                   </div>
                 ))}
               </div>
             </div>
             
-            <div className="md:w-1/2 relative">
-              <div className="absolute -inset-4 bg-blue-500/20 blur-3xl rounded-full" />
-              <div className="relative bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-2xl">
-                {/* Abstract UI representation of AI Dashboard */}
-                <div className="flex justify-between items-center mb-6 border-b border-slate-700 pb-4">
-                  <div className="text-sm font-mono text-blue-400">AethraCore Dashboard</div>
-                  <div className="flex gap-2">
-                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                    <div className="text-xs text-slate-400">System Online</div>
-                  </div>
+            <div className="lg:w-1/2 flex items-center justify-center">
+              <div className="relative w-full aspect-square max-w-md">
+                {/* Abstract Tech Visualization */}
+                <div className="absolute inset-0 border border-stone-800 rounded-full animate-[spin_60s_linear_infinite]" />
+                <div className="absolute inset-8 border border-stone-800 rounded-full animate-[spin_40s_linear_infinite_reverse]" />
+                <div className="absolute inset-16 border border-stone-800 rounded-full animate-[spin_20s_linear_infinite]" />
+                
+                <div className="absolute inset-0 flex items-center justify-center">
+                   <div className="w-32 h-32 bg-stone-800 rounded-full flex items-center justify-center relative">
+                     <div className="absolute inset-0 bg-accent/20 blur-xl rounded-full animate-pulse" />
+                     <div className="text-white font-serif italic text-xl relative z-10">Aethra</div>
+                   </div>
                 </div>
-                <div className="space-y-4">
-                  <div className="h-32 bg-slate-900/50 rounded-lg border border-slate-700/50 relative overflow-hidden flex items-end p-4 gap-1">
-                     {/* Fake Chart */}
-                     {[40, 60, 45, 70, 55, 80, 65, 90, 75, 60, 85, 95].map((h, i) => (
-                       <motion.div 
-                        key={i}
-                        initial={{ height: 0 }}
-                        whileInView={{ height: `${h}%` }}
-                        transition={{ delay: i * 0.05, duration: 0.5 }}
-                        className="flex-1 bg-gradient-to-t from-blue-600 to-cyan-400 rounded-t-sm opacity-80"
-                       />
-                     ))}
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-slate-900/50 p-4 rounded-lg border border-slate-700/50">
-                      <div className="text-xs text-slate-500 mb-1">实时功率</div>
-                      <div className="text-xl font-mono text-white">1,245 kW</div>
-                    </div>
-                    <div className="bg-slate-900/50 p-4 rounded-lg border border-slate-700/50">
-                      <div className="text-xs text-slate-500 mb-1">今日碳减排</div>
-                      <div className="text-xl font-mono text-green-400">4.2 Ton</div>
-                    </div>
-                  </div>
-                </div>
+
+                {/* Data Points */}
+                <motion.div 
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+                  className="absolute top-0 right-0 bg-stone-800 p-4 rounded-lg border border-stone-700 shadow-xl"
+                >
+                  <div className="text-xs text-stone-500 mb-1">{t('home.tech.dashboard_power')}</div>
+                  <div className="text-xl font-mono text-white">1,245 kW</div>
+                </motion.div>
+
+                <motion.div 
+                  animate={{ y: [0, 10, 0] }}
+                  transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
+                  className="absolute bottom-10 left-0 bg-stone-800 p-4 rounded-lg border border-stone-700 shadow-xl"
+                >
+                  <div className="text-xs text-stone-500 mb-1">{t('home.tech.dashboard_carbon')}</div>
+                  <div className="text-xl font-mono text-accent">4.2 Ton</div>
+                </motion.div>
               </div>
             </div>
           </div>
@@ -232,63 +213,129 @@ const Home = () => {
 
       {/* Global Presence */}
       <section className="py-24 bg-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-12">全球布局</h2>
-          <div className="relative max-w-4xl mx-auto aspect-[16/9] bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-center overflow-hidden">
-             <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#0047AB_1px,transparent_1px)] [background-size:20px_20px]" />
-             <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-8 text-left">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-serif mb-4">Global Layout & Capital Plan</h2>
+            <p className="text-stone-500 max-w-2xl mx-auto">
+              Investing 10 Billion RMB over 5 years to build 400+ zero-carbon factories across key global markets.
+            </p>
+          </div>
+          
+          <div className="relative w-full aspect-[1.8/1] bg-stone-900 rounded-xl overflow-hidden shadow-2xl">
+             {/* Map Background - Refined World Map */}
+             <div className="absolute inset-0 opacity-40">
+               <svg viewBox="0 0 1000 500" className="w-full h-full fill-stone-700 stroke-stone-800">
+                 {/* Simplified World Map Paths */}
+                 {/* North America */}
+                 <path d="M50,50 L300,50 L250,200 L150,250 L50,150 Z" className="fill-stone-800" />
+                 {/* South America */}
+                 <path d="M200,250 L300,250 L320,400 L250,480 Z" className="fill-stone-800" />
+                 {/* Europe */}
+                 <path d="M450,50 L550,50 L550,150 L450,150 Z" className="fill-stone-800" />
+                 {/* Africa */}
+                 <path d="M450,180 L580,180 L600,350 L500,400 Z" className="fill-stone-800" />
+                 {/* Asia */}
+                 <path d="M580,50 L900,50 L950,200 L800,300 L600,250 Z" className="fill-stone-800" />
+                 {/* Australia */}
+                 <path d="M800,320 L950,320 L920,450 L800,420 Z" className="fill-stone-800" />
+               </svg>
+               <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:20px_20px]" />
+             </div>
+
+             {/* Interactive Points */}
+             <div className="absolute inset-0 z-10">
                 {[
-                  { country: "中国", city: "深圳 (HQ)", active: true },
-                  { country: "越南", city: "胡志明市", active: true },
-                  { country: "泰国", city: "曼谷", active: true },
-                  { country: "澳大利亚", city: "悉尼", active: false },
-                  { country: "欧洲", city: "德国", active: false },
+                  { country: "China", city: "Shenzhen (HQ)", x: "78%", y: "35%", active: true },
+                  { country: "Vietnam", city: "Ho Chi Minh City", x: "76%", y: "45%", active: true },
+                  { country: "Thailand", city: "Bangkok", x: "74%", y: "44%", active: true },
+                  { country: "Australia", city: "Sydney", x: "88%", y: "75%", active: true },
+                  { country: "Europe", city: "Germany", x: "50%", y: "25%", active: true },
                 ].map((loc, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <div className={`mt-1.5 w-2 h-2 rounded-full ${loc.active ? 'bg-blue-600' : 'bg-slate-300'}`} />
-                    <div>
-                      <div className="font-bold text-slate-900">{loc.country}</div>
-                      <div className="text-sm text-slate-500">{loc.city}</div>
+                  <div 
+                    key={i}
+                    className="absolute group cursor-pointer"
+                    style={{ left: loc.x, top: loc.y }}
+                  >
+                    <div className="relative flex items-center justify-center">
+                      <div className="w-3 h-3 rounded-full border border-stone-900 bg-accent" />
+                      <div className="absolute w-8 h-8 bg-accent/20 rounded-full animate-ping" />
+                      
+                      {/* Tooltip */}
+                      <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                         <div className="bg-white px-3 py-2 rounded shadow-lg text-xs whitespace-nowrap">
+                           <div className="font-bold text-ink">{loc.country}</div>
+                           <div className="text-stone-500">{loc.city}</div>
+                         </div>
+                      </div>
                     </div>
                   </div>
                 ))}
              </div>
-             <Globe2 className="absolute text-slate-100 -z-0 w-96 h-96 -right-20 -bottom-20" />
+          </div>
+        </div>
+      </section>
+
+      {/* Partners Section */}
+      <section className="py-24 bg-stone-50 border-t border-stone-200">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-serif mb-4">Strong Shareholders & Partners</h2>
+            <p className="text-stone-500">Empowered by robust capital and authoritative institutions</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Guangzhou Smart Electricity & City Lighting",
+                desc: "CSG subsidiary responsible for integrated energy investment and operation.",
+                icon: "⚡"
+              },
+              {
+                name: "Guorui Energy Group",
+                desc: "16GW+ Wind Power Development, covering full renewable energy chain.",
+                icon: "🌪️"
+              },
+              {
+                name: "Zhongshan Public Utilities",
+                desc: "Local SOE, New Energy Industry Investor.",
+                icon: "🏢"
+              }
+            ].map((partner, i) => (
+              <div key={i} className="bg-white p-8 rounded-xl border border-stone-200 shadow-sm hover:shadow-md transition-shadow">
+                <div className="text-4xl mb-4">{partner.icon}</div>
+                <h3 className="font-serif font-bold text-lg mb-2 text-ink">{partner.name}</h3>
+                <p className="text-stone-600 text-sm leading-relaxed">{partner.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* News Section */}
-      <section className="py-24 bg-slate-50">
-        <div className="container mx-auto px-4">
+      <section className="py-24 bg-paper border-t border-stone-200">
+        <div className="container mx-auto px-6 md:px-12">
           <div className="flex justify-between items-end mb-12">
             <div>
-              <h2 className="text-3xl font-bold mb-2">最新动态</h2>
-              <p className="text-slate-600">关注合擎源动的最新进展</p>
+              <h2 className="text-3xl font-serif mb-2">{t('home.news.title')}</h2>
             </div>
-            <Link to="/news" className="text-blue-600 font-medium hover:underline">查看全部</Link>
+            <Link to="/news" className="btn-outline py-2 px-4 text-sm">
+              {t('home.news.view_all')}
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {news.map((item) => (
-              <Link key={item.id} to={`/news/${item.id}`} className="group">
-                <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all h-full flex flex-col">
-                  <div className="h-48 overflow-hidden">
-                    <img src={item.image_url} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  </div>
-                  <div className="p-6 flex-grow flex flex-col">
-                    <div className="text-sm text-slate-400 mb-2">{item.date}</div>
-                    <h3 className="text-lg font-bold text-slate-900 mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors">
-                      {item.title}
-                    </h3>
-                    <p className="text-slate-600 text-sm line-clamp-3 mb-4 flex-grow">
-                      {item.summary}
-                    </p>
-                    <div className="text-blue-600 text-sm font-medium flex items-center gap-1">
-                      阅读更多 <ChevronRight size={14} />
-                    </div>
-                  </div>
+              <Link key={item.id} to={`/news/${item.id}`} className="group block">
+                <div className="mb-4 overflow-hidden rounded-lg aspect-[4/3]">
+                  <img src={item.image_url} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 grayscale group-hover:grayscale-0" />
                 </div>
+                <div className="text-xs font-medium text-stone-500 mb-2 uppercase tracking-wide">{item.date}</div>
+                <h3 className="text-xl font-serif font-bold text-ink mb-3 leading-snug group-hover:text-accent transition-colors">
+                  {item.title}
+                </h3>
+                <p className="text-stone-600 text-sm line-clamp-3 leading-relaxed">
+                  {item.summary}
+                </p>
               </Link>
             ))}
           </div>
@@ -296,14 +343,16 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-blue-600 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">准备好开启零碳之旅了吗？</h2>
-          <p className="text-blue-100 text-lg mb-10 max-w-2xl mx-auto">
-            联系我们的专家团队，获取为您量身定制的能源数字化转型方案。
+      <section className="py-32 bg-stone-900 text-white text-center">
+        <div className="container mx-auto px-6">
+          <h2 className="text-4xl md:text-5xl font-serif mb-8 max-w-3xl mx-auto leading-tight">
+            {t('home.cta.title')}
+          </h2>
+          <p className="text-stone-400 text-lg mb-12 max-w-xl mx-auto">
+            {t('home.cta.desc')}
           </p>
-          <Link to="/contact" className="inline-block px-8 py-4 bg-white text-blue-600 rounded-full font-bold hover:bg-blue-50 transition-colors shadow-lg">
-            立即咨询
+          <Link to="/contact" className="btn-primary bg-white text-stone-900 hover:bg-stone-200">
+            {t('home.cta.button')}
           </Link>
         </div>
       </section>

@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
-import { MapPin, Phone, Mail, Send, Loader2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Loader2 } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
-    phone: '',
-    company: '',
+    email: '',
+    subject: '',
     message: ''
   });
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const { t } = useLanguage();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus('submitting');
+    setIsSubmitting(true);
     
     try {
       const res = await fetch('/api/contact', {
@@ -22,135 +29,156 @@ const Contact = () => {
       });
       
       if (res.ok) {
-        setStatus('success');
-        setFormData({ name: '', phone: '', company: '', message: '' });
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
-        setStatus('error');
+        setSubmitStatus('error');
       }
     } catch (err) {
-      setStatus('error');
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="pt-24 pb-20 min-h-screen bg-slate-50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold mb-4">联系我们</h1>
-          <p className="text-slate-600 max-w-2xl mx-auto">
-            期待与您探讨能源数字化转型的无限可能
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+    <div className="pt-24 pb-20 bg-paper min-h-screen">
+      <div className="container mx-auto px-6 md:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Contact Info */}
-          <div className="space-y-8">
-            <div className="bg-white p-8 rounded-2xl shadow-sm">
-              <h3 className="text-xl font-bold mb-6">联系方式</h3>
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="bg-blue-50 p-3 rounded-lg text-blue-600">
-                    <MapPin size={24} />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-slate-900 mb-1">公司总部</h4>
-                    <p className="text-slate-600">深圳市南山区科技园南区 R3-A栋 12层</p>
-                  </div>
+          <div>
+            <h1 className="text-4xl md:text-6xl font-serif font-medium mb-8 text-ink">
+              Get in Touch
+            </h1>
+            <p className="text-xl text-stone-600 font-sans leading-relaxed mb-12">
+              Interested in our zero-carbon solutions? We'd love to hear from you.
+            </p>
+
+            <div className="space-y-8">
+              <div className="flex items-start gap-6 p-6 bg-white rounded-xl border border-stone-200">
+                <div className="w-12 h-12 bg-stone-100 rounded-full flex items-center justify-center shrink-0 text-ink">
+                  <MapPin size={24} />
                 </div>
-                <div className="flex items-start gap-4">
-                  <div className="bg-blue-50 p-3 rounded-lg text-blue-600">
-                    <Phone size={24} />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-slate-900 mb-1">咨询热线</h4>
-                    <p className="text-slate-600">+86 755 8888 6666</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="bg-blue-50 p-3 rounded-lg text-blue-600">
-                    <Mail size={24} />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-slate-900 mb-1">商务邮箱</h4>
-                    <p className="text-slate-600">contact@aethravolt.com</p>
-                  </div>
+                <div>
+                  <h3 className="font-serif font-bold text-lg mb-2">Headquarters</h3>
+                  <p className="text-stone-600 leading-relaxed">
+                    123 Innovation Road, Nanshan District<br />
+                    Shenzhen, Guangdong, China
+                  </p>
                 </div>
               </div>
-            </div>
 
-            {/* Map Placeholder */}
-            <div className="bg-slate-200 rounded-2xl h-64 w-full flex items-center justify-center text-slate-500">
-              <div className="text-center">
-                <MapPin size={48} className="mx-auto mb-2 opacity-50" />
-                <p>高德地图 API 接入区域</p>
+              <div className="flex items-start gap-6 p-6 bg-white rounded-xl border border-stone-200">
+                <div className="w-12 h-12 bg-stone-100 rounded-full flex items-center justify-center shrink-0 text-ink">
+                  <Mail size={24} />
+                </div>
+                <div>
+                  <h3 className="font-serif font-bold text-lg mb-2">Email Us</h3>
+                  <p className="text-stone-600 mb-1">General: contact@aethravolt.com</p>
+                  <p className="text-stone-600">Sales: sales@aethravolt.com</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-6 p-6 bg-white rounded-xl border border-stone-200">
+                <div className="w-12 h-12 bg-stone-100 rounded-full flex items-center justify-center shrink-0 text-ink">
+                  <Phone size={24} />
+                </div>
+                <div>
+                  <h3 className="font-serif font-bold text-lg mb-2">Call Us</h3>
+                  <p className="text-stone-600">+86 755 8888 6666</p>
+                  <p className="text-sm text-stone-400 mt-1">Mon-Fri, 9am - 6pm CST</p>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Contact Form */}
-          <div className="bg-white p-8 md:p-10 rounded-2xl shadow-lg">
-            <h3 className="text-2xl font-bold mb-6">发送留言</h3>
+          <div className="bg-white p-8 md:p-12 rounded-2xl border border-stone-200 shadow-sm">
+            <h2 className="text-2xl font-serif font-bold mb-8">Send a Message</h2>
+            
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">姓名 *</label>
+                <div className="space-y-2">
+                  <label htmlFor="name" className="text-sm font-medium text-stone-700">Name</label>
                   <input
                     type="text"
+                    id="name"
+                    name="name"
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all"
                     value={formData.name}
-                    onChange={e => setFormData({...formData, name: e.target.value})}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+                    placeholder="John Doe"
                   />
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">电话 *</label>
+                <div className="space-y-2">
+                  <label htmlFor="email" className="text-sm font-medium text-stone-700">Email</label>
                   <input
-                    type="tel"
+                    type="email"
+                    id="email"
+                    name="email"
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all"
-                    value={formData.phone}
-                    onChange={e => setFormData({...formData, phone: e.target.value})}
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+                    placeholder="john@example.com"
                   />
                 </div>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">公司名称</label>
+
+              <div className="space-y-2">
+                <label htmlFor="subject" className="text-sm font-medium text-stone-700">Subject</label>
                 <input
                   type="text"
-                  className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all"
-                  value={formData.company}
-                  onChange={e => setFormData({...formData, company: e.target.value})}
+                  id="subject"
+                  name="subject"
+                  required
+                  value={formData.subject}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+                  placeholder="How can we help?"
                 />
               </div>
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">留言内容 *</label>
+
+              <div className="space-y-2">
+                <label htmlFor="message" className="text-sm font-medium text-stone-700">Message</label>
                 <textarea
+                  id="message"
+                  name="message"
                   required
-                  rows={4}
-                  className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all resize-none"
+                  rows={6}
                   value={formData.message}
-                  onChange={e => setFormData({...formData, message: e.target.value})}
-                />
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"
+                  placeholder="Tell us about your project..."
+                ></textarea>
               </div>
 
               <button
                 type="submit"
-                disabled={status === 'submitting' || status === 'success'}
-                className={`w-full py-4 rounded-lg font-bold text-white flex items-center justify-center gap-2 transition-all ${
-                  status === 'success' ? 'bg-green-500' : 'bg-blue-600 hover:bg-blue-700'
-                }`}
+                disabled={isSubmitting}
+                className="w-full btn-primary flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                {status === 'submitting' ? (
-                  <Loader2 className="animate-spin" />
-                ) : status === 'success' ? (
-                  '发送成功'
+                {isSubmitting ? (
+                  <>
+                    <Loader2 size={20} className="animate-spin" /> Sending...
+                  </>
                 ) : (
-                  <>发送信息 <Send size={18} /></>
+                  <>
+                    Send Message <Send size={18} />
+                  </>
                 )}
               </button>
-              
-              {status === 'error' && (
-                <p className="text-red-500 text-sm text-center">发送失败，请稍后重试。</p>
+
+              {submitStatus === 'success' && (
+                <div className="p-4 bg-green-50 text-green-700 rounded-lg text-sm text-center">
+                  Message sent successfully! We'll get back to you soon.
+                </div>
+              )}
+              {submitStatus === 'error' && (
+                <div className="p-4 bg-red-50 text-red-700 rounded-lg text-sm text-center">
+                  Something went wrong. Please try again later.
+                </div>
               )}
             </form>
           </div>

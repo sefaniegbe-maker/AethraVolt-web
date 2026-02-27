@@ -108,25 +108,25 @@ if (newsCount.count === 0) {
   const insertNews = db.prepare('INSERT INTO news (title, date, summary, content, image_url) VALUES (?, ?, ?, ?, ?)');
 
   insertNews.run(
-    '合擎源动完成A轮融资，加速全球化布局',
-    '2025-10-15',
-    '获得知名机构领投，资金将用于研发投入及海外市场拓展。',
+    'AethraVolt Announces 10 Billion RMB Global Investment Plan',
+    '2026-01-15',
+    'A 5-year strategic roadmap to invest 10 billion RMB across China, Southeast Asia, Australia, and Europe, targeting 400+ zero-carbon factories and 6GW of green energy assets.',
     '详细内容...',
-    'https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&q=80&w=1000'
+    'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000'
   );
 
   insertNews.run(
-    '发布AethraCore能源中枢大模型',
-    '2025-09-01',
-    '基于海量能源数据训练，预测准确率突破98%，重新定义能源调度。',
+    'Strategic Partnership with Guorui Energy & Zhongshan Public Utilities',
+    '2025-12-01',
+    'Joined forces with industry giants including CSG subsidiary and Guorui Energy (16GW wind power) to co-develop renewable energy projects and expand regional energy networks.',
     '详细内容...',
-    'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1000'
+    'https://images.unsplash.com/photo-1521791136064-7985c2718083?auto=format&fit=crop&q=80&w=1000'
   );
   
   insertNews.run(
-    '入选2025年度零碳科技创新企业TOP10',
-    '2025-08-20',
-    '凭借在AI+能源领域的持续创新，荣获行业权威认可。',
+    'AethraVolt Secures 7 Core Patents in AI Scheduling',
+    '2025-11-11',
+    'Successfully obtained 7 core patents including "Smart Energy Management Platform" and "Smart Scheduling Central System", solidifying our technical moat in AI-driven energy autonomy.',
     '详细内容...',
     'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=1000'
   );

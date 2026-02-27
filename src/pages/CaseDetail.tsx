@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, BarChart3, PieChart, TrendingUp } from 'lucide-react';
+import { ArrowLeft, BarChart3, PieChart, TrendingUp, MapPin } from 'lucide-react';
 
 const CaseDetail = () => {
   const { id } = useParams();
@@ -20,71 +20,75 @@ const CaseDetail = () => {
       });
   }, [id]);
 
-  if (loading) return <div className="pt-32 text-center">Loading...</div>;
-  if (!caseItem) return <div className="pt-32 text-center">Case not found</div>;
+  if (loading) return <div className="pt-32 text-center text-ink font-serif">Loading...</div>;
+  if (!caseItem) return <div className="pt-32 text-center text-ink font-serif">Case not found</div>;
 
   return (
-    <div className="pt-24 pb-20 min-h-screen bg-white">
+    <div className="pt-24 pb-20 min-h-screen bg-paper">
       {/* Hero */}
-      <div className="relative h-[50vh] bg-slate-900">
+      <div className="relative h-[60vh] bg-stone-900 overflow-hidden">
         <img 
           src={caseItem.image_url} 
           alt={caseItem.title} 
-          className="w-full h-full object-cover opacity-50"
+          className="w-full h-full object-cover opacity-60 grayscale"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/40 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full p-8 md:p-16">
-          <div className="container mx-auto">
-            <Link to="/cases" className="inline-flex items-center gap-2 text-white/70 hover:text-white mb-6 transition-colors">
-              <ArrowLeft size={18} /> 返回案例列表
+          <div className="container mx-auto px-6 md:px-12">
+            <Link to="/cases" className="inline-flex items-center gap-2 text-white/70 hover:text-white mb-8 transition-colors text-sm uppercase tracking-wide">
+              <ArrowLeft size={16} /> Back to Cases
             </Link>
-            <div className="flex items-center gap-4 mb-4">
-              <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-bold">{caseItem.industry}</span>
-              <span className="text-white/60 font-mono">{caseItem.year}</span>
+            <div className="flex items-center gap-4 mb-6">
+              <span className="bg-white text-stone-900 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">{caseItem.industry}</span>
+              <span className="text-white/60 font-mono text-sm border-l border-white/20 pl-4">{caseItem.year}</span>
+              <span className="text-white/60 font-sans text-sm border-l border-white/20 pl-4 flex items-center gap-2">
+                <MapPin size={14} /> {caseItem.location}
+              </span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-white max-w-4xl">{caseItem.title}</h1>
+            <h1 className="text-4xl md:text-6xl font-serif font-medium text-white max-w-4xl leading-tight">{caseItem.title}</h1>
           </div>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div className="container mx-auto px-6 md:px-12 py-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
           <div className="md:col-span-2">
-            <h2 className="text-2xl font-bold mb-6">项目背景与挑战</h2>
-            <p className="text-slate-600 text-lg leading-relaxed mb-12">
+            <h2 className="text-2xl font-serif font-bold mb-6 text-ink">Background & Challenge</h2>
+            <p className="text-stone-600 text-lg leading-relaxed mb-12 font-sans">
               {caseItem.description}
               <br /><br />
-              随着全球碳中和进程加速，该客户面临着巨大的能源成本压力和供应链减碳要求。传统能源管理方式粗放，缺乏精细化数据支撑，难以满足日益严格的ESG合规需求。
+              With the acceleration of global carbon neutrality, the client faced immense pressure on energy costs and supply chain decarbonization requirements. Traditional energy management was extensive, lacking refined data support, making it difficult to meet increasingly strict ESG compliance needs.
             </p>
 
-            <h2 className="text-2xl font-bold mb-6">解决方案</h2>
-            <p className="text-slate-600 text-lg leading-relaxed mb-12">
-              合擎源动为其量身定制了“零碳工厂”整体解决方案：
-              <ul className="list-disc pl-6 mt-4 space-y-2">
-                <li>部署 <strong>AethraEdge</strong> 边缘控制器，实现高耗能设备的毫秒级智能调控。</li>
-                <li>建设 2MW 分布式光伏与 1MWh 储能系统，提升绿电使用比例。</li>
-                <li>接入 <strong>AethraGrid</strong> 能源管理云平台，实现全厂能流可视化与碳排实时监测。</li>
+            <h2 className="text-2xl font-serif font-bold mb-6 text-ink">Solution</h2>
+            <div className="text-stone-600 text-lg leading-relaxed mb-12 font-sans">
+              AethraVolt tailored a "Zero-Carbon Factory" holistic solution:
+              <ul className="list-disc pl-6 mt-6 space-y-4 marker:text-accent">
+                <li>Deployed <strong>AethraEdge</strong> edge controllers for millisecond-level intelligent regulation of high-energy equipment.</li>
+                <li>Constructed 2MW distributed PV and 1MWh energy storage system to increase green power usage ratio.</li>
+                <li>Integrated <strong>AethraGrid</strong> energy management cloud platform for full-plant energy flow visualization and real-time carbon emission monitoring.</li>
               </ul>
-            </p>
+            </div>
           </div>
 
           <div>
-            <div className="bg-slate-50 rounded-2xl p-8 border border-slate-100 sticky top-32">
-              <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                <BarChart3 className="text-blue-600" /> 项目成果
+            <div className="bg-white rounded-xl p-8 border border-stone-200 sticky top-32">
+              <h3 className="text-xl font-serif font-bold mb-8 flex items-center gap-2 text-ink">
+                Key Results
               </h3>
-              <div className="space-y-6">
-                {caseItem.results?.map((res: string, i: number) => (
-                  <div key={i} className="bg-white p-4 rounded-xl shadow-sm border border-slate-100">
-                    <div className="text-3xl font-bold text-blue-600 mb-1">
-                      {res.match(/[\d\.]+/)?.[0]}
-                      <span className="text-sm ml-1 text-slate-500 font-normal">
-                        {res.replace(/[\d\.]+/g, '')}
-                      </span>
+              <div className="space-y-8">
+                {caseItem.results?.map((res: string, i: number) => {
+                  const num = res.match(/[\d\.]+/)?.[0];
+                  const text = res.replace(/[\d\.]+/g, '');
+                  return (
+                    <div key={i} className="border-b border-stone-100 pb-6 last:border-0 last:pb-0">
+                      <div className="text-4xl font-serif text-accent mb-2">
+                        {num}<span className="text-lg ml-1 text-stone-400 font-sans">{text}</span>
+                      </div>
+                      <div className="text-xs text-stone-500 uppercase tracking-wider font-medium">Improvement</div>
                     </div>
-                    <div className="text-sm text-slate-400">关键指标提升</div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
