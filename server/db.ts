@@ -106,7 +106,7 @@ if (caseCount.count === 0) {
     '通过部署 AethraEdge 和光储系统，实现削峰填谷与需量管理，显著降低用电成本。',
     '2MW/4MWh',
     '收益显著',
-    'https://images.unsplash.com/photo-1590502593747-42a996133562?auto=format&fit=crop&q=80&w=1000',
+    'https://ibb.co/SHKkNDJ',
     JSON.stringify(['显著降低电费', '碳减排成效显著', '投资回收期短'])
   );
 
@@ -142,7 +142,7 @@ if (caseCount.count === 0) {
     '集光伏、储能、充电桩于一体的微电网系统，实现能源自给自足，服务于电动汽车充电需求。',
     '1MW/2MWh',
     '€15万/年',
-    'https://ibb.co/rKwJ6PQ1',
+    'https://ibb.co/0p03ttV1',
     JSON.stringify(['能源自给率80%', '降低碳排30%', '提升品牌形象'])
   );
 }
