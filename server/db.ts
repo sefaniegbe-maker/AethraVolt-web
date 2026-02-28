@@ -25,15 +25,6 @@ db.exec(`
     results TEXT -- JSON string
   );
 
-  CREATE TABLE IF NOT EXISTS news (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT NOT NULL,
-    date TEXT NOT NULL,
-    summary TEXT NOT NULL,
-    content TEXT NOT NULL,
-    image_url TEXT
-  );
-
   CREATE TABLE IF NOT EXISTS messages (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
@@ -99,36 +90,6 @@ if (caseCount.count === 0) {
     '集光伏、储能、充电桩于一体的微电网系统，实现能源自给自足。',
     'https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=1000',
     JSON.stringify(['能源自给率80%', '降低碳排30%', '提升品牌形象'])
-  );
-}
-
-const newsCount = db.prepare('SELECT count(*) as count FROM news').get() as { count: number };
-
-if (newsCount.count === 0) {
-  const insertNews = db.prepare('INSERT INTO news (title, date, summary, content, image_url) VALUES (?, ?, ?, ?, ?)');
-
-  insertNews.run(
-    '合擎源动宣布100亿人民币全球投资计划',
-    '2026-01-15',
-    '发布5年战略路线图，计划在中国、东南亚、澳大利亚和欧洲投资100亿人民币，建设400+零碳工厂和6GW绿色能源资产。',
-    '详细内容...',
-    'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000'
-  );
-
-  insertNews.run(
-    '与国瑞能源及中山公用达成战略合作',
-    '2025-12-01',
-    '与南方电网子公司及国瑞能源（16GW风电）等行业巨头联手，共同开发可再生能源项目，拓展区域能源网络。',
-    '详细内容...',
-    'https://images.unsplash.com/photo-1521791136064-7985c2718083?auto=format&fit=crop&q=80&w=1000'
-  );
-  
-  insertNews.run(
-    '合擎源动荣获7项AI调度核心专利',
-    '2025-11-11',
-    '成功获得包括“智慧能源管理平台”和“智能调度中枢系统”在内的7项核心专利，巩固了我们在AI驱动能源自主领域的技术护城河。',
-    '详细内容...',
-    'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=1000'
   );
 }
 

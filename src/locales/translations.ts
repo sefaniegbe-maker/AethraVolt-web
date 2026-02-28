@@ -4,7 +4,6 @@ export const translations = {
       home: '首页',
       products: '产品中心',
       cases: '案例中心',
-      news: '新闻动态',
       about: '关于我们',
       contact: '联系我们',
     },
@@ -13,7 +12,7 @@ export const translations = {
       quickLinks: '快速链接',
       solutions: '解决方案',
       contact: '联系我们',
-      address: '深圳市南山区科技园南区 R3-A栋 12层',
+      address: '深圳市南山区清华信息港科研楼 309',
       rights: '© 2026 Shenzhen AethraVolt Technology Co., Ltd. All rights reserved.',
       privacy: '隐私政策',
       terms: '服务条款',
@@ -64,12 +63,6 @@ export const translations = {
       global: {
         title: '全球布局',
       },
-      news: {
-        title: '最新动态',
-        subtitle: '关注合擎源动的最新进展',
-        view_all: '查看全部',
-        read_more: '阅读更多',
-      },
       cta: {
         title: '准备好开启零碳之旅了吗？',
         desc: '联系我们的专家团队，获取为您量身定制的能源数字化转型方案。',
@@ -82,7 +75,6 @@ export const translations = {
       home: 'Home',
       products: 'Products',
       cases: 'Cases',
-      news: 'News',
       about: 'About Us',
       contact: 'Contact',
     },
@@ -91,7 +83,7 @@ export const translations = {
       quickLinks: 'Quick Links',
       solutions: 'Solutions',
       contact: 'Contact Us',
-      address: '12F, Building R3-A, Nanshan Science & Technology Park, Shenzhen',
+      address: 'Room 309, Research Building, Tsinghua Information Port, Nanshan District, Shenzhen',
       rights: '© 2026 Shenzhen AethraVolt Technology Co., Ltd. All rights reserved.',
       privacy: 'Privacy Policy',
       terms: 'Terms of Service',
@@ -142,12 +134,6 @@ export const translations = {
       global: {
         title: 'Global Presence',
       },
-      news: {
-        title: 'Latest News',
-        subtitle: 'Follow the latest progress of AethraVolt',
-        view_all: 'View All',
-        read_more: 'Read More',
-      },
       cta: {
         title: 'Ready to Start Your Zero-Carbon Journey?',
         desc: 'Contact our expert team for a customized energy digital transformation plan.',
@@ -160,7 +146,6 @@ export const translations = {
       home: 'Trang chủ',
       products: 'Sản phẩm',
       cases: 'Dự án',
-      news: 'Tin tức',
       about: 'Về chúng tôi',
       contact: 'Liên hệ',
     },
@@ -169,7 +154,7 @@ export const translations = {
       quickLinks: 'Liên kết nhanh',
       solutions: 'Giải pháp',
       contact: 'Liên hệ',
-      address: 'Tầng 12, Tòa nhà R3-A, Khu Công nghệ Nam Sơn, Thâm Quyến',
+      address: 'Phòng 309, Tòa nhà Nghiên cứu, Cảng Thông tin Thanh Hoa, Quận Nam Sơn, Thâm Quyến',
       rights: '© 2026 Shenzhen AethraVolt Technology Co., Ltd. Bảo lưu mọi quyền.',
       privacy: 'Chính sách bảo mật',
       terms: 'Điều khoản dịch vụ',
@@ -220,12 +205,6 @@ export const translations = {
       global: {
         title: 'Hiện diện toàn cầu',
       },
-      news: {
-        title: 'Tin tức mới nhất',
-        subtitle: 'Theo dõi tiến trình mới nhất của AethraVolt',
-        view_all: 'Xem tất cả',
-        read_more: 'Đọc thêm',
-      },
       cta: {
         title: 'Sẵn sàng cho hành trình không carbon?',
         desc: 'Liên hệ với đội ngũ chuyên gia của chúng tôi để có kế hoạch chuyển đổi số năng lượng tùy chỉnh.',
@@ -238,7 +217,6 @@ export const translations = {
       home: 'หน้าแรก',
       products: 'สินค้า',
       cases: 'กรณีศึกษา',
-      news: 'ข่าวสาร',
       about: 'เกี่ยวกับเรา',
       contact: 'ติดต่อเรา',
     },
@@ -247,7 +225,7 @@ export const translations = {
       quickLinks: 'ลิงก์ด่วน',
       solutions: 'โซลูชั่น',
       contact: 'ติดต่อเรา',
-      address: 'ชั้น 12 อาคาร R3-A สวนวิทยาศาสตร์และเทคโนโลยีหนานซาน เซินเจิ้น',
+      address: 'ห้อง 309 อาคารวิจัย ท่าเรือข้อมูลชิงหัว เขตหนานซาน เซินเจิ้น',
       rights: '© 2026 Shenzhen AethraVolt Technology Co., Ltd. สงวนลิขสิทธิ์',
       privacy: 'นโยบายความเป็นส่วนตัว',
       terms: 'เงื่อนไขการให้บริการ',
@@ -298,12 +276,6 @@ export const translations = {
       global: {
         title: 'การดำเนินงานทั่วโลก',
       },
-      news: {
-        title: 'ข่าวล่าสุด',
-        subtitle: 'ติดตามความคืบหน้าล่าสุดของ AethraVolt',
-        view_all: 'ดูทั้งหมด',
-        read_more: 'อ่านเพิ่มเติม',
-      },
       cta: {
         title: 'พร้อมที่จะเริ่มการเดินทางสู่คาร์บอนศูนย์หรือยัง?',
         desc: 'ติดต่อทีมผู้เชี่ยวชาญของเราเพื่อรับแผนการแปลงดิจิทัลด้านพลังงานที่ปรับแต่งสำหรับคุณ',
@@ -316,7 +288,6 @@ export const translations = {
       home: 'Startseite',
       products: 'Produkte',
       cases: 'Fälle',
-      news: 'Nachrichten',
       about: 'Über uns',
       contact: 'Kontakt',
     },
@@ -325,7 +296,7 @@ export const translations = {
       quickLinks: 'Schnelllinks',
       solutions: 'Lösungen',
       contact: 'Kontakt',
-      address: '12F, Gebäude R3-A, Nanshan Science & Technology Park, Shenzhen',
+      address: 'Raum 309, Forschungsgebäude, Tsinghua Information Port, Bezirk Nanshan, Shenzhen',
       rights: '© 2026 Shenzhen AethraVolt Technology Co., Ltd. Alle Rechte vorbehalten.',
       privacy: 'Datenschutz',
       terms: 'Nutzungsbedingungen',
@@ -375,12 +346,6 @@ export const translations = {
       },
       global: {
         title: 'Globale Präsenz',
-      },
-      news: {
-        title: 'Aktuelle Nachrichten',
-        subtitle: 'Verfolgen Sie die neuesten Fortschritte von AethraVolt',
-        view_all: 'Alle ansehen',
-        read_more: 'Weiterlesen',
       },
       cta: {
         title: 'Bereit für Ihre Null-Kohlenstoff-Reise?',

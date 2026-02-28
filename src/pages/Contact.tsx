@@ -48,10 +48,10 @@ const Contact = () => {
           {/* Contact Info */}
           <div>
             <h1 className="text-4xl md:text-6xl font-serif font-medium mb-8 text-ink">
-              Get in Touch
+              联系我们
             </h1>
             <p className="text-xl text-stone-600 font-sans leading-relaxed mb-12">
-              Interested in our zero-carbon solutions? We'd love to hear from you.
+              对我们的零碳解决方案感兴趣？我们期待听到您的声音。
             </p>
 
             <div className="space-y-8">
@@ -60,10 +60,9 @@ const Contact = () => {
                   <MapPin size={24} />
                 </div>
                 <div>
-                  <h3 className="font-serif font-bold text-lg mb-2">Headquarters</h3>
+                  <h3 className="font-serif font-bold text-lg mb-2">总部地址</h3>
                   <p className="text-stone-600 leading-relaxed">
-                    123 Innovation Road, Nanshan District<br />
-                    Shenzhen, Guangdong, China
+                    深圳市南山区清华信息港科研楼 309
                   </p>
                 </div>
               </div>
@@ -73,9 +72,8 @@ const Contact = () => {
                   <Mail size={24} />
                 </div>
                 <div>
-                  <h3 className="font-serif font-bold text-lg mb-2">Email Us</h3>
-                  <p className="text-stone-600 mb-1">General: contact@aethravolt.com</p>
-                  <p className="text-stone-600">Sales: sales@aethravolt.com</p>
+                  <h3 className="font-serif font-bold text-lg mb-2">邮件联系</h3>
+                  <p className="text-stone-600 mb-1">ningli@aethravolt.cn</p>
                 </div>
               </div>
 
@@ -84,9 +82,9 @@ const Contact = () => {
                   <Phone size={24} />
                 </div>
                 <div>
-                  <h3 className="font-serif font-bold text-lg mb-2">Call Us</h3>
-                  <p className="text-stone-600">+86 755 8888 6666</p>
-                  <p className="text-sm text-stone-400 mt-1">Mon-Fri, 9am - 6pm CST</p>
+                  <h3 className="font-serif font-bold text-lg mb-2">电话联系</h3>
+                  <p className="text-stone-600">18905577397</p>
+                  <p className="text-sm text-stone-400 mt-1">周一至周五, 9:00 - 18:00</p>
                 </div>
               </div>
             </div>
@@ -94,12 +92,12 @@ const Contact = () => {
 
           {/* Contact Form */}
           <div className="bg-white p-8 md:p-12 rounded-2xl border border-stone-200 shadow-sm">
-            <h2 className="text-2xl font-serif font-bold mb-8">Send a Message</h2>
+            <h2 className="text-2xl font-serif font-bold mb-8">发送消息</h2>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium text-stone-700">Name</label>
+                  <label htmlFor="name" className="text-sm font-medium text-stone-700">姓名</label>
                   <input
                     type="text"
                     id="name"
@@ -108,11 +106,11 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
-                    placeholder="John Doe"
+                    placeholder="您的姓名"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium text-stone-700">Email</label>
+                  <label htmlFor="email" className="text-sm font-medium text-stone-700">邮箱</label>
                   <input
                     type="email"
                     id="email"
@@ -121,13 +119,13 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
-                    placeholder="john@example.com"
+                    placeholder="your@email.com"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="subject" className="text-sm font-medium text-stone-700">Subject</label>
+                <label htmlFor="subject" className="text-sm font-medium text-stone-700">主题</label>
                 <input
                   type="text"
                   id="subject"
@@ -136,12 +134,12 @@ const Contact = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
-                  placeholder="How can we help?"
+                  placeholder="咨询主题"
                 />
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium text-stone-700">Message</label>
+                <label htmlFor="message" className="text-sm font-medium text-stone-700">消息内容</label>
                 <textarea
                   id="message"
                   name="message"
@@ -150,7 +148,7 @@ const Contact = () => {
                   value={formData.message}
                   onChange={handleChange}
                   className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"
-                  placeholder="Tell us about your project..."
+                  placeholder="请详细描述您的需求..."
                 ></textarea>
               </div>
 
@@ -161,23 +159,23 @@ const Contact = () => {
               >
                 {isSubmitting ? (
                   <>
-                    <Loader2 size={20} className="animate-spin" /> Sending...
+                    <Loader2 size={20} className="animate-spin" /> 发送中...
                   </>
                 ) : (
                   <>
-                    Send Message <Send size={18} />
+                    发送消息 <Send size={18} />
                   </>
                 )}
               </button>
 
               {submitStatus === 'success' && (
                 <div className="p-4 bg-green-50 text-green-700 rounded-lg text-sm text-center">
-                  Message sent successfully! We'll get back to you soon.
+                  消息发送成功！我们会尽快回复您。
                 </div>
               )}
               {submitStatus === 'error' && (
                 <div className="p-4 bg-red-50 text-red-700 rounded-lg text-sm text-center">
-                  Something went wrong. Please try again later.
+                  出错了，请稍后再试。
                 </div>
               )}
             </form>

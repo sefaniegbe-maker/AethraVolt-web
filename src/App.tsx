@@ -4,11 +4,9 @@ import Home from './pages/Home';
 import Products from './pages/Products';
 import Cases from './pages/Cases';
 import About from './pages/About';
-import News from './pages/News';
 import Contact from './pages/Contact';
 import ProductDetail from './pages/ProductDetail';
 import CaseDetail from './pages/CaseDetail';
-import NewsDetail from './pages/NewsDetail';
 
 // Placeholder components for now
 const Placeholder = ({ title }: { title: string }) => (
@@ -29,8 +27,6 @@ export default function App() {
           <Route path="/cases" element={<Cases />} />
           <Route path="/cases/:id" element={<CaseDetail />} />
           <Route path="/about" element={<About />} />
-          <Route path="/news" element={<News />} />
-          <Route path="/news/:id" element={<NewsDetail />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </Layout>

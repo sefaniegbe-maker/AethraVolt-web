@@ -88,28 +88,6 @@ async function startServer() {
     }
   });
 
-  app.get("/api/news", (req, res) => {
-    try {
-      const news = db.prepare('SELECT * FROM news ORDER BY date DESC').all();
-      res.json(news);
-    } catch (error) {
-      res.status(500).json({ error: "Internal Server Error" });
-    }
-  });
-
-  app.get("/api/news/:id", (req, res) => {
-    try {
-      const newsItem = db.prepare('SELECT * FROM news WHERE id = ?').get(req.params.id);
-      if (newsItem) {
-        res.json(newsItem);
-      } else {
-        res.status(404).json({ error: "News not found" });
-      }
-    } catch (error) {
-      res.status(500).json({ error: "Internal Server Error" });
-    }
-  });
-
   app.post("/api/contact", (req, res) => {
     try {
       const { name, phone, company, message } = req.body;

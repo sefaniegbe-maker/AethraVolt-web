@@ -29,7 +29,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     { name: t('nav.home'), path: '/' },
     { name: t('nav.products'), path: '/products' },
     { name: t('nav.cases'), path: '/cases' },
-    { name: t('nav.news'), path: '/news' },
     { name: t('nav.about'), path: '/about' },
     { name: t('nav.contact'), path: '/contact' },
   ];
@@ -223,7 +222,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 <li><Link to="/products" className="hover:text-white transition-colors">{t('nav.products')}</Link></li>
                 <li><Link to="/cases" className="hover:text-white transition-colors">{t('nav.cases')}</Link></li>
                 <li><Link to="/about" className="hover:text-white transition-colors">{t('nav.about')}</Link></li>
-                <li><Link to="/news" className="hover:text-white transition-colors">{t('nav.news')}</Link></li>
               </ul>
             </div>
 
@@ -245,11 +243,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 </li>
                 <li className="flex items-center gap-3">
                   <Phone size={18} className="shrink-0" />
-                  <span>+86 755 8888 6666</span>
+                  <span>18905577397</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <Mail size={18} className="shrink-0" />
-                  <span>contact@aethravolt.com</span>
+                  <span>ningli@aethravolt.cn</span>
                 </li>
               </ul>
             </div>

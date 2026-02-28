@@ -1,19 +1,50 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Zap, BarChart3, Globe2, ShieldCheck, ChevronRight, TrendingUp, Leaf } from 'lucide-react';
+import { ArrowRight, Zap, BarChart3, Globe2, ShieldCheck, ChevronRight, TrendingUp, Leaf, Check, Activity, Cpu, FileCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const Home = () => {
-  const [news, setNews] = useState<any[]>([]);
   const { t } = useLanguage();
 
-  useEffect(() => {
-    fetch('/api/news')
-      .then(res => res.json())
-      .then(data => setNews(data.slice(0, 3)))
-      .catch(err => console.error(err));
-  }, []);
+  const patents = [
+    {
+      name: "擎苍-智慧调度中枢系统 V1.0",
+      regNo: "2025SR2430976",
+      certNo: "软著登字第17087174号",
+      date: "2025年12月17日"
+    },
+    {
+      name: "擎穹-智慧能源管理平台 V1.0",
+      regNo: "2025SR2416202",
+      certNo: "软著登字第17072400号",
+      date: "2025年12月15日"
+    },
+    {
+      name: "擎碳-智慧能碳管理系统 V1.0",
+      regNo: "2025SR2416337",
+      certNo: "软著登字第17072535号",
+      date: "2025年12月15日"
+    },
+    {
+      name: "擎维-智能运维和运营系统 V1.0",
+      regNo: "2025SR2416395",
+      certNo: "软著登字第17072593号",
+      date: "2025年12月15日"
+    },
+    {
+      name: "擎元-智慧设备管理和能效优化系统 V1.0",
+      regNo: "2025SR2416414",
+      certNo: "软著登字第17072612号",
+      date: "2025年12月15日"
+    },
+    {
+      name: "智能电能质量监测和优化系统 V1.0",
+      regNo: "2025SR2416802",
+      certNo: "软著登字第17073000号",
+      date: "2025年12月15日"
+    }
+  ];
 
   return (
     <>
@@ -72,14 +103,15 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Solutions Section */}
+      {/* Solutions Section - AethraVolt Services */}
       <section className="py-24 bg-white border-t border-stone-200">
         <div className="container mx-auto px-6 md:px-12">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-            <div className="max-w-2xl">
-              <h2 className="text-3xl md:text-4xl font-serif mb-6">{t('home.solutions.title')}</h2>
+            <div className="max-w-3xl">
+              <h2 className="text-3xl md:text-4xl font-serif mb-2">合擎源动三大品牌服务</h2>
+              <p className="text-accent font-medium tracking-wide uppercase text-sm mb-6">AethraVolt SERVICES</p>
               <p className="text-stone-600 text-lg leading-relaxed">
-                {t('home.solutions.subtitle')}
+                针对高端制造业痛点，提供全方位的能源数字化与碳管理解决方案。
               </p>
             </div>
             <Link to="/products" className="text-ink font-medium border-b border-ink pb-1 hover:text-accent hover:border-accent transition-colors">
@@ -87,31 +119,58 @@ const Home = () => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-stone-200 border border-stone-200">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
-                icon: <Zap className="w-8 h-8" />,
-                title: t('home.solutions.solar'),
-                desc: t('home.solutions.solar_desc'),
+                icon: <Activity className="w-8 h-8" />,
+                title: "Aethra · 臻电™",
+                desc: "针对高端制造业痛点，提供基于AI的主动式电能治理方案，保障生产“大动脉”稳定运行。",
+                features: [
+                  "三相不平衡治理: 解决负荷分配不均难题",
+                  "谐波抑制: 保护精密制造设备寿命",
+                  "无功补偿: 提升功率因数至99%以上",
+                  "AI主动防御: 毫秒级响应电压波动"
+                ]
               },
               {
-                icon: <BarChart3 className="w-8 h-8" />,
-                title: t('home.solutions.ai'),
-                desc: t('home.solutions.ai_desc'),
+                icon: <Cpu className="w-8 h-8" />,
+                title: "Aethra · 驭能™",
+                desc: "构建“源-网-荷-储”多维灵活性资源池，实现AI驱动的能源自动驾驶，将成本中心转化为收益资产。",
+                features: [
+                  "AI削峰填谷: 降低容量电费与尖峰电费",
+                  "智能水蓄冷: 错峰制冷，优化空调能耗",
+                  "VPP收益: 聚合柔性负荷参与市场交易",
+                  "绿电最大化: 提升光伏/储能自用率"
+                ]
               },
               {
-                icon: <ShieldCheck className="w-8 h-8" />,
-                title: t('home.solutions.trading'),
-                desc: t('home.solutions.trading_desc'),
+                icon: <Leaf className="w-8 h-8" />,
+                title: "Aethra · 绿擎™",
+                desc: "以能源数字化和AI驱动，提供可量化、可核查的碳管理报告，助力企业实现全球供应链的绿色合规。",
+                features: [
+                  "AethraGrid平台: 能源管理AI中枢",
+                  "EMS+MES联动: 产线级能耗监控与预警",
+                  "碳足迹追踪: 实时生成国际标准碳报告",
+                  "ESG合规服务: 满足CBAM要求"
+                ]
               }
             ].map((item, index) => (
-              <div key={index} className="bg-white p-10 hover:bg-stone-50 transition-colors group">
-                <div className="mb-6 text-stone-400 group-hover:text-accent transition-colors">{item.icon}</div>
-                <h3 className="text-xl font-serif font-bold mb-4">{item.title}</h3>
-                <p className="text-stone-600 leading-relaxed mb-8">{item.desc}</p>
-                <Link to="/products" className="inline-flex items-center gap-2 text-sm font-medium text-ink group-hover:translate-x-1 transition-transform">
-                  {t('home.solutions.learn_more')} <ArrowRight size={14} />
-                </Link>
+              <div key={index} className="bg-stone-50 p-8 rounded-xl border border-stone-100 hover:shadow-lg transition-all duration-300 group">
+                <div className="mb-6 text-accent bg-white w-16 h-16 rounded-full flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                  {item.icon}
+                </div>
+                <h3 className="text-2xl font-serif font-bold mb-4 text-ink">{item.title}</h3>
+                <p className="text-stone-600 leading-relaxed mb-6 text-sm min-h-[60px]">
+                  {item.desc}
+                </p>
+                <div className="space-y-3">
+                  {item.features.map((feature, fIndex) => (
+                    <div key={fIndex} className="flex items-start gap-2 text-sm text-stone-700">
+                      <Check className="w-4 h-4 text-accent mt-1 shrink-0" />
+                      <span>{feature}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
@@ -221,51 +280,38 @@ const Home = () => {
             </p>
           </div>
           
-          <div className="relative w-full aspect-[1.8/1] bg-stone-900 rounded-xl overflow-hidden shadow-2xl">
-             {/* Map Background - Refined World Map */}
-             <div className="absolute inset-0 opacity-40">
-               <svg viewBox="0 0 1000 500" className="w-full h-full fill-stone-700 stroke-stone-800">
-                 {/* Simplified World Map Paths */}
-                 {/* North America */}
-                 <path d="M50,50 L300,50 L250,200 L150,250 L50,150 Z" className="fill-stone-800" />
-                 {/* South America */}
-                 <path d="M200,250 L300,250 L320,400 L250,480 Z" className="fill-stone-800" />
-                 {/* Europe */}
-                 <path d="M450,50 L550,50 L550,150 L450,150 Z" className="fill-stone-800" />
-                 {/* Africa */}
-                 <path d="M450,180 L580,180 L600,350 L500,400 Z" className="fill-stone-800" />
-                 {/* Asia */}
-                 <path d="M580,50 L900,50 L950,200 L800,300 L600,250 Z" className="fill-stone-800" />
-                 {/* Australia */}
-                 <path d="M800,320 L950,320 L920,450 L800,420 Z" className="fill-stone-800" />
-               </svg>
-               <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:20px_20px]" />
+          <div className="relative w-full aspect-[2/1] bg-[#1a1d24] rounded-xl overflow-hidden shadow-2xl border border-stone-800">
+             {/* Map Background - Complete World Map Image */}
+             <div className="absolute inset-0 opacity-60">
+               <img 
+                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/World_map_blank_without_borders.svg/2000px-World_map_blank_without_borders.svg.png" 
+                 alt="World Map" 
+                 className="w-full h-full object-cover filter invert opacity-80"
+               />
              </div>
 
              {/* Interactive Points */}
              <div className="absolute inset-0 z-10">
                 {[
-                  { country: "中国", city: "深圳 (HQ)", x: "78%", y: "35%", active: true },
-                  { country: "越南", city: "胡志明市", x: "76%", y: "45%", active: true },
-                  { country: "泰国", city: "曼谷", x: "74%", y: "44%", active: true },
-                  { country: "澳大利亚", city: "悉尼", x: "88%", y: "75%", active: true },
-                  { country: "欧洲", city: "德国", x: "50%", y: "25%", active: true },
+                  { label: "Europe", x: "49%", y: "24%" },
+                  { label: "China", x: "74%", y: "34%" },
+                  { label: "Vietnam", x: "75%", y: "46%" },
+                  { label: "Thailand", x: "73%", y: "44%" },
+                  { label: "Australia", x: "85%", y: "75%" },
                 ].map((loc, i) => (
                   <div 
                     key={i}
-                    className="absolute group cursor-pointer"
+                    className="absolute group"
                     style={{ left: loc.x, top: loc.y }}
                   >
-                    <div className="relative flex items-center justify-center">
-                      <div className="w-3 h-3 rounded-full border border-stone-900 bg-accent" />
-                      <div className="absolute w-8 h-8 bg-accent/20 rounded-full animate-ping" />
+                    <div className="relative flex items-center">
+                      {/* Dot */}
+                      <div className="w-3 h-3 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.8)] relative z-10 border border-[#1a1d24]" />
+                      <div className="absolute w-full h-full rounded-full bg-cyan-400/30 animate-ping" />
                       
-                      {/* Tooltip */}
-                      <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                         <div className="bg-white px-3 py-2 rounded shadow-lg text-xs whitespace-nowrap">
-                           <div className="font-bold text-ink">{loc.country}</div>
-                           <div className="text-stone-500">{loc.city}</div>
-                         </div>
+                      {/* Label */}
+                      <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 bg-[#1f2937]/90 backdrop-blur-sm px-2 py-1 rounded border border-stone-700 text-stone-200 text-xs font-medium whitespace-nowrap shadow-xl">
+                        {loc.label}
                       </div>
                     </div>
                   </div>
@@ -275,68 +321,41 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Partners Section */}
-      <section className="py-24 bg-stone-50 border-t border-stone-200">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-serif mb-4">强大的股东与合作伙伴</h2>
-            <p className="text-stone-500">雄厚资本与权威机构赋能</p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "广州智慧用电与城市照明",
-                desc: "南方电网子公司，负责综合能源投资运营。",
-                icon: "⚡"
-              },
-              {
-                name: "国瑞能源集团",
-                desc: "16GW+ 风电开发，覆盖可再生能源全产业链。",
-                icon: "🌪️"
-              },
-              {
-                name: "中山公用",
-                desc: "地方国企，新能源产业投资者。",
-                icon: "🏢"
-              }
-            ].map((partner, i) => (
-              <div key={i} className="bg-white p-8 rounded-xl border border-stone-200 shadow-sm hover:shadow-md transition-shadow">
-                <div className="text-4xl mb-4">{partner.icon}</div>
-                <h3 className="font-serif font-bold text-lg mb-2 text-ink">{partner.name}</h3>
-                <p className="text-stone-600 text-sm leading-relaxed">{partner.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* News Section */}
+      {/* Patents Section */}
       <section className="py-24 bg-paper border-t border-stone-200">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="flex justify-between items-end mb-12">
-            <div>
-              <h2 className="text-3xl font-serif mb-2">{t('home.news.title')}</h2>
-            </div>
-            <Link to="/news" className="btn-outline py-2 px-4 text-sm">
-              {t('home.news.view_all')}
-            </Link>
+          <div className="mb-12 text-center">
+            <h2 className="text-3xl font-serif mb-4">核心技术知识产权</h2>
+            <p className="text-stone-500 max-w-2xl mx-auto">
+              坚持自主研发，构建核心技术壁垒，拥有多项软件著作权。
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {news.map((item) => (
-              <Link key={item.id} to={`/news/${item.id}`} className="group block">
-                <div className="mb-4 overflow-hidden rounded-lg aspect-[4/3]">
-                  <img src={item.image_url} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 grayscale group-hover:grayscale-0" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {patents.map((item, index) => (
+              <div key={index} className="bg-white p-6 rounded-xl border border-stone-100 shadow-sm hover:shadow-md transition-shadow flex flex-col h-full">
+                <div className="flex items-start justify-between mb-4">
+                  <div className="p-3 bg-stone-50 rounded-lg text-accent">
+                    <FileCheck size={24} />
+                  </div>
+                  <div className="px-3 py-1 bg-stone-100 text-stone-600 text-xs rounded-full font-mono">
+                    {item.date}
+                  </div>
                 </div>
-                <div className="text-xs font-medium text-stone-500 mb-2 uppercase tracking-wide">{item.date}</div>
-                <h3 className="text-xl font-serif font-bold text-ink mb-3 leading-snug group-hover:text-accent transition-colors">
-                  {item.title}
+                <h3 className="text-lg font-bold text-ink mb-3 leading-snug min-h-[3.5rem]">
+                  {item.name}
                 </h3>
-                <p className="text-stone-600 text-sm line-clamp-3 leading-relaxed">
-                  {item.summary}
-                </p>
-              </Link>
+                <div className="mt-auto space-y-2 text-sm text-stone-500 font-mono">
+                  <div className="flex justify-between">
+                    <span>登记号:</span>
+                    <span className="text-ink">{item.regNo}</span>
+                  </div>
+                  <div className="flex justify-between border-t border-stone-100 pt-2">
+                    <span>证书号:</span>
+                    <span className="text-ink">{item.certNo}</span>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
