@@ -5,7 +5,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 
 const Products = () => {
   const [products, setProducts] = useState<any[]>([]);
-  const [activeCategory, setActiveCategory] = useState('All');
+  const [activeCategory, setActiveCategory] = useState('全部');
   const { t } = useLanguage();
 
   useEffect(() => {
@@ -15,9 +15,9 @@ const Products = () => {
       .catch(err => console.error(err));
   }, []);
 
-  const categories = ['All', 'Hardware', 'Software', 'Service'];
+  const categories = ['全部', '智能设备', '软件系统', '解决方案'];
 
-  const filteredProducts = activeCategory === 'All' 
+  const filteredProducts = activeCategory === '全部' 
     ? products 
     : products.filter(p => p.category === activeCategory);
 
@@ -27,10 +27,10 @@ const Products = () => {
         {/* Header */}
         <div className="mb-16 max-w-3xl">
           <h1 className="text-4xl md:text-6xl font-serif font-medium mb-6 text-ink">
-            Product Matrix
+            产品矩阵
           </h1>
           <p className="text-xl text-stone-600 font-sans leading-relaxed">
-            1+5 Multi-dimensional product matrix centered on AethraCore AI model.
+            以 AethraCore AI 模型为核心的 1+5 多维产品矩阵。
           </p>
         </div>
 
@@ -133,7 +133,7 @@ const Products = () => {
           {/* Sidebar */}
           <div className="lg:w-1/4 space-y-8">
             <div>
-              <h3 className="font-serif font-bold text-lg mb-4 border-b border-stone-200 pb-2">Categories</h3>
+              <h3 className="font-serif font-bold text-lg mb-4 border-b border-stone-200 pb-2">产品分类</h3>
               <div className="space-y-2">
                 {categories.map(cat => (
                   <button

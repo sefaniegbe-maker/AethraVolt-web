@@ -12,37 +12,43 @@ const Home = () => {
       name: "擎苍-智慧调度中枢系统 V1.0",
       regNo: "2025SR2430976",
       certNo: "软著登字第17087174号",
-      date: "2025年12月17日"
+      date: "2025年12月17日",
+      image: "https://placehold.co/420x594/f5f5f0/D97757?text=Certificate+V1.0"
     },
     {
       name: "擎穹-智慧能源管理平台 V1.0",
       regNo: "2025SR2416202",
       certNo: "软著登字第17072400号",
-      date: "2025年12月15日"
+      date: "2025年12月15日",
+      image: "https://placehold.co/420x594/f5f5f0/D97757?text=Certificate+V1.0"
     },
     {
       name: "擎碳-智慧能碳管理系统 V1.0",
       regNo: "2025SR2416337",
       certNo: "软著登字第17072535号",
-      date: "2025年12月15日"
+      date: "2025年12月15日",
+      image: "https://placehold.co/420x594/f5f5f0/D97757?text=Certificate+V1.0"
     },
     {
       name: "擎维-智能运维和运营系统 V1.0",
       regNo: "2025SR2416395",
       certNo: "软著登字第17072593号",
-      date: "2025年12月15日"
+      date: "2025年12月15日",
+      image: "https://placehold.co/420x594/f5f5f0/D97757?text=Certificate+V1.0"
     },
     {
       name: "擎元-智慧设备管理和能效优化系统 V1.0",
       regNo: "2025SR2416414",
       certNo: "软著登字第17072612号",
-      date: "2025年12月15日"
+      date: "2025年12月15日",
+      image: "https://placehold.co/420x594/f5f5f0/D97757?text=Certificate+V1.0"
     },
     {
       name: "智能电能质量监测和优化系统 V1.0",
       regNo: "2025SR2416802",
       certNo: "软著登字第17073000号",
-      date: "2025年12月15日"
+      date: "2025年12月15日",
+      image: "https://placehold.co/420x594/f5f5f0/D97757?text=Certificate+V1.0"
     }
   ];
 
@@ -306,8 +312,8 @@ const Home = () => {
                   >
                     <div className="relative flex items-center">
                       {/* Dot */}
-                      <div className="w-3 h-3 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.8)] relative z-10 border border-[#1a1d24]" />
-                      <div className="absolute w-full h-full rounded-full bg-cyan-400/30 animate-ping" />
+                      <div className="w-3 h-3 rounded-full bg-[#D97757] shadow-[0_0_10px_rgba(217,119,87,0.8)] relative z-10 border border-[#1a1d24]" />
+                      <div className="absolute w-full h-full rounded-full bg-[#D97757]/30 animate-ping" />
                       
                       {/* Label */}
                       <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 bg-[#1f2937]/90 backdrop-blur-sm px-2 py-1 rounded border border-stone-700 text-stone-200 text-xs font-medium whitespace-nowrap shadow-xl">
@@ -333,26 +339,31 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {patents.map((item, index) => (
-              <div key={index} className="bg-white p-6 rounded-xl border border-stone-100 shadow-sm hover:shadow-md transition-shadow flex flex-col h-full">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="p-3 bg-stone-50 rounded-lg text-accent">
-                    <FileCheck size={24} />
-                  </div>
-                  <div className="px-3 py-1 bg-stone-100 text-stone-600 text-xs rounded-full font-mono">
-                    {item.date}
+              <div key={index} className="bg-white p-4 rounded-xl border border-stone-100 shadow-sm hover:shadow-md transition-shadow flex flex-col h-full group">
+                {/* Certificate Image Placeholder */}
+                <div className="relative aspect-[1/1.414] mb-4 overflow-hidden rounded-lg border border-stone-100 bg-stone-50">
+                  <img 
+                    src={item.image} 
+                    alt={`${item.name} 证书`}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                    <p className="text-white text-xs font-medium">{item.certNo}</p>
                   </div>
                 </div>
-                <h3 className="text-lg font-bold text-ink mb-3 leading-snug min-h-[3.5rem]">
+
+                <h3 className="text-base font-bold text-ink mb-2 leading-snug min-h-[2.5rem]">
                   {item.name}
                 </h3>
-                <div className="mt-auto space-y-2 text-sm text-stone-500 font-mono">
+                
+                <div className="mt-auto space-y-1 text-xs text-stone-500 font-mono">
                   <div className="flex justify-between">
                     <span>登记号:</span>
                     <span className="text-ink">{item.regNo}</span>
                   </div>
-                  <div className="flex justify-between border-t border-stone-100 pt-2">
-                    <span>证书号:</span>
-                    <span className="text-ink">{item.certNo}</span>
+                  <div className="flex justify-between">
+                    <span>日期:</span>
+                    <span className="text-ink">{item.date}</span>
                   </div>
                 </div>
               </div>
