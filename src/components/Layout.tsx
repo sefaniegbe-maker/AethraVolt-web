@@ -247,7 +247,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 </li>
                 <li className="flex items-center gap-3">
                   <Mail size={18} className="shrink-0" />
-                  <span>ningli@aethravolt.cn</span>
+                  <span>stefanie.ning@fusionvpp.com</span>
                 </li>
               </ul>
             </div>

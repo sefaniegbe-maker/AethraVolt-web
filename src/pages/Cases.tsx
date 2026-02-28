@@ -77,14 +77,10 @@ const Cases = () => {
                     {item.title}
                   </h3>
                   
-                  <div className="grid grid-cols-2 gap-4 mb-6 pt-4 border-t border-stone-100">
+                  <div className="mb-6 pt-4 border-t border-stone-100">
                     <div>
                       <div className="text-2xl font-serif text-ink">{item.capacity}</div>
                       <div className="text-xs text-stone-500 uppercase tracking-wide">装机容量</div>
-                    </div>
-                    <div>
-                      <div className="text-2xl font-serif text-accent">{item.savings}</div>
-                      <div className="text-xs text-stone-500 uppercase tracking-wide">年收益</div>
                     </div>
                   </div>
 

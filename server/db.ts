@@ -66,7 +66,7 @@ if (productCount.count === 0) {
     '解决方案',
     '零碳工厂整体解决方案',
     '从源头减碳到末端抵消的全流程闭环服务，助力企业实现碳中和。',
-    'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1000',
+    'https://images.unsplash.com/photo-1667507153686-7e8c33654479?auto=format&fit=crop&q=80&w=1000',
     JSON.stringify(['分布式光储', '绿电交易', '碳资产管理', '节能改造']),
     JSON.stringify({ '适用场景': '制造业园区', '投资回报周期': '3-5年', '减碳潜力': '100%' })
   );
@@ -118,7 +118,7 @@ if (caseCount.count === 0) {
     '利用夜间低谷电价进行水蓄冷，白天高峰期释放冷量，结合绿电交易实现零碳运行。',
     '5MW',
     '¥350万/年',
-    'https://images.unsplash.com/photo-1565514020176-db7936a7d507?auto=format&fit=crop&q=80&w=1000',
+    'https://ibb.co/0p03ttV1',
     JSON.stringify(['移峰填谷', '降低空调能耗30%', '绿电占比100%'])
   );
 
@@ -130,7 +130,7 @@ if (caseCount.count === 0) {
     '创新性采用“光伏 + 污水处理厂”融合模式，通过智慧能源管理系统，对光伏发电、污水处理负荷、电价峰谷及设备运行进行协同调度，实现“源-网-荷-储”一体化优化运行。',
     '10MW',
     '¥500万/年',
-    'https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?auto=format&fit=crop&q=80&w=1000',
+    'https://ibb.co/S406ZjKP',
     JSON.stringify(['污水处理成本降低20%', '自发自用率95%', '生态效益显著'])
   );
 
@@ -142,7 +142,7 @@ if (caseCount.count === 0) {
     '集光伏、储能、充电桩于一体的微电网系统，实现能源自给自足，服务于电动汽车充电需求。',
     '1MW/2MWh',
     '€15万/年',
-    'https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=1000',
+    'https://ibb.co/rKwJ6PQ1',
     JSON.stringify(['能源自给率80%', '降低碳排30%', '提升品牌形象'])
   );
 }

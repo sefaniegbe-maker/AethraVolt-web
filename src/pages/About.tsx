@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Users, Target, Award, Globe2, TrendingUp, Building2, Leaf } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
 
 const About = () => {
   return (
@@ -149,28 +150,31 @@ const About = () => {
              <div className="md:w-1/2 w-full">
                <div className="bg-stone-800 rounded-xl p-8 border border-stone-700">
                  <h3 className="font-serif text-white mb-6">投资预测 (2026-2030)</h3>
-                 <div className="flex items-end gap-4 h-64">
-                   {[
-                     { year: 2026, val: 2.5, label: "25亿" },
-                     { year: 2027, val: 10, label: "100亿" },
-                     { year: 2028, val: 20, label: "200亿" },
-                     { year: 2029, val: 30, label: "300亿" },
-                     { year: 2030, val: 37.5, label: "375亿" }
-                   ].map((item, i) => (
-                     <div key={i} className="flex-1 flex flex-col justify-end group">
-                       <div 
-                         className="bg-stone-600 w-full rounded-t-sm group-hover:bg-accent transition-all duration-500 relative"
-                         style={{ height: `${(item.val / 40) * 100}%` }}
-                       >
-                         <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                           {item.label}
-                         </div>
-                       </div>
-                       <div className="text-center text-xs text-stone-500 mt-2">{item.year}</div>
-                     </div>
-                   ))}
+                 <div className="h-64 w-full">
+                   <ResponsiveContainer width="100%" height="100%">
+                     <BarChart
+                       data={[
+                         { year: '2026', value: 25000 },
+                         { year: '2027', value: 100000 },
+                         { year: '2028', value: 200000 },
+                         { year: '2029', value: 300000 },
+                         { year: '2030', value: 375000 },
+                       ]}
+                       margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                     >
+                       <CartesianGrid strokeDasharray="3 3" stroke="#44403c" vertical={false} />
+                       <XAxis dataKey="year" stroke="#a8a29e" tick={{ fill: '#a8a29e' }} />
+                       <YAxis stroke="#a8a29e" tick={{ fill: '#a8a29e' }} />
+                       <Tooltip
+                         contentStyle={{ backgroundColor: '#292524', borderColor: '#44403c', color: '#fff' }}
+                         formatter={(value) => [`${value} 万元`, '投资额']}
+                         cursor={{ fill: '#44403c', opacity: 0.4 }}
+                       />
+                       <Bar dataKey="value" fill="#D97757" radius={[4, 4, 0, 0]} />
+                     </BarChart>
+                   </ResponsiveContainer>
                  </div>
-                 <div className="text-right text-xs text-stone-600 mt-4">单位：亿人民币 (累计)</div>
+                 <div className="text-right text-xs text-stone-600 mt-4">单位：万元 (累计)</div>
                </div>
              </div>
           </div>

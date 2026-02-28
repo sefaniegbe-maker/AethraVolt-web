@@ -73,7 +73,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-serif font-bold text-lg mb-2">邮件联系</h3>
-                  <p className="text-stone-600 mb-1">ningli@aethravolt.cn</p>
+                  <p className="text-stone-600 mb-1">stefanie.ning@fusionvpp.com</p>
                 </div>
               </div>
 
