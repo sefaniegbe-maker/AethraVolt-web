@@ -1,6 +1,9 @@
 import express from "express";
 import { createServer as createViteServer } from "vite";
 import db from "./server/db";
+import { GoogleGenAI } from "@google/genai";
+import fs from 'fs';
+import path from 'path';
 
 async function startServer() {
   const app = express();
@@ -9,6 +12,63 @@ async function startServer() {
   app.use(express.json());
 
   // API Routes
+  app.get("/api/admin/update-image", async (req, res) => {
+    try {
+      const apiKey = process.env.GEMINI_API_KEY || process.env.API_KEY;
+      if (!apiKey) {
+        return res.status(500).json({ error: "GEMINI_API_KEY or API_KEY not set" });
+      }
+      
+      const ai = new GoogleGenAI({ apiKey });
+      const response = await ai.models.generateContent({
+        model: 'gemini-3.1-flash-image-preview',
+        contents: {
+          parts: [
+            {
+              text: 'A wide shot of an empty field with 15 to 20 units of commercial and industrial energy storage containers arranged neatly. The containers should be white or light grey, simple and elegant design, no logos. The setting is outdoors, daytime, clear sky. Photorealistic style.',
+            },
+          ],
+        },
+        config: {
+          imageConfig: {
+            aspectRatio: "16:9",
+            imageSize: "1K"
+          }
+        },
+      });
+
+      let base64Image = '';
+      if (response.candidates && response.candidates[0].content.parts) {
+        for (const part of response.candidates[0].content.parts) {
+          if (part.inlineData) {
+            base64Image = part.inlineData.data;
+            break;
+          }
+        }
+      }
+
+      if (!base64Image) {
+        return res.status(500).json({ error: "No image generated" });
+      }
+
+      const imagePath = path.join(process.cwd(), 'public', 'images', 'case-storage.png');
+      const dir = path.dirname(imagePath);
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+      }
+
+      fs.writeFileSync(imagePath, Buffer.from(base64Image, 'base64'));
+      
+      const stmt = db.prepare("UPDATE cases SET image_url = ? WHERE title LIKE '%光储一体化%'");
+      const info = stmt.run('/images/case-storage.png');
+      
+      res.json({ success: true, changes: info.changes, path: '/images/case-storage.png' });
+    } catch (error: any) {
+      console.error(error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
   app.get("/api/products", (req, res) => {
     try {
       const { category } = req.query;

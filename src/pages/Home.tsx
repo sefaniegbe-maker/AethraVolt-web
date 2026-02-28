@@ -13,42 +13,42 @@ const Home = () => {
       regNo: "2025SR2430976",
       certNo: "软著登字第17087174号",
       date: "2025年12月17日",
-      image: "https://placehold.co/420x594/f5f5f0/D97757?text=Certificate+V1.0"
+      image: "https://i.ibb.co/tTRyDXT5/image.png"
     },
     {
       name: "擎穹-智慧能源管理平台 V1.0",
       regNo: "2025SR2416202",
       certNo: "软著登字第17072400号",
       date: "2025年12月15日",
-      image: "https://placehold.co/420x594/f5f5f0/D97757?text=Certificate+V1.0"
+      image: "https://i.ibb.co/YFd277mB/image.png"
     },
     {
       name: "擎碳-智慧能碳管理系统 V1.0",
       regNo: "2025SR2416337",
       certNo: "软著登字第17072535号",
       date: "2025年12月15日",
-      image: "https://placehold.co/420x594/f5f5f0/D97757?text=Certificate+V1.0"
+      image: "https://i.ibb.co/zHNmCKWQ/image.png"
     },
     {
       name: "擎维-智能运维和运营系统 V1.0",
       regNo: "2025SR2416395",
       certNo: "软著登字第17072593号",
       date: "2025年12月15日",
-      image: "https://placehold.co/420x594/f5f5f0/D97757?text=Certificate+V1.0"
+      image: "https://i.ibb.co/MyXJhvRM/image.png"
     },
     {
       name: "擎元-智慧设备管理和能效优化系统 V1.0",
       regNo: "2025SR2416414",
       certNo: "软著登字第17072612号",
       date: "2025年12月15日",
-      image: "https://placehold.co/420x594/f5f5f0/D97757?text=Certificate+V1.0"
+      image: "https://i.ibb.co/FbFHLf1F/image.png"
     },
     {
       name: "智能电能质量监测和优化系统 V1.0",
       regNo: "2025SR2416802",
       certNo: "软著登字第17073000号",
       date: "2025年12月15日",
-      image: "https://placehold.co/420x594/f5f5f0/D97757?text=Certificate+V1.0"
+      image: "https://i.ibb.co/dwB6jG5Z/image.png"
     }
   ];
 

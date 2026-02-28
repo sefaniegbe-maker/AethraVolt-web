@@ -15,9 +15,9 @@ const Cases = () => {
       .catch(err => console.error(err));
   }, []);
 
-  const industries = ['All', 'Manufacturing', 'Logistics', 'Commercial'];
+  const industries = ['全部', '制造业', '园区'];
 
-  const filteredCases = activeIndustry === 'All' 
+  const filteredCases = activeIndustry === '全部' 
     ? cases 
     : cases.filter(c => c.industry === activeIndustry);
 
@@ -26,10 +26,10 @@ const Cases = () => {
       <div className="container mx-auto px-6 md:px-12">
         <div className="mb-16 max-w-3xl">
           <h1 className="text-4xl md:text-6xl font-serif font-medium mb-6 text-ink">
-            Success Stories
+            成功案例
           </h1>
           <p className="text-xl text-stone-600 font-sans leading-relaxed">
-            Real-world applications of AethraVolt's zero-carbon solutions across industries.
+            AethraVolt 零碳解决方案在各行各业的实际应用。
           </p>
         </div>
 
@@ -80,16 +80,16 @@ const Cases = () => {
                   <div className="grid grid-cols-2 gap-4 mb-6 pt-4 border-t border-stone-100">
                     <div>
                       <div className="text-2xl font-serif text-ink">{item.capacity}</div>
-                      <div className="text-xs text-stone-500 uppercase tracking-wide">Capacity</div>
+                      <div className="text-xs text-stone-500 uppercase tracking-wide">装机容量</div>
                     </div>
                     <div>
                       <div className="text-2xl font-serif text-accent">{item.savings}</div>
-                      <div className="text-xs text-stone-500 uppercase tracking-wide">Savings</div>
+                      <div className="text-xs text-stone-500 uppercase tracking-wide">年收益</div>
                     </div>
                   </div>
 
                   <div className="mt-auto pt-4 flex items-center text-sm font-medium text-ink group-hover:translate-x-1 transition-transform">
-                    View Case Study <ArrowRight size={16} className="ml-2" />
+                    查看案例详情 <ArrowRight size={16} className="ml-2" />
                   </div>
                 </div>
               </div>

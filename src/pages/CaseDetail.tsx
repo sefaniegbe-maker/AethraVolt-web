@@ -36,7 +36,7 @@ const CaseDetail = () => {
         <div className="absolute bottom-0 left-0 w-full p-8 md:p-16">
           <div className="container mx-auto px-6 md:px-12">
             <Link to="/cases" className="inline-flex items-center gap-2 text-white/70 hover:text-white mb-8 transition-colors text-sm uppercase tracking-wide">
-              <ArrowLeft size={16} /> Back to Cases
+              <ArrowLeft size={16} /> 返回案例列表
             </Link>
             <div className="flex items-center gap-4 mb-6">
               <span className="bg-white text-stone-900 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">{caseItem.industry}</span>
@@ -53,20 +53,18 @@ const CaseDetail = () => {
       <div className="container mx-auto px-6 md:px-12 py-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
           <div className="md:col-span-2">
-            <h2 className="text-2xl font-serif font-bold mb-6 text-ink">Background & Challenge</h2>
+            <h2 className="text-2xl font-serif font-bold mb-6 text-ink">项目背景与挑战</h2>
             <p className="text-stone-600 text-lg leading-relaxed mb-12 font-sans">
               {caseItem.description}
-              <br /><br />
-              With the acceleration of global carbon neutrality, the client faced immense pressure on energy costs and supply chain decarbonization requirements. Traditional energy management was extensive, lacking refined data support, making it difficult to meet increasingly strict ESG compliance needs.
             </p>
 
-            <h2 className="text-2xl font-serif font-bold mb-6 text-ink">Solution</h2>
+            <h2 className="text-2xl font-serif font-bold mb-6 text-ink">解决方案</h2>
             <div className="text-stone-600 text-lg leading-relaxed mb-12 font-sans">
-              AethraVolt tailored a "Zero-Carbon Factory" holistic solution:
+              AethraVolt 为该项目提供了定制化的零碳解决方案，通过部署 AethraEdge 边缘控制器与 AethraGrid 能源管理平台，实现了能源的数字化管理与优化调度。
               <ul className="list-disc pl-6 mt-6 space-y-4 marker:text-accent">
-                <li>Deployed <strong>AethraEdge</strong> edge controllers for millisecond-level intelligent regulation of high-energy equipment.</li>
-                <li>Constructed 2MW distributed PV and 1MWh energy storage system to increase green power usage ratio.</li>
-                <li>Integrated <strong>AethraGrid</strong> energy management cloud platform for full-plant energy flow visualization and real-time carbon emission monitoring.</li>
+                <li>部署 <strong>AethraEdge</strong> 边缘控制器，实现毫秒级智能调节。</li>
+                <li>建设分布式光伏与储能系统，提高绿电使用比例。</li>
+                <li>集成 <strong>AethraGrid</strong> 能源管理云平台，实现全厂能流可视化与碳排放实时监测。</li>
               </ul>
             </div>
           </div>
@@ -74,18 +72,15 @@ const CaseDetail = () => {
           <div>
             <div className="bg-white rounded-xl p-8 border border-stone-200 sticky top-32">
               <h3 className="text-xl font-serif font-bold mb-8 flex items-center gap-2 text-ink">
-                Key Results
+                核心成果
               </h3>
               <div className="space-y-8">
                 {caseItem.results?.map((res: string, i: number) => {
-                  const num = res.match(/[\d\.]+/)?.[0];
-                  const text = res.replace(/[\d\.]+/g, '');
                   return (
                     <div key={i} className="border-b border-stone-100 pb-6 last:border-0 last:pb-0">
-                      <div className="text-4xl font-serif text-accent mb-2">
-                        {num}<span className="text-lg ml-1 text-stone-400 font-sans">{text}</span>
+                      <div className="text-xl font-serif text-accent mb-2">
+                        {res}
                       </div>
-                      <div className="text-xs text-stone-500 uppercase tracking-wider font-medium">Improvement</div>
                     </div>
                   );
                 })}
