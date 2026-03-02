@@ -14,10 +14,10 @@ const About = () => {
           className="max-w-4xl"
         >
           <h1 className="text-5xl md:text-7xl font-serif font-medium mb-8 text-ink leading-tight">
-            About AethraVolt
+            关于合擎源动
           </h1>
           <p className="text-xl md:text-2xl text-stone-600 font-sans leading-relaxed border-l-4 border-accent pl-6">
-            AI+Data-driven "Zero-Carbon New Quality Productivity" Energy Operator.
+            AI+数据驱动的“零碳新质生产力”能源运营商。
           </p>
         </motion.div>
       </section>

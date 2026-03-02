@@ -62,7 +62,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <div className="flex items-center overflow-hidden h-10">
               <motion.div 
                 layout
-                className="flex items-center justify-center font-serif font-bold text-2xl text-ink shrink-0 z-10"
+                className="flex items-center justify-center font-display font-bold text-2xl text-ink shrink-0 z-10"
               >
                 A
               </motion.div>
@@ -78,7 +78,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                       transition={{ duration: 0.4, ease: "easeOut" }}
                       className="flex flex-col ml-1 overflow-hidden whitespace-nowrap"
                     >
-                      <span className="font-serif font-bold text-xl leading-none tracking-tight text-ink">ethraVolt</span>
+                      <span className="font-display font-bold text-xl leading-none tracking-tight text-ink">ethraVolt</span>
                     </motion.div>
                   ) : (
                     <motion.div
@@ -89,7 +89,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                       transition={{ duration: 0.3 }}
                       className="ml-0.5"
                     >
-                      <span className="font-serif font-bold text-2xl tracking-tight text-ink">E</span>
+                      <span className="font-display font-bold text-2xl tracking-tight text-ink">E</span>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -213,7 +213,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
             <div className="space-y-6">
               <div className="flex items-center gap-2 text-white mb-4">
-                <span className="font-serif font-bold text-2xl">AethraVolt</span>
+                <span className="font-display font-bold text-2xl tracking-tight">AethraVolt</span>
               </div>
               <p className="text-sm text-stone-400 leading-relaxed whitespace-pre-line font-sans">
                 {t('footer.desc')}
