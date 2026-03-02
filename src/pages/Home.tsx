@@ -299,11 +299,11 @@ const Home = () => {
              {/* Interactive Points */}
              <div className="absolute inset-0 z-10">
                 {[
-                  { label: "Europe", x: "49%", y: "24%" },
-                  { label: "China", x: "74%", y: "34%" },
-                  { label: "Vietnam", x: "75%", y: "46%" },
-                  { label: "Thailand", x: "73%", y: "44%" },
-                  { label: "Australia", x: "85%", y: "75%" },
+                  { label: "德国", x: "49%", y: "24%" },
+                  { label: "中国", x: "74%", y: "34%" },
+                  { label: "越南", x: "75%", y: "46%" },
+                  { label: "泰国", x: "73%", y: "44%" },
+                  { label: "澳大利亚", x: "85%", y: "75%" },
                 ].map((loc, i) => (
                   <div 
                     key={i}
