@@ -12,7 +12,7 @@ async function startServer() {
   app.use(express.json());
 
   // API Routes
-  app.get("/api/admin/update-image", async (req, res) => {
+  app.get("/api/admin/generate-case-images", async (req, res) => {
     try {
       const apiKey = process.env.GEMINI_API_KEY || process.env.API_KEY;
       if (!apiKey) {
@@ -20,49 +20,69 @@ async function startServer() {
       }
       
       const ai = new GoogleGenAI({ apiKey });
-      const response = await ai.models.generateContent({
-        model: 'gemini-3.1-flash-image-preview',
-        contents: {
-          parts: [
-            {
-              text: 'A wide shot of an empty field with 15 to 20 units of commercial and industrial energy storage containers arranged neatly. The containers should be white or light grey, simple and elegant design, no logos. The setting is outdoors, daytime, clear sky. Photorealistic style.',
-            },
-          ],
-        },
-        config: {
-          imageConfig: {
-            aspectRatio: "16:9",
-            imageSize: "1K"
-          }
-        },
-      });
+      const cases = db.prepare('SELECT id, title FROM cases').all() as any[];
+      const results = [];
+      
+      for (const c of cases) {
+        console.log(`Generating image for: ${c.title}`);
+        let prompt = '';
+        if (c.title.includes('光储一体化')) {
+          prompt = 'A high-tech industrial facility with modern solar panels on the roof and large commercial energy storage battery containers next to it. Clean, futuristic, photorealistic, daytime, clear sky.';
+        } else if (c.title.includes('水蓄冷')) {
+          prompt = 'A modern industrial cooling plant with large cylindrical water thermal storage tanks. High-tech environment, clean pipes, blue and silver metallic tones, photorealistic.';
+        } else if (c.title.includes('污水处理')) {
+          prompt = 'A modern eco-friendly wastewater treatment plant with solar panels installed over the water treatment pools. Clean, sustainable, high-tech, sunny day, photorealistic.';
+        } else if (c.title.includes('光储充')) {
+          prompt = 'A futuristic electric vehicle charging station with solar panel canopies and sleek energy storage battery units. Modern design, clean energy concept, photorealistic.';
+        } else {
+          prompt = 'A modern high-tech industrial facility with clean energy infrastructure. Photorealistic.';
+        }
 
-      let base64Image = '';
-      if (response.candidates && response.candidates[0].content.parts) {
-        for (const part of response.candidates[0].content.parts) {
-          if (part.inlineData) {
-            base64Image = part.inlineData.data;
-            break;
+        try {
+          const response = await ai.models.generateContent({
+            model: 'gemini-3.1-flash-image-preview',
+            contents: {
+              parts: [{ text: prompt }],
+            },
+            config: {
+              imageConfig: {
+                aspectRatio: "16:9",
+                imageSize: "1K"
+              }
+            },
+          });
+
+          let base64Image = '';
+          if (response.candidates && response.candidates[0].content.parts) {
+            for (const part of response.candidates[0].content.parts) {
+              if (part.inlineData) {
+                base64Image = part.inlineData.data;
+                break;
+              }
+            }
           }
+
+          if (base64Image) {
+            const filename = `case-${c.id}.png`;
+            const imagePath = path.join(process.cwd(), 'public', 'images', filename);
+            const dir = path.dirname(imagePath);
+            if (!fs.existsSync(dir)) {
+              fs.mkdirSync(dir, { recursive: true });
+            }
+
+            fs.writeFileSync(imagePath, Buffer.from(base64Image, 'base64'));
+            
+            const stmt = db.prepare("UPDATE cases SET image_url = ? WHERE id = ?");
+            stmt.run(`/images/${filename}`, c.id);
+            results.push({ id: c.id, status: 'success' });
+          }
+        } catch (e: any) {
+          console.error(`Failed to generate image for case ${c.id}:`, e);
+          results.push({ id: c.id, status: 'error', message: e.message });
         }
       }
-
-      if (!base64Image) {
-        return res.status(500).json({ error: "No image generated" });
-      }
-
-      const imagePath = path.join(process.cwd(), 'public', 'images', 'case-storage.png');
-      const dir = path.dirname(imagePath);
-      if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir, { recursive: true });
-      }
-
-      fs.writeFileSync(imagePath, Buffer.from(base64Image, 'base64'));
       
-      const stmt = db.prepare("UPDATE cases SET image_url = ? WHERE title LIKE '%光储一体化%'");
-      const info = stmt.run('/images/case-storage.png');
-      
-      res.json({ success: true, changes: info.changes, path: '/images/case-storage.png' });
+      res.json({ success: true, results });
     } catch (error: any) {
       console.error(error);
       res.status(500).json({ error: error.message });

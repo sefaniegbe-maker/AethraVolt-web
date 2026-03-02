@@ -13,38 +13,38 @@ const About = () => {
           animate={{ opacity: 1, y: 0 }}
           className="max-w-4xl"
         >
-          <h1 className="text-5xl md:text-7xl font-serif font-medium mb-8 text-ink leading-tight">
+          <h1 className="text-5xl md:text-7xl font-sans font-bold mb-8 text-white leading-tight">
             关于合擎源动
           </h1>
-          <p className="text-xl md:text-2xl text-stone-600 font-sans leading-relaxed border-l-4 border-accent pl-6">
+          <p className="text-xl md:text-2xl text-stone-300 font-sans leading-relaxed border-l-4 border-blue-500 pl-6">
             AI+数据驱动的“零碳新质生产力”能源运营商。
           </p>
         </motion.div>
       </section>
 
       {/* Vision & Mission */}
-      <section className="bg-white border-y border-stone-200 py-24">
+      <section className="bg-transparent border-y border-stone-800 py-24">
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
             <div>
-              <h2 className="text-3xl font-serif mb-6">核心愿景</h2>
-              <p className="text-stone-600 text-lg leading-relaxed mb-8">
+              <h2 className="text-3xl font-sans font-bold mb-6 text-white">核心愿景</h2>
+              <p className="text-stone-300 text-lg leading-relaxed mb-8">
                 以优质负荷为核心，以AI为引擎，成为全球领先的零碳新质生产力运营商。
               </p>
               
               <div className="space-y-8">
                 <div>
-                  <h3 className="font-serif font-bold text-lg mb-3 flex items-center gap-2">
-                    <Target className="text-accent" size={20} /> 核心定位
+                  <h3 className="font-sans font-bold text-lg mb-3 flex items-center gap-2 text-white">
+                    <Target className="text-blue-400" size={20} /> 核心定位
                   </h3>
-                  <p className="text-stone-600 pl-7">AI+数据驱动的“零碳新质生产力”能源运营商</p>
+                  <p className="text-stone-400 pl-7">AI+数据驱动的“零碳新质生产力”能源运营商</p>
                 </div>
                 
                 <div>
-                  <h3 className="font-serif font-bold text-lg mb-3 flex items-center gap-2">
-                    <Globe2 className="text-accent" size={20} /> 聚焦领域
+                  <h3 className="font-sans font-bold text-lg mb-3 flex items-center gap-2 text-white">
+                    <Globe2 className="text-blue-400" size={20} /> 聚焦领域
                   </h3>
-                  <ul className="list-disc pl-12 text-stone-600 space-y-1">
+                  <ul className="list-disc pl-12 text-stone-400 space-y-1">
                     <li>低碳绿能</li>
                     <li>能源精益运营</li>
                     <li>ESG价值创造</li>
@@ -52,23 +52,23 @@ const About = () => {
                 </div>
 
                 <div>
-                  <h3 className="font-serif font-bold text-lg mb-3 flex items-center gap-2">
-                    <Award className="text-accent" size={20} /> 客户价值
+                  <h3 className="font-sans font-bold text-lg mb-3 flex items-center gap-2 text-white">
+                    <Award className="text-blue-400" size={20} /> 客户价值
                   </h3>
                   <div className="grid grid-cols-2 gap-4 pl-7">
-                    <div className="bg-stone-50 p-3 rounded text-sm text-center border border-stone-100">省成本</div>
-                    <div className="bg-stone-50 p-3 rounded text-sm text-center border border-stone-100">创营收</div>
-                    <div className="bg-stone-50 p-3 rounded text-sm text-center border border-stone-100">高效率</div>
-                    <div className="bg-stone-50 p-3 rounded text-sm text-center border border-stone-100">ESG标杆</div>
+                    <div className="bg-stone-900/50 p-3 rounded text-sm text-center border border-stone-800 text-stone-300">省成本</div>
+                    <div className="bg-stone-900/50 p-3 rounded text-sm text-center border border-stone-800 text-stone-300">创营收</div>
+                    <div className="bg-stone-900/50 p-3 rounded text-sm text-center border border-stone-800 text-stone-300">高效率</div>
+                    <div className="bg-stone-900/50 p-3 rounded text-sm text-center border border-stone-800 text-stone-300">ESG标杆</div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="relative h-full min-h-[500px] bg-stone-100 rounded-xl overflow-hidden">
+            <div className="relative h-full min-h-[500px] bg-stone-900 rounded-xl overflow-hidden border border-stone-800">
               <img 
-                src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1000" 
-                alt="Office Vision" 
-                className="absolute inset-0 w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 transition-all duration-700"
+                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000" 
+                alt="Factory with automation and energy storage" 
+                className="absolute inset-0 w-full h-full object-cover opacity-80 hover:opacity-100 transition-all duration-700 mix-blend-luminosity hover:mix-blend-normal"
               />
             </div>
           </div>
@@ -76,11 +76,11 @@ const About = () => {
       </section>
 
       {/* Win-Win Model */}
-      <section className="py-24 bg-paper">
+      <section className="py-24 bg-transparent">
         <div className="container mx-auto px-6 md:px-12">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-serif mb-4">三方战略联动</h2>
-            <p className="text-stone-600">为政府、制造业和合擎源动创造价值</p>
+            <h2 className="text-3xl md:text-4xl font-sans font-bold mb-4 text-white">三方战略联动</h2>
+            <p className="text-stone-400">为政府、制造业和合擎源动创造价值</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -104,79 +104,15 @@ const About = () => {
                 desc: "获取长期能源资产回报，积累高价值能源数据资产。"
               }
             ].map((item, i) => (
-              <div key={i} className="card-editorial text-center hover:border-accent group">
-                <div className="w-16 h-16 bg-stone-100 rounded-full flex items-center justify-center mx-auto mb-6 text-stone-600 group-hover:bg-accent group-hover:text-white transition-all">
+              <div key={i} className="card-editorial text-center hover:border-blue-500/50 group">
+                <div className="w-16 h-16 bg-stone-800 rounded-full flex items-center justify-center mx-auto mb-6 text-stone-400 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-lg">
                   {item.icon}
                 </div>
-                <h3 className="text-xl font-serif font-bold mb-2">{item.role}</h3>
-                <div className="text-accent font-medium mb-4 text-sm uppercase tracking-wider">{item.benefit}</div>
-                <p className="text-stone-600 leading-relaxed text-sm">{item.desc}</p>
+                <h3 className="text-xl font-sans font-bold mb-2 text-white">{item.role}</h3>
+                <div className="text-blue-400 font-medium mb-4 text-sm uppercase tracking-wider">{item.benefit}</div>
+                <p className="text-stone-400 leading-relaxed text-sm">{item.desc}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Global Investment */}
-      <section className="py-24 bg-stone-900 text-stone-200">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="flex flex-col md:flex-row gap-16 items-center">
-             <div className="md:w-1/2">
-               <h2 className="text-3xl md:text-4xl font-serif text-white mb-6">全球资本规划</h2>
-               <p className="text-stone-400 text-lg mb-8 leading-relaxed">
-                 未来5年，我们计划在中国、越南、泰国、澳大利亚和欧洲投资超过 <span className="text-white font-bold">100亿人民币</span>。
-               </p>
-               <div className="space-y-6">
-                 <div className="flex items-center gap-4">
-                   <div className="w-12 h-12 rounded-full border border-stone-700 flex items-center justify-center text-accent">
-                     <TrendingUp size={20} />
-                   </div>
-                   <div>
-                     <div className="text-2xl font-serif text-white">400+</div>
-                     <div className="text-sm text-stone-500">零碳工厂/园区</div>
-                   </div>
-                 </div>
-                 <div className="flex items-center gap-4">
-                   <div className="w-12 h-12 rounded-full border border-stone-700 flex items-center justify-center text-accent">
-                     <Globe2 size={20} />
-                   </div>
-                   <div>
-                     <div className="text-2xl font-serif text-white">6GW+</div>
-                     <div className="text-sm text-stone-500">绿色能源资产</div>
-                   </div>
-                 </div>
-               </div>
-             </div>
-             <div className="md:w-1/2 w-full">
-               <div className="bg-stone-800 rounded-xl p-8 border border-stone-700">
-                 <h3 className="font-serif text-white mb-6">投资预测 (2026-2030)</h3>
-                 <div className="h-64 w-full">
-                   <ResponsiveContainer width="100%" height="100%">
-                     <BarChart
-                       data={[
-                         { year: '2026', value: 25000 },
-                         { year: '2027', value: 100000 },
-                         { year: '2028', value: 200000 },
-                         { year: '2029', value: 300000 },
-                         { year: '2030', value: 375000 },
-                       ]}
-                       margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-                     >
-                       <CartesianGrid strokeDasharray="3 3" stroke="#44403c" vertical={false} />
-                       <XAxis dataKey="year" stroke="#a8a29e" tick={{ fill: '#a8a29e' }} />
-                       <YAxis stroke="#a8a29e" tick={{ fill: '#a8a29e' }} />
-                       <Tooltip
-                         contentStyle={{ backgroundColor: '#292524', borderColor: '#44403c', color: '#fff' }}
-                         formatter={(value) => [`${value} 万元`, '投资额']}
-                         cursor={{ fill: '#44403c', opacity: 0.4 }}
-                       />
-                       <Bar dataKey="value" fill="#D97757" radius={[4, 4, 0, 0]} />
-                     </BarChart>
-                   </ResponsiveContainer>
-                 </div>
-                 <div className="text-right text-xs text-stone-600 mt-4">单位：万元 (累计)</div>
-               </div>
-             </div>
           </div>
         </div>
       </section>

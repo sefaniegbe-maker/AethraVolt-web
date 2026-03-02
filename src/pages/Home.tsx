@@ -235,10 +235,7 @@ const Home = () => {
       <section className="py-24 bg-transparent border-t border-stone-800">
         <div className="container mx-auto px-6 md:px-12">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-sans font-bold mb-4 text-white">全球布局与资本规划</h2>
-            <p className="text-stone-400 max-w-2xl mx-auto">
-              未来5年投资100亿人民币，在全球核心市场建设400+零碳工厂。
-            </p>
+            <h2 className="text-3xl font-sans font-bold mb-4 text-white">全球布局</h2>
           </div>
           
           <div className="relative w-full aspect-[2/1] bg-stone-900/50 backdrop-blur-sm rounded-xl overflow-hidden shadow-2xl border border-stone-800">

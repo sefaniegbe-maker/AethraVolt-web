@@ -48,37 +48,37 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         className={clsx(
           'fixed w-full z-50 transition-all duration-500 ease-in-out border-b',
           isScrolled 
-            ? 'bg-paper/90 backdrop-blur-md border-stone-200 py-4' 
-            : 'bg-paper border-transparent py-6'
+            ? 'bg-black/80 backdrop-blur-md border-stone-800 py-4' 
+            : 'bg-transparent border-transparent py-6'
         )}
       >
         <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
           <Link to="/" className="flex items-center gap-2 group relative z-50">
             {/* Animated Logo Container */}
-            <div className="flex items-center overflow-hidden h-10">
-              <motion.div 
-                layout
-                className="flex items-center justify-center font-sans font-bold text-2xl text-ink shrink-0 z-10"
-              >
-                AethraVolt
-              </motion.div>
-              
-              <div className="relative flex items-center">
-                <AnimatePresence mode="wait">
-                  {isScrolled ? (
-                    <motion.div
-                      key="full"
-                      initial={{ opacity: 0, x: -10, width: 0 }}
-                      animate={{ opacity: 1, x: 0, width: 'auto' }}
-                      exit={{ opacity: 0, x: -10, width: 0 }}
-                      transition={{ duration: 0.4, ease: "easeOut" }}
-                      className="flex flex-col ml-3 overflow-hidden whitespace-nowrap"
-                    >
-                      <span className="font-sans text-xl leading-none tracking-tight text-stone-400">| 合擎源动</span>
-                    </motion.div>
-                  ) : null}
-                </AnimatePresence>
+            <div className="flex flex-col items-start justify-center">
+              <div className="flex items-center overflow-hidden h-8">
+                <motion.div 
+                  className="flex items-center font-sans font-bold text-2xl text-white shrink-0 z-10"
+                >
+                  <span>Ae</span>
+                  <motion.span
+                    initial={{ width: 0, opacity: 0 }}
+                    animate={{ width: 'auto', opacity: 1 }}
+                    transition={{ duration: 1, delay: 0.5, ease: "easeInOut" }}
+                    className="overflow-hidden whitespace-nowrap"
+                  >
+                    thraVolt
+                  </motion.span>
+                </motion.div>
               </div>
+              <motion.div
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1.5 }}
+                className="text-[10px] text-blue-400 tracking-[0.2em] font-medium mt-0.5 ml-0.5"
+              >
+                合擎源动
+              </motion.div>
             </div>
           </Link>
 
@@ -88,7 +88,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               <Link
                 key={link.path}
                 to={link.path}
-                className="text-sm font-medium text-stone-600 hover:text-ink transition-colors relative group"
+                className="text-sm font-medium text-stone-300 hover:text-white transition-colors relative group"
               >
                 {link.name}
               </Link>
@@ -98,7 +98,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <div className="relative">
               <button 
                 onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
-                className="flex items-center gap-1 text-sm font-medium px-3 py-1.5 rounded-full border border-stone-200 hover:bg-white transition-colors text-stone-600"
+                className="flex items-center gap-1 text-sm font-medium px-3 py-1.5 rounded-full border border-stone-700 hover:bg-stone-800 transition-colors text-stone-300 hover:text-white"
               >
                 <Globe size={14} />
                 <span>{language}</span>
