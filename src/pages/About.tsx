@@ -5,7 +5,7 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGri
 
 const About = () => {
   return (
-    <div className="pt-24 pb-20 bg-paper min-h-screen">
+    <div className="pt-24 pb-20 bg-[#050505] min-h-screen text-white">
       {/* Hero */}
       <section className="container mx-auto px-6 md:px-12 mb-24">
         <motion.div 
@@ -13,10 +13,10 @@ const About = () => {
           animate={{ opacity: 1, y: 0 }}
           className="max-w-4xl"
         >
-          <h1 className="text-5xl md:text-7xl font-sans font-bold mb-8 text-white leading-tight">
+          <h1 className="text-5xl md:text-7xl font-sans font-medium mb-8 text-white leading-tight tracking-tight">
             关于合擎源动
           </h1>
-          <p className="text-xl md:text-2xl text-stone-300 font-sans leading-relaxed border-l-4 border-blue-500 pl-6">
+          <p className="text-xl md:text-2xl text-stone-400 font-sans leading-relaxed border-l-4 border-blue-500 pl-6 font-light">
             AI+数据驱动的“零碳新质生产力”能源运营商。
           </p>
         </motion.div>
@@ -27,24 +27,24 @@ const About = () => {
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
             <div>
-              <h2 className="text-3xl font-sans font-bold mb-6 text-white">核心愿景</h2>
-              <p className="text-stone-300 text-lg leading-relaxed mb-8">
+              <h2 className="text-3xl font-sans font-medium mb-6 text-white tracking-tight">核心愿景</h2>
+              <p className="text-stone-400 text-lg leading-relaxed mb-8 font-light">
                 以优质负荷为核心，以AI为引擎，成为全球领先的零碳新质生产力运营商。
               </p>
               
               <div className="space-y-8">
                 <div>
-                  <h3 className="font-sans font-bold text-lg mb-3 flex items-center gap-2 text-white">
+                  <h3 className="font-sans font-medium text-lg mb-3 flex items-center gap-2 text-white tracking-tight">
                     <Target className="text-blue-400" size={20} /> 核心定位
                   </h3>
-                  <p className="text-stone-400 pl-7">AI+数据驱动的“零碳新质生产力”能源运营商</p>
+                  <p className="text-stone-400 pl-7 font-light">AI+数据驱动的“零碳新质生产力”能源运营商</p>
                 </div>
                 
                 <div>
-                  <h3 className="font-sans font-bold text-lg mb-3 flex items-center gap-2 text-white">
+                  <h3 className="font-sans font-medium text-lg mb-3 flex items-center gap-2 text-white tracking-tight">
                     <Globe2 className="text-blue-400" size={20} /> 聚焦领域
                   </h3>
-                  <ul className="list-disc pl-12 text-stone-400 space-y-1">
+                  <ul className="list-disc pl-12 text-stone-400 space-y-1 font-light">
                     <li>低碳绿能</li>
                     <li>能源精益运营</li>
                     <li>ESG价值创造</li>
@@ -52,14 +52,14 @@ const About = () => {
                 </div>
 
                 <div>
-                  <h3 className="font-sans font-bold text-lg mb-3 flex items-center gap-2 text-white">
+                  <h3 className="font-sans font-medium text-lg mb-3 flex items-center gap-2 text-white tracking-tight">
                     <Award className="text-blue-400" size={20} /> 客户价值
                   </h3>
                   <div className="grid grid-cols-2 gap-4 pl-7">
-                    <div className="bg-stone-900/50 p-3 rounded text-sm text-center border border-stone-800 text-stone-300">省成本</div>
-                    <div className="bg-stone-900/50 p-3 rounded text-sm text-center border border-stone-800 text-stone-300">创营收</div>
-                    <div className="bg-stone-900/50 p-3 rounded text-sm text-center border border-stone-800 text-stone-300">高效率</div>
-                    <div className="bg-stone-900/50 p-3 rounded text-sm text-center border border-stone-800 text-stone-300">ESG标杆</div>
+                    <div className="bg-stone-900/40 backdrop-blur-sm p-3 rounded-lg text-sm text-center border border-stone-800 text-stone-300 font-light">省成本</div>
+                    <div className="bg-stone-900/40 backdrop-blur-sm p-3 rounded-lg text-sm text-center border border-stone-800 text-stone-300 font-light">创营收</div>
+                    <div className="bg-stone-900/40 backdrop-blur-sm p-3 rounded-lg text-sm text-center border border-stone-800 text-stone-300 font-light">高效率</div>
+                    <div className="bg-stone-900/40 backdrop-blur-sm p-3 rounded-lg text-sm text-center border border-stone-800 text-stone-300 font-light">ESG标杆</div>
                   </div>
                 </div>
               </div>
@@ -79,8 +79,8 @@ const About = () => {
       <section className="py-24 bg-transparent">
         <div className="container mx-auto px-6 md:px-12">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-sans font-bold mb-4 text-white">三方战略联动</h2>
-            <p className="text-stone-400">为政府、制造业和合擎源动创造价值</p>
+            <h2 className="text-3xl md:text-4xl font-sans font-medium mb-4 text-white tracking-tight">三方战略联动</h2>
+            <p className="text-stone-400 font-light">为政府、制造业和合擎源动创造价值</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -104,13 +104,13 @@ const About = () => {
                 desc: "获取长期能源资产回报，积累高价值能源数据资产。"
               }
             ].map((item, i) => (
-              <div key={i} className="card-editorial text-center hover:border-blue-500/50 group">
-                <div className="w-16 h-16 bg-stone-800 rounded-full flex items-center justify-center mx-auto mb-6 text-stone-400 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-lg">
+              <div key={i} className="bg-stone-900/40 backdrop-blur-sm border border-stone-800 rounded-2xl p-8 text-center hover:border-blue-500/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.1)] transition-all duration-300 group">
+                <div className="w-16 h-16 bg-stone-800 rounded-full flex items-center justify-center mx-auto mb-6 text-stone-400 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-lg border border-stone-700">
                   {item.icon}
                 </div>
-                <h3 className="text-xl font-sans font-bold mb-2 text-white">{item.role}</h3>
+                <h3 className="text-xl font-sans font-medium mb-2 text-white tracking-tight">{item.role}</h3>
                 <div className="text-blue-400 font-medium mb-4 text-sm uppercase tracking-wider">{item.benefit}</div>
-                <p className="text-stone-400 leading-relaxed text-sm">{item.desc}</p>
+                <p className="text-stone-400 leading-relaxed text-sm font-light">{item.desc}</p>
               </div>
             ))}
           </div>

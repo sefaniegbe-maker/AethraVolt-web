@@ -17,17 +17,17 @@ const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-5xl md:text-7xl lg:text-8xl font-sans font-bold leading-[1.1] mb-8 text-white tracking-tight"
+              className="text-5xl md:text-7xl lg:text-8xl font-sans font-medium leading-[1.1] mb-8 text-white tracking-tight"
             >
               {t('home.hero.title')} <br />
-              <span className="text-blue-400 italic font-normal">{t('home.hero.subtitle')}</span>
+              <span className="text-gradient-blue italic font-normal">{t('home.hero.subtitle')}</span>
             </motion.h1>
             
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="text-xl md:text-2xl text-stone-300 mb-12 max-w-2xl font-sans leading-relaxed"
+              className="text-xl md:text-2xl text-stone-300 mb-12 max-w-2xl font-sans leading-relaxed font-light"
             >
               {t('home.hero.desc')}
             </motion.p>
@@ -69,13 +69,13 @@ const Home = () => {
         <div className="container mx-auto px-6 md:px-12">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
             <div className="max-w-3xl">
-              <h2 className="text-3xl md:text-4xl font-sans font-bold mb-2 text-white">合擎源动三大品牌服务</h2>
-              <p className="text-blue-400 font-medium tracking-wide uppercase text-sm mb-6">AethraVolt SERVICES</p>
-              <p className="text-stone-300 text-lg leading-relaxed">
+              <h2 className="text-3xl md:text-4xl font-sans font-medium mb-2 text-white tracking-tight">合擎源动三大品牌服务</h2>
+              <p className="text-gradient-blue font-medium tracking-wide uppercase text-sm mb-6">AethraVolt SERVICES</p>
+              <p className="text-stone-400 text-lg leading-relaxed font-light">
                 针对高端制造业痛点，提供全方位的能源数字化与碳管理解决方案。
               </p>
             </div>
-            <Link to="/products" className="text-white font-medium border-b border-white pb-1 hover:text-blue-400 hover:border-blue-400 transition-colors">
+            <Link to="/products" className="text-white font-medium border-b border-transparent hover:border-blue-400 pb-1 hover:text-blue-400 transition-colors">
               View all solutions
             </Link>
           </div>
@@ -116,17 +116,17 @@ const Home = () => {
                 ]
               }
             ].map((item, index) => (
-              <div key={index} className="bg-stone-900/50 backdrop-blur-sm p-8 rounded-xl border border-stone-800 hover:border-blue-500/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.1)] transition-all duration-300 group">
-                <div className="mb-6 text-blue-400 bg-blue-950/50 w-16 h-16 rounded-full flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+              <div key={index} className="card-editorial group">
+                <div className="mb-6 text-blue-400 bg-blue-900/20 w-16 h-16 rounded flex items-center justify-center border border-stone-800 group-hover:bg-blue-900/40 transition-colors">
                   {item.icon}
                 </div>
-                <h3 className="text-2xl font-sans font-bold mb-4 text-white">{item.title}</h3>
-                <p className="text-stone-300 leading-relaxed mb-6 text-sm min-h-[60px]">
+                <h3 className="text-2xl font-sans font-medium mb-4 text-white tracking-tight">{item.title}</h3>
+                <p className="text-stone-400 leading-relaxed mb-6 text-sm min-h-[60px] font-light">
                   {item.desc}
                 </p>
                 <div className="space-y-3">
                   {item.features.map((feature, fIndex) => (
-                    <div key={fIndex} className="flex items-start gap-2 text-sm text-stone-400">
+                    <div key={fIndex} className="flex items-start gap-2 text-sm text-stone-400 font-light">
                       <Check className="w-4 h-4 text-blue-400 mt-1 shrink-0" />
                       <span>{feature}</span>
                     </div>
@@ -142,8 +142,8 @@ const Home = () => {
       <section className="py-24 bg-transparent border-t border-stone-800">
         <div className="container mx-auto px-6 md:px-12">
           <div className="mb-16">
-            <h2 className="text-3xl md:text-4xl font-sans font-bold mb-4 text-white">{t('home.benefits.title')}</h2>
-            <p className="text-stone-400">{t('home.benefits.subtitle')}</p>
+            <h2 className="text-3xl md:text-4xl font-sans font-medium mb-4 text-white tracking-tight">{t('home.benefits.title')}</h2>
+            <p className="text-stone-400 font-light">{t('home.benefits.subtitle')}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -153,10 +153,10 @@ const Home = () => {
               { val: "20%", label: "高效率", desc: "AI调度 + 数据驱动" },
               { val: "100%", label: "绿品牌", desc: "能碳管理 + 绿电ESG" },
             ].map((item, i) => (
-              <div key={i} className="border-t border-stone-700 pt-6">
-                <div className="text-5xl font-sans font-bold text-blue-400 mb-4">{item.val}</div>
-                <div className="text-lg font-bold text-white mb-2">{item.label}</div>
-                <p className="text-stone-400 text-sm leading-relaxed">{item.desc}</p>
+              <div key={i} className="border-t border-stone-800 pt-6">
+                <div className="text-5xl font-sans font-medium text-gradient-blue mb-4 tracking-tight">{item.val}</div>
+                <div className="text-lg font-medium text-white mb-2">{item.label}</div>
+                <p className="text-stone-400 text-sm leading-relaxed font-light">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -168,14 +168,14 @@ const Home = () => {
         <div className="container mx-auto px-6 md:px-12">
           <div className="flex flex-col lg:flex-row gap-20">
             <div className="lg:w-1/2">
-              <div className="text-blue-400 font-medium mb-6 tracking-wide uppercase text-sm">
+              <div className="text-gradient-blue font-medium mb-6 tracking-wide uppercase text-sm">
                 {t('home.tech.tag')}
               </div>
-              <h2 className="text-4xl md:text-5xl font-sans font-bold text-white mb-8 leading-tight">
+              <h2 className="text-4xl md:text-5xl font-sans font-medium text-white mb-8 leading-tight tracking-tight">
                 {t('home.tech.title')} <br />
-                <span className="text-blue-400 italic font-normal">{t('home.tech.subtitle')}</span>
+                <span className="text-gradient-blue italic font-normal">{t('home.tech.subtitle')}</span>
               </h2>
-              <p className="text-stone-400 text-lg mb-12 leading-relaxed max-w-xl">
+              <p className="text-stone-400 text-lg mb-12 leading-relaxed max-w-xl font-light">
                 {t('home.tech.desc')}
               </p>
               
@@ -185,9 +185,9 @@ const Home = () => {
                   { label: t('home.tech.stat_speed'), value: "<10ms" },
                   { label: t('home.tech.stat_efficiency'), value: "15%" }
                 ].map((stat, i) => (
-                  <div key={i} className="border-l border-stone-700 pl-6">
-                    <div className="text-3xl font-sans font-bold text-white mb-1">{stat.value}</div>
-                    <div className="text-sm text-stone-400">{stat.label}</div>
+                  <div key={i} className="border-l border-stone-800 pl-6">
+                    <div className="text-3xl font-sans font-medium text-white mb-1 tracking-tight">{stat.value}</div>
+                    <div className="text-sm text-stone-400 font-light">{stat.label}</div>
                   </div>
                 ))}
               </div>
@@ -201,9 +201,9 @@ const Home = () => {
                 <div className="absolute inset-16 border border-stone-800 rounded-full animate-[spin_20s_linear_infinite]" />
                 
                 <div className="absolute inset-0 flex items-center justify-center">
-                   <div className="w-32 h-32 bg-stone-800 rounded-full flex items-center justify-center relative">
-                     <div className="absolute inset-0 bg-blue-500/20 blur-xl rounded-full animate-pulse" />
-                     <div className="text-white font-sans font-bold italic text-xl relative z-10">Aethra</div>
+                   <div className="w-32 h-32 bg-stone-900 rounded-full flex items-center justify-center relative border border-stone-800">
+                     <div className="absolute inset-0 bg-blue-500/10 blur-xl rounded-full animate-pulse" />
+                     <div className="text-white font-sans font-medium italic text-xl relative z-10 tracking-tight">Aethra</div>
                    </div>
                 </div>
 
@@ -211,19 +211,19 @@ const Home = () => {
                 <motion.div 
                   animate={{ y: [0, -10, 0] }}
                   transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                  className="absolute top-0 right-0 bg-stone-800 p-4 rounded-lg border border-stone-700 shadow-xl"
+                  className="absolute top-0 right-0 bg-stone-900/80 backdrop-blur-sm p-4 rounded-xl border border-stone-800 shadow-xl"
                 >
-                  <div className="text-xs text-stone-500 mb-1">{t('home.tech.dashboard_power')}</div>
-                  <div className="text-xl font-mono text-white">1,245 kW</div>
+                  <div className="text-xs text-stone-500 mb-1 font-light">{t('home.tech.dashboard_power')}</div>
+                  <div className="text-xl font-mono text-white tracking-tight">1,245 kW</div>
                 </motion.div>
 
                 <motion.div 
                   animate={{ y: [0, 10, 0] }}
                   transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
-                  className="absolute bottom-10 left-0 bg-stone-800 p-4 rounded-lg border border-stone-700 shadow-xl"
+                  className="absolute bottom-10 left-0 bg-stone-900/80 backdrop-blur-sm p-4 rounded-xl border border-stone-800 shadow-xl"
                 >
-                  <div className="text-xs text-stone-400 mb-1">{t('home.tech.dashboard_carbon')}</div>
-                  <div className="text-xl font-mono text-blue-400">4.2 Ton</div>
+                  <div className="text-xs text-stone-400 mb-1 font-light">{t('home.tech.dashboard_carbon')}</div>
+                  <div className="text-xl font-mono text-gradient-blue tracking-tight">4.2 Ton</div>
                 </motion.div>
               </div>
             </div>
@@ -235,10 +235,10 @@ const Home = () => {
       <section className="py-24 bg-transparent border-t border-stone-800">
         <div className="container mx-auto px-6 md:px-12">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-sans font-bold mb-4 text-white">全球布局</h2>
+            <h2 className="text-3xl font-sans font-medium mb-4 text-white tracking-tight">全球布局</h2>
           </div>
           
-          <div className="relative w-full aspect-[2/1] bg-stone-900/50 backdrop-blur-sm rounded-xl overflow-hidden shadow-2xl border border-stone-800">
+          <div className="relative w-full aspect-[2/1] bg-[#0a0a0a] rounded-lg overflow-hidden border border-stone-800">
              {/* Map Background - Complete World Map Image */}
              <div className="absolute inset-0 opacity-40">
                <img 
@@ -284,8 +284,8 @@ const Home = () => {
         <div className="container mx-auto px-6 md:px-12">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
             <div className="max-w-3xl">
-              <h2 className="text-3xl md:text-4xl font-sans font-bold mb-4 text-white">适用于多类高耗能场景</h2>
-              <p className="text-stone-400 text-lg">
+              <h2 className="text-3xl md:text-4xl font-sans font-medium mb-4 text-white tracking-tight">适用于多类高耗能场景</h2>
+              <p className="text-stone-400 text-lg font-light">
                 针对不同行业特性，提供定制化的能源运营解决方案
               </p>
             </div>
@@ -318,10 +318,10 @@ const Home = () => {
       {/* CTA Section */}
       <section className="py-32 bg-transparent border-t border-stone-800 text-white text-center">
         <div className="container mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-serif mb-8 max-w-3xl mx-auto leading-tight">
+          <h2 className="text-4xl md:text-5xl font-sans font-medium mb-8 max-w-3xl mx-auto leading-tight tracking-tight">
             {t('home.cta.title')}
           </h2>
-          <p className="text-stone-400 text-lg mb-12 max-w-xl mx-auto">
+          <p className="text-stone-400 text-lg mb-12 max-w-xl mx-auto font-light">
             {t('home.cta.desc')}
           </p>
           <Link to="/contact" className="btn-primary bg-white text-stone-900 hover:bg-stone-200">

@@ -40,14 +40,11 @@ async function startServer() {
 
         try {
           const response = await ai.models.generateContent({
-            model: 'gemini-3.1-flash-image-preview',
-            contents: {
-              parts: [{ text: prompt }],
-            },
+            model: 'gemini-2.5-flash-image',
+            contents: prompt,
             config: {
               imageConfig: {
-                aspectRatio: "16:9",
-                imageSize: "1K"
+                aspectRatio: "16:9"
               }
             },
           });
@@ -80,6 +77,38 @@ async function startServer() {
           console.error(`Failed to generate image for case ${c.id}:`, e);
           results.push({ id: c.id, status: 'error', message: e.message });
         }
+      }
+
+      console.log(`Generating image for About page`);
+      try {
+        const response = await ai.models.generateContent({
+          model: 'gemini-2.5-flash-image',
+          contents: 'A modern high-tech factory interior with many commercial energy storage battery cabinets and an automated control room dashboard overlooking the facility. Clean, futuristic, photorealistic, blue and dark metallic tones.',
+          config: {
+            imageConfig: {
+              aspectRatio: "16:9"
+            }
+          },
+        });
+
+        let base64Image = '';
+        if (response.candidates && response.candidates[0].content.parts) {
+          for (const part of response.candidates[0].content.parts) {
+            if (part.inlineData) {
+              base64Image = part.inlineData.data;
+              break;
+            }
+          }
+        }
+
+        if (base64Image) {
+          const imagePath = path.join(process.cwd(), 'public', 'images', 'about-factory.png');
+          fs.writeFileSync(imagePath, Buffer.from(base64Image, 'base64'));
+          results.push({ id: 'about', status: 'success' });
+        }
+      } catch (e: any) {
+        console.error(`Failed to generate About image:`, e);
+        results.push({ id: 'about', status: 'error', message: e.message });
       }
       
       res.json({ success: true, results });

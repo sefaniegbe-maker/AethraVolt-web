@@ -22,13 +22,13 @@ const Cases = () => {
     : cases.filter(c => c.industry === activeIndustry);
 
   return (
-    <div className="pt-24 pb-20 bg-transparent min-h-screen">
+    <div className="pt-24 pb-20 bg-[#050505] min-h-screen text-white">
       <div className="container mx-auto px-6 md:px-12">
         <div className="mb-16 max-w-3xl">
-          <h1 className="text-4xl md:text-6xl font-sans font-bold mb-6 text-white">
+          <h1 className="text-4xl md:text-6xl font-sans font-medium mb-6 text-white tracking-tight">
             成功案例
           </h1>
-          <p className="text-xl text-stone-300 font-sans leading-relaxed">
+          <p className="text-xl text-stone-400 font-sans leading-relaxed font-light">
             AethraVolt 零碳解决方案在各行各业的实际应用。
           </p>
         </div>
@@ -54,14 +54,14 @@ const Cases = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredCases.map((item) => (
             <Link key={item.id} to={`/cases/${item.id}`} className="group">
-              <div className="card-editorial h-full flex flex-col p-0 overflow-hidden hover:shadow-md transition-all duration-500 bg-stone-900/50 border-stone-800 hover:border-blue-500/50">
+              <div className="bg-stone-900/40 backdrop-blur-sm border border-stone-800 rounded-2xl h-full flex flex-col p-0 overflow-hidden hover:shadow-[0_0_30px_rgba(59,130,246,0.1)] transition-all duration-500 hover:border-blue-500/50">
                 <div className="h-64 overflow-hidden relative">
                   <img 
                     src={item.image_url} 
                     alt={item.title} 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100 mix-blend-luminosity group-hover:mix-blend-normal" 
                   />
-                  <div className="absolute top-4 left-4 bg-stone-900/80 border border-stone-700 backdrop-blur px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-2 text-white">
+                  <div className="absolute top-4 left-4 bg-stone-900/80 border border-stone-700 backdrop-blur px-3 py-1 rounded-full text-xs font-medium uppercase tracking-wider flex items-center gap-2 text-stone-300">
                     <Factory size={12} className="text-blue-400" />
                     {item.industry}
                   </div>
@@ -73,18 +73,18 @@ const Cases = () => {
                     {item.location}
                   </div>
                   
-                  <h3 className="text-xl font-sans font-bold mb-4 group-hover:text-blue-400 transition-colors leading-snug text-white">
+                  <h3 className="text-xl font-sans font-medium mb-4 group-hover:text-blue-400 transition-colors leading-snug text-white tracking-tight">
                     {item.title}
                   </h3>
                   
                   <div className="mb-6 pt-4 border-t border-stone-800">
                     <div>
-                      <div className="text-2xl font-sans font-bold text-white">{item.capacity}</div>
-                      <div className="text-xs text-stone-500 uppercase tracking-wide">装机容量</div>
+                      <div className="text-2xl font-sans font-medium text-white tracking-tight">{item.capacity}</div>
+                      <div className="text-xs text-stone-500 uppercase tracking-wide font-light">装机容量</div>
                     </div>
                   </div>
 
-                  <div className="mt-auto pt-4 flex items-center text-sm font-medium text-white group-hover:text-blue-400 group-hover:translate-x-1 transition-all">
+                  <div className="mt-auto pt-4 flex items-center text-sm font-medium text-blue-400 group-hover:translate-x-1 transition-all">
                     查看案例详情 <ArrowRight size={16} className="ml-2" />
                   </div>
                 </div>
