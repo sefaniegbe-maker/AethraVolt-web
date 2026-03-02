@@ -74,7 +74,7 @@ if (productCount.count === 0) {
 
 // Check if cases table has the new columns, if not recreate it (simple migration for dev)
 try {
-  db.prepare('SELECT location FROM cases LIMIT 1').get();
+  db.prepare('SELECT project_type FROM cases LIMIT 1').get();
 } catch (e) {
   db.exec('DROP TABLE IF EXISTS cases');
   db.exec(`
@@ -85,8 +85,12 @@ try {
       year INTEGER NOT NULL,
       title TEXT NOT NULL,
       description TEXT NOT NULL,
+      project_type TEXT,
       capacity TEXT,
+      investment TEXT,
       savings TEXT,
+      payback_period TEXT,
+      carbon_reduction TEXT,
       image_url TEXT,
       results TEXT -- JSON string
     )
@@ -96,7 +100,7 @@ try {
 const caseCount = db.prepare('SELECT count(*) as count FROM cases').get() as { count: number };
 
 if (caseCount.count === 0) {
-  const insertCase = db.prepare('INSERT INTO cases (industry, location, year, title, description, capacity, savings, image_url, results) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
+  const insertCase = db.prepare('INSERT INTO cases (industry, location, year, title, description, project_type, capacity, investment, savings, payback_period, carbon_reduction, image_url, results) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
 
   insertCase.run(
     '制造业',
@@ -104,8 +108,12 @@ if (caseCount.count === 0) {
     2024,
     '零碳工厂：光储一体化项目',
     '通过部署 AethraEdge 和光储系统，实现削峰填谷与需量管理，显著降低用电成本。',
+    '零碳工厂',
     '2MW/4MWh',
-    '收益显著',
+    '约1500万元',
+    '约300万元/年',
+    '约4.5年',
+    '约1500吨/年',
     'https://ibb.co/SHKkNDJ',
     JSON.stringify(['显著降低电费', '碳减排成效显著', '投资回收期短'])
   );
@@ -116,8 +124,12 @@ if (caseCount.count === 0) {
     2024,
     '零碳工厂：绿电+水蓄冷项目',
     '利用夜间低谷电价进行水蓄冷，白天高峰期释放冷量，结合绿电交易实现零碳运行。',
+    '零碳工厂',
     '5MW',
-    '¥350万/年',
+    '约2000万元',
+    '约350万元/年',
+    '约5年',
+    '约2000吨/年',
     'https://ibb.co/0p03ttV1',
     JSON.stringify(['移峰填谷', '降低空调能耗30%', '绿电占比100%'])
   );
@@ -128,8 +140,12 @@ if (caseCount.count === 0) {
     2025,
     '零碳园区：光伏+污水处理项目',
     '创新性采用“光伏 + 污水处理厂”融合模式，通过智慧能源管理系统，对光伏发电、污水处理负荷、电价峰谷及设备运行进行协同调度，实现“源-网-荷-储”一体化优化运行。',
+    '零碳园区',
     '10MW',
-    '¥500万/年',
+    '约4000万元',
+    '约500万元/年',
+    '约6年',
+    '约8000吨/年',
     'https://ibb.co/S406ZjKP',
     JSON.stringify(['污水处理成本降低20%', '自发自用率95%', '生态效益显著'])
   );
@@ -140,8 +156,12 @@ if (caseCount.count === 0) {
     2025,
     '零碳园区：德国光储充一体化项目',
     '集光伏、储能、充电桩于一体的微电网系统，实现能源自给自足，服务于电动汽车充电需求。',
+    '微电网项目',
     '1MW/2MWh',
-    '€15万/年',
+    '约1000万元',
+    '约150万元/年',
+    '约5.5年',
+    '约800吨/年',
     'https://ibb.co/0p03ttV1',
     JSON.stringify(['能源自给率80%', '降低碳排30%', '提升品牌形象'])
   );

@@ -26,11 +26,15 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   }, [location]);
 
   const navLinks = [
-    { name: t('nav.home'), path: '/' },
-    { name: t('nav.products'), path: '/products' },
-    { name: t('nav.cases'), path: '/cases' },
-    { name: t('nav.about'), path: '/about' },
-    { name: t('nav.contact'), path: '/contact' },
+    { name: '首页', path: '/' },
+    { name: '解决方案', path: '/solutions' },
+    { name: '产品与系统', path: '/systems' },
+    { name: 'AI能源平台', path: '/platform' },
+    { name: '案例与行业', path: '/cases' },
+    { name: '商业模式', path: '/business' },
+    { name: '资源中心', path: '/insights' },
+    { name: '关于我们', path: '/about' },
+    { name: '联系我们', path: '/contact' },
   ];
 
   const languages = [
