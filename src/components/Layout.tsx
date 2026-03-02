@@ -26,15 +26,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   }, [location]);
 
   const navLinks = [
-    { name: '首页', path: '/' },
-    { name: '解决方案', path: '/solutions' },
-    { name: '产品与系统', path: '/systems' },
-    { name: 'AI能源平台', path: '/platform' },
-    { name: '案例与行业', path: '/cases' },
-    { name: '商业模式', path: '/business' },
-    { name: '资源中心', path: '/insights' },
-    { name: '关于我们', path: '/about' },
-    { name: '联系我们', path: '/contact' },
+    { name: t('nav.home'), path: '/' },
+    { name: t('nav.products'), path: '/products' },
+    { name: t('nav.cases'), path: '/cases' },
+    { name: t('nav.about'), path: '/about' },
+    { name: t('nav.contact'), path: '/contact' },
   ];
 
   const languages = [
@@ -62,9 +58,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <div className="flex items-center overflow-hidden h-10">
               <motion.div 
                 layout
-                className="flex items-center justify-center font-display font-bold text-2xl text-ink shrink-0 z-10"
+                className="flex items-center justify-center font-sans font-bold text-2xl text-ink shrink-0 z-10"
               >
-                A
+                AethraVolt
               </motion.div>
               
               <div className="relative flex items-center">
@@ -76,22 +72,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                       animate={{ opacity: 1, x: 0, width: 'auto' }}
                       exit={{ opacity: 0, x: -10, width: 0 }}
                       transition={{ duration: 0.4, ease: "easeOut" }}
-                      className="flex flex-col ml-1 overflow-hidden whitespace-nowrap"
+                      className="flex flex-col ml-3 overflow-hidden whitespace-nowrap"
                     >
-                      <span className="font-display font-bold text-xl leading-none tracking-tight text-ink">ethraVolt</span>
+                      <span className="font-sans text-xl leading-none tracking-tight text-stone-400">| 合擎源动</span>
                     </motion.div>
-                  ) : (
-                    <motion.div
-                      key="short"
-                      initial={{ opacity: 0, x: -5 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -5 }}
-                      transition={{ duration: 0.3 }}
-                      className="ml-0.5"
-                    >
-                      <span className="font-display font-bold text-2xl tracking-tight text-ink">E</span>
-                    </motion.div>
-                  )}
+                  ) : null}
                 </AnimatePresence>
               </div>
             </div>
@@ -213,7 +198,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
             <div className="space-y-6">
               <div className="flex items-center gap-2 text-white mb-4">
-                <span className="font-display font-bold text-2xl tracking-tight">AethraVolt</span>
+                <span className="font-serif font-bold text-2xl">AethraVolt</span>
               </div>
               <p className="text-sm text-stone-400 leading-relaxed whitespace-pre-line font-sans">
                 {t('footer.desc')}
