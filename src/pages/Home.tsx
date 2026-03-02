@@ -115,15 +115,39 @@ const Home = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
             <div>
-              <div className="text-5xl md:text-6xl font-serif text-accent mb-4">1GW+</div>
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 1.5, ease: "easeOut" }}
+                className="text-5xl md:text-6xl font-serif text-accent mb-4"
+              >
+                1GW+
+              </motion.div>
               <div className="text-lg text-stone-300">管理绿色能源规模</div>
             </div>
             <div>
-              <div className="text-5xl md:text-6xl font-serif text-accent mb-4">亿美元级</div>
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 1.5, delay: 0.3, ease: "easeOut" }}
+                className="text-5xl md:text-6xl font-serif text-accent mb-4"
+              >
+                亿美元级
+              </motion.div>
               <div className="text-lg text-stone-300">累计节省能源成本</div>
             </div>
             <div>
-              <div className="text-5xl md:text-6xl font-serif text-accent mb-4">近百万吨</div>
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 1.5, delay: 0.6, ease: "easeOut" }}
+                className="text-5xl md:text-6xl font-serif text-accent mb-4"
+              >
+                近百万吨
+              </motion.div>
               <div className="text-lg text-stone-300">减少碳排放</div>
             </div>
           </div>

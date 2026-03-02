@@ -7,6 +7,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import ProductDetail from './pages/ProductDetail';
 import CaseDetail from './pages/CaseDetail';
+import AiPlatform from './pages/AiPlatform';
 
 // Placeholder components for now
 const Placeholder = ({ title }: { title: string }) => (
@@ -24,7 +25,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/solutions" element={<Placeholder title="解决方案" />} />
           <Route path="/systems" element={<Placeholder title="产品与系统" />} />
-          <Route path="/platform" element={<Placeholder title="AI能源平台" />} />
+          <Route path="/platform" element={<AiPlatform />} />
           <Route path="/cases" element={<Cases />} />
           <Route path="/cases/:id" element={<CaseDetail />} />
           <Route path="/business" element={<Placeholder title="商业模式" />} />
