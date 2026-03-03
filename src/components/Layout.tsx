@@ -55,31 +55,16 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
           <Link to="/" className="flex items-center gap-2 group relative z-50">
             {/* Animated Logo Container */}
-            <div className="flex flex-col items-start justify-center">
-              <div className="flex items-center overflow-hidden h-8">
-                <motion.div 
-                  className="flex items-center font-sans font-bold text-2xl text-white shrink-0 z-10"
-                >
-                  <span>Ae</span>
-                  <motion.span
-                    initial={{ width: 0, opacity: 0 }}
-                    animate={{ width: 'auto', opacity: 1 }}
-                    transition={{ duration: 1, delay: 0.5, ease: "easeInOut" }}
-                    className="overflow-hidden whitespace-nowrap"
-                  >
-                    thraVolt
-                  </motion.span>
-                </motion.div>
-              </div>
-              <motion.div
-                initial={{ opacity: 0, y: -5 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 1.5 }}
-                className="text-[10px] text-blue-400 tracking-[0.2em] font-medium mt-0.5 ml-0.5"
-              >
-                合擎源动
-              </motion.div>
-            </div>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1.5, ease: "easeInOut" }}
+              className="flex items-center font-sans font-bold text-2xl text-white"
+            >
+              <span>AethraVolt</span>
+              <span className="mx-3 text-stone-500 font-light text-xl">|</span>
+              <span className="text-xl text-stone-300 font-medium tracking-wider">合擎源动</span>
+            </motion.div>
           </Link>
 
           {/* Desktop Nav */}
@@ -232,11 +217,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 </li>
                 <li className="flex items-center gap-3">
                   <Phone size={18} className="shrink-0" />
-                  <span>18905577397</span>
+                  <span>0755-8888888</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <Mail size={18} className="shrink-0" />
-                  <span>stefanie.ning@fusionvpp.com</span>
+                  <span>AethraVolt@fusionvpp.com</span>
                 </li>
               </ul>
             </div>

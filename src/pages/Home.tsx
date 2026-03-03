@@ -16,17 +16,16 @@ const Home = () => {
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-5xl md:text-7xl lg:text-8xl font-sans font-medium leading-[1.1] mb-8 text-white tracking-tight"
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              className="text-4xl md:text-6xl text-white mb-8 max-w-3xl font-sans leading-tight font-medium tracking-tight"
             >
-              {t('home.hero.title')} <br />
-              <span className="text-gradient-blue italic font-normal">{t('home.hero.subtitle')}</span>
+              引领能源数字化与碳管理未来
             </motion.h1>
             
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
               className="text-xl md:text-2xl text-stone-300 mb-12 max-w-2xl font-sans leading-relaxed font-light"
             >
               {t('home.hero.desc')}
@@ -64,6 +63,49 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Stats Section */}
+      <section className="py-20 bg-transparent border-t border-stone-800">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="flex justify-center mb-12">
+            <div className="w-16 h-1 bg-[#D97757]"></div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              className="flex flex-col items-center justify-center"
+            >
+              <div className="text-5xl md:text-6xl lg:text-7xl font-sans font-medium text-gradient-blue mb-6 tracking-tight">1GW+</div>
+              <div className="text-stone-300 text-lg font-light tracking-wider">管理绿色能源规模</div>
+            </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+              className="flex flex-col items-center justify-center"
+            >
+              <div className="text-5xl md:text-6xl lg:text-7xl font-sans font-medium text-gradient-blue mb-6 tracking-tight">亿美元级</div>
+              <div className="text-stone-300 text-lg font-light tracking-wider">累计节省能源成本</div>
+            </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+              className="flex flex-col items-center justify-center"
+            >
+              <div className="text-5xl md:text-6xl lg:text-7xl font-sans font-medium text-gradient-blue mb-6 tracking-tight">160 万吨</div>
+              <div className="text-stone-300 text-lg font-light tracking-wider">减少碳排放</div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Solutions Section - AethraVolt Services */}
       <section className="py-24 bg-transparent border-t border-stone-800">
         <div className="container mx-auto px-6 md:px-12">
@@ -76,7 +118,7 @@ const Home = () => {
               </p>
             </div>
             <Link to="/products" className="text-white font-medium border-b border-transparent hover:border-blue-400 pb-1 hover:text-blue-400 transition-colors">
-              View all solutions
+              查看所有解决方案
             </Link>
           </div>
 
@@ -127,7 +169,6 @@ const Home = () => {
                 <div className="space-y-3">
                   {item.features.map((feature, fIndex) => (
                     <div key={fIndex} className="flex items-start gap-2 text-sm text-stone-400 font-light">
-                      <Check className="w-4 h-4 text-blue-400 mt-1 shrink-0" />
                       <span>{feature}</span>
                     </div>
                   ))}
@@ -148,8 +189,8 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { val: "15%", label: "省现金", desc: "能耗优化 + 削峰填谷" },
-              { val: "50%", label: "多收入", desc: "电网辅助 + 现货交易" },
+              { val: "15%", label: "省成本", desc: "能耗优化 + 削峰填谷" },
+              { val: "10%", label: "多收入", desc: "电网辅助 + 现货交易" },
               { val: "20%", label: "高效率", desc: "AI调度 + 数据驱动" },
               { val: "100%", label: "绿品牌", desc: "能碳管理 + 绿电ESG" },
             ].map((item, i) => (
@@ -195,36 +236,134 @@ const Home = () => {
             
             <div className="lg:w-1/2 flex items-center justify-center">
               <div className="relative w-full aspect-square max-w-md">
-                {/* Abstract Tech Visualization */}
-                <div className="absolute inset-0 border border-stone-800 rounded-full animate-[spin_60s_linear_infinite]" />
-                <div className="absolute inset-8 border border-stone-800 rounded-full animate-[spin_40s_linear_infinite_reverse]" />
-                <div className="absolute inset-16 border border-stone-800 rounded-full animate-[spin_20s_linear_infinite]" />
-                
-                <div className="absolute inset-0 flex items-center justify-center">
-                   <div className="w-32 h-32 bg-stone-900 rounded-full flex items-center justify-center relative border border-stone-800">
-                     <div className="absolute inset-0 bg-blue-500/10 blur-xl rounded-full animate-pulse" />
-                     <div className="text-white font-sans font-medium italic text-xl relative z-10 tracking-tight">Aethra</div>
-                   </div>
+                {/* Dynamic AI Energy Scheduling Visualization */}
+                <div className="absolute inset-0 bg-stone-900 rounded-2xl border border-stone-800 overflow-hidden shadow-2xl flex flex-col">
+                  {/* Header */}
+                  <div className="h-10 border-b border-stone-800 flex items-center px-4 justify-between bg-stone-900/80 backdrop-blur-sm z-10">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                      <span className="text-xs font-mono text-stone-400">AethraGrid Live</span>
+                    </div>
+                    <div className="text-xs font-mono text-blue-400">AI OPTIMIZING</div>
+                  </div>
+
+                  {/* Main Visualization Area */}
+                  <div className="flex-1 relative p-4 flex flex-col gap-4">
+                    {/* Top Row: Source-Grid-Load-Storage */}
+                    <div className="flex justify-between items-center h-1/3 relative">
+                      {/* Connecting Lines */}
+                      <svg className="absolute inset-0 w-full h-full" style={{ zIndex: 0 }}>
+                        <motion.path
+                          d="M 40 40 L 150 40 L 150 100"
+                          stroke="#3b82f6"
+                          strokeWidth="1.5"
+                          strokeDasharray="4,4"
+                          fill="none"
+                          className="opacity-50"
+                          animate={{ strokeDashoffset: [0, -20] }}
+                          transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+                        />
+                         <motion.path
+                          d="M 320 40 L 210 40 L 210 100"
+                          stroke="#10b981"
+                          strokeWidth="1.5"
+                          strokeDasharray="4,4"
+                          fill="none"
+                          className="opacity-50"
+                          animate={{ strokeDashoffset: [0, -20] }}
+                          transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+                        />
+                      </svg>
+
+                      {/* Nodes */}
+                      <div className="z-10 flex flex-col items-center gap-1">
+                        <div className="w-12 h-12 rounded-full border border-blue-500/30 bg-blue-500/10 flex items-center justify-center">
+                          <span className="text-xs font-mono text-blue-400">GRID</span>
+                        </div>
+                        <span className="text-[10px] text-stone-500">市电网</span>
+                      </div>
+                      
+                      <div className="z-10 flex flex-col items-center gap-1">
+                        <div className="w-16 h-16 rounded-full border border-indigo-500/50 bg-indigo-500/20 flex items-center justify-center shadow-[0_0_15px_rgba(99,102,241,0.3)] relative">
+                           <div className="absolute inset-0 rounded-full border border-indigo-400 animate-ping opacity-20" />
+                           <span className="text-xs font-bold font-sans text-indigo-300">AI CORE</span>
+                        </div>
+                      </div>
+
+                      <div className="z-10 flex flex-col items-center gap-1">
+                        <div className="w-12 h-12 rounded-full border border-green-500/30 bg-green-500/10 flex items-center justify-center">
+                          <span className="text-xs font-mono text-green-400">PV/ESS</span>
+                        </div>
+                        <span className="text-[10px] text-stone-500">光储系统</span>
+                      </div>
+                    </div>
+
+                    {/* Middle Row: Prediction Curve */}
+                    <div className="h-1/3 border border-stone-800 rounded-lg bg-stone-950/50 p-2 relative overflow-hidden flex flex-col justify-end">
+                      <div className="absolute top-2 left-2 text-[10px] font-mono text-stone-500">负荷预测 vs 实时电价</div>
+                      
+                      {/* Animated Chart */}
+                      <div className="w-full h-12 relative flex items-end gap-1">
+                        {[40, 60, 80, 50, 30, 70, 90, 60, 40, 50, 80, 100].map((h, i) => (
+                          <motion.div 
+                            key={i}
+                            className="flex-1 bg-blue-500/20 rounded-t-sm relative"
+                            initial={{ height: `${h}%` }}
+                            animate={{ height: [`${h}%`, `${h + (Math.random() * 20 - 10)}%`, `${h}%`] }}
+                            transition={{ repeat: Infinity, duration: 3 + Math.random() * 2, ease: "easeInOut" }}
+                          >
+                            {/* Price indicator dot */}
+                            {h > 70 && (
+                              <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-red-500" />
+                            )}
+                            {h < 40 && (
+                              <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-green-500" />
+                            )}
+                          </motion.div>
+                        ))}
+                        
+                        {/* Overlay Curve */}
+                        <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
+                           <motion.path
+                             d="M 0 60 Q 20 40, 40 80 T 80 50 T 100 30"
+                             fill="none"
+                             stroke="#8b5cf6"
+                             strokeWidth="2"
+                             className="opacity-70"
+                             animate={{ d: ["M 0 60 Q 20 40, 40 80 T 80 50 T 100 30", "M 0 50 Q 20 60, 40 70 T 80 40 T 100 40", "M 0 60 Q 20 40, 40 80 T 80 50 T 100 30"] }}
+                             transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+                           />
+                        </svg>
+                      </div>
+                    </div>
+
+                    {/* Bottom Row: Decisions & Benefits */}
+                    <div className="h-1/3 flex gap-2">
+                       <div className="flex-1 border border-stone-800 rounded-lg bg-stone-950/50 p-2 flex flex-col justify-center relative overflow-hidden">
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/5 to-transparent -translate-x-full animate-[shimmer_3s_infinite]" />
+                          <div className="text-[10px] text-stone-500 mb-1">智能决策</div>
+                          <motion.div 
+                            key="decision"
+                            initial={{ opacity: 0, y: 5 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ repeat: Infinity, duration: 4, repeatType: "reverse" }}
+                            className="text-xs font-mono text-blue-300"
+                          >
+                            &gt; 触发削峰填谷<br/>
+                            &gt; 储能放电 500kW
+                          </motion.div>
+                       </div>
+                       <div className="flex-1 border border-stone-800 rounded-lg bg-stone-950/50 p-2 flex flex-col justify-center relative overflow-hidden">
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-green-500/5 to-transparent -translate-x-full animate-[shimmer_3s_infinite]" style={{ animationDelay: '1.5s' }} />
+                          <div className="text-[10px] text-stone-500 mb-1">碳减排效益</div>
+                          <div className="flex items-baseline gap-1">
+                            <span className="text-lg font-mono text-green-400 tracking-tighter">↓12.4</span>
+                            <span className="text-[10px] text-stone-500">tCO₂e</span>
+                          </div>
+                       </div>
+                    </div>
+                  </div>
                 </div>
-
-                {/* Data Points */}
-                <motion.div 
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                  className="absolute top-0 right-0 bg-stone-900/80 backdrop-blur-sm p-4 rounded-xl border border-stone-800 shadow-xl"
-                >
-                  <div className="text-xs text-stone-500 mb-1 font-light">{t('home.tech.dashboard_power')}</div>
-                  <div className="text-xl font-mono text-white tracking-tight">1,245 kW</div>
-                </motion.div>
-
-                <motion.div 
-                  animate={{ y: [0, 10, 0] }}
-                  transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
-                  className="absolute bottom-10 left-0 bg-stone-900/80 backdrop-blur-sm p-4 rounded-xl border border-stone-800 shadow-xl"
-                >
-                  <div className="text-xs text-stone-400 mb-1 font-light">{t('home.tech.dashboard_carbon')}</div>
-                  <div className="text-xl font-mono text-gradient-blue tracking-tight">4.2 Ton</div>
-                </motion.div>
               </div>
             </div>
           </div>
@@ -253,8 +392,8 @@ const Home = () => {
                 {[
                   { label: "德国", x: "49%", y: "24%" },
                   { label: "中国", x: "74%", y: "34%" },
-                  { label: "越南", x: "75%", y: "46%" },
-                  { label: "泰国", x: "73%", y: "44%" },
+                  { label: "越南", x: "76%", y: "48%", labelClass: "top-full mt-3 left-1/2 -translate-x-1/2" },
+                  { label: "泰国", x: "71%", y: "42%", labelClass: "bottom-full mb-3 left-1/2 -translate-x-1/2" },
                   { label: "澳大利亚", x: "85%", y: "75%" },
                 ].map((loc, i) => (
                   <div 
@@ -262,13 +401,29 @@ const Home = () => {
                     className="absolute group"
                     style={{ left: loc.x, top: loc.y }}
                   >
-                    <div className="relative flex items-center">
+                    <div className="relative flex items-center justify-center">
                       {/* Dot */}
-                      <div className="w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.8)] relative z-10 border border-stone-900" />
-                      <div className="absolute w-full h-full rounded-full bg-blue-500/30 animate-ping" />
+                      <motion.div 
+                        animate={{ 
+                          scale: [1, 1.2, 1],
+                          y: [0, -3, 0],
+                          boxShadow: [
+                            "0 0 10px rgba(59,130,246,0.5)",
+                            "0 0 20px rgba(59,130,246,0.9)",
+                            "0 0 10px rgba(59,130,246,0.5)"
+                          ]
+                        }}
+                        transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                        className="w-3 h-3 rounded-full bg-blue-500 relative z-10 border border-stone-900" 
+                      />
+                      <motion.div 
+                        animate={{ scale: [1, 2.5], opacity: [0.6, 0] }}
+                        transition={{ repeat: Infinity, duration: 1.5, ease: "easeOut" }}
+                        className="absolute w-full h-full rounded-full bg-blue-500" 
+                      />
                       
                       {/* Label */}
-                      <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 bg-stone-800/90 backdrop-blur-sm px-2 py-1 rounded border border-stone-700 text-stone-200 text-xs font-medium whitespace-nowrap shadow-xl">
+                      <div className={`absolute ${loc.labelClass || 'bottom-full mb-3 left-1/2 -translate-x-1/2'} bg-stone-800/90 backdrop-blur-sm px-2 py-1 rounded border border-stone-700 text-stone-200 text-xs font-medium whitespace-nowrap shadow-xl`}>
                         {loc.label}
                       </div>
                     </div>

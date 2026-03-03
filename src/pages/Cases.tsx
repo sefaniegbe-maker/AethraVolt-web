@@ -5,7 +5,6 @@ import { useLanguage } from '../contexts/LanguageContext';
 
 const Cases = () => {
   const [cases, setCases] = useState<any[]>([]);
-  const [activeIndustry, setActiveIndustry] = useState('All');
   const { t } = useLanguage();
 
   useEffect(() => {
@@ -14,12 +13,6 @@ const Cases = () => {
       .then(data => setCases(data))
       .catch(err => console.error(err));
   }, []);
-
-  const industries = ['全部', '制造业', '园区'];
-
-  const filteredCases = activeIndustry === '全部' 
-    ? cases 
-    : cases.filter(c => c.industry === activeIndustry);
 
   return (
     <div className="pt-24 pb-20 bg-[#050505] min-h-screen text-white">
@@ -33,26 +26,9 @@ const Cases = () => {
           </p>
         </div>
 
-        {/* Industry Filter */}
-        <div className="flex flex-wrap gap-4 mb-12 border-b border-stone-800 pb-8">
-          {industries.map(ind => (
-            <button
-              key={ind}
-              onClick={() => setActiveIndustry(ind)}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-                activeIndustry === ind 
-                  ? 'bg-blue-600 text-white border border-blue-600' 
-                  : 'bg-transparent border border-stone-700 text-stone-300 hover:border-stone-500 hover:text-white'
-              }`}
-            >
-              {ind}
-            </button>
-          ))}
-        </div>
-
         {/* Cases Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredCases.map((item) => (
+          {cases.map((item) => (
             <Link key={item.id} to={`/cases/${item.id}`} className="group">
               <div className="bg-stone-900/40 backdrop-blur-sm border border-stone-800 rounded-2xl h-full flex flex-col p-0 overflow-hidden hover:shadow-[0_0_30px_rgba(59,130,246,0.1)] transition-all duration-500 hover:border-blue-500/50">
                 <div className="h-64 overflow-hidden relative">
