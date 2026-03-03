@@ -8,7 +8,7 @@ export const casesData = [
     description: '通过部署 AethraEdge 和光储系统，实现削峰填谷与需量管理，显著降低用电成本。',
     capacity: '2MW/4MWh',
     savings: '收益显著',
-    image_url: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80&w=1000',
+    image_url: 'https://i.ibb.co/mdHnJrS/3.png',
     results: ['显著降低电费', '碳减排成效显著', '投资回收期短']
   },
   {
