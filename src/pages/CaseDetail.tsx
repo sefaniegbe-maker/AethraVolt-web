@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, BarChart3, PieChart, TrendingUp, MapPin } from 'lucide-react';
+import { casesData } from '../data/cases';
 
 const CaseDetail = () => {
   const { id } = useParams();
@@ -8,16 +9,11 @@ const CaseDetail = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`/api/cases/${id}`)
-      .then(res => res.json())
-      .then(data => {
-        setCaseItem(data);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error(err);
-        setLoading(false);
-      });
+    const foundCase = casesData.find(c => c.id === Number(id));
+    if (foundCase) {
+      setCaseItem(foundCase);
+    }
+    setLoading(false);
   }, [id]);
 
   if (loading) return <div className="pt-32 text-center text-ink font-serif">Loading...</div>;
@@ -26,12 +22,13 @@ const CaseDetail = () => {
   return (
     <div className="pt-24 pb-20 min-h-screen bg-paper">
       {/* Hero */}
-      <div className="relative h-[60vh] bg-stone-900 overflow-hidden">
-        <img 
-          src={caseItem.image_url} 
-          alt={caseItem.title} 
-          className="w-full h-full object-cover opacity-60 grayscale"
-        />
+      <div className="relative h-[60vh] bg-stone-900 overflow-hidden flex items-center justify-center">
+        {/* Empty Image Placeholder */}
+        <div className="absolute inset-0 bg-stone-900/80 flex flex-col items-center justify-center text-stone-600">
+          <div className="w-16 h-16 rounded-full bg-stone-800/50 flex items-center justify-center mb-4">
+            <span className="font-sans tracking-widest uppercase text-sm font-light">图片位置</span>
+          </div>
+        </div>
         <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/40 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full p-8 md:p-16">
           <div className="container mx-auto px-6 md:px-12">

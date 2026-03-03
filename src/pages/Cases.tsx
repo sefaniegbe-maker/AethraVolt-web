@@ -1,18 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { MapPin, Zap, ArrowRight, Factory, Building, Sun } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
+import { casesData } from '../data/cases';
 
 const Cases = () => {
-  const [cases, setCases] = useState<any[]>([]);
   const { t } = useLanguage();
-
-  useEffect(() => {
-    fetch('/api/cases')
-      .then(res => res.json())
-      .then(data => setCases(data))
-      .catch(err => console.error(err));
-  }, []);
 
   return (
     <div className="pt-24 pb-20 bg-[#050505] min-h-screen text-white">
@@ -28,7 +21,7 @@ const Cases = () => {
 
         {/* Cases List */}
         <div className="flex flex-col gap-24">
-          {cases.map((item, index) => (
+          {casesData.map((item, index) => (
             <div key={item.id} className={`flex flex-col lg:flex-row gap-12 lg:gap-20 items-center ${index % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}>
               
               {/* Empty Image Placeholder */}
