@@ -76,6 +76,23 @@ const Contact = () => {
                   <p className="text-stone-600 mb-1">info@aethravolt.com</p>
                 </div>
               </div>
+
+              <div className="flex items-start gap-6 p-6 bg-white rounded-xl border border-stone-200">
+                <div className="w-12 h-12 bg-stone-100 rounded-full flex items-center justify-center shrink-0 text-ink">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
+                    <path d="M8 10c-2.8 0-5 2-5 4.5s2.2 4.5 5 4.5c.6 0 1.2-.1 1.7-.3l2.3 1.3-.6-2.2c1-1 1.6-2.1 1.6-3.3 0-2.5-2.2-4.5-5-4.5z" />
+                    <path d="M16 6c-3.3 0-6 2.4-6 5.4s2.7 5.4 6 5.4c.7 0 1.4-.2 2-.4l2.8 1.6-.7-2.6c1.2-1.2 2-2.5 2-4 0-3-2.7-5.4-6-5.4z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-serif font-bold text-lg mb-2">企业公众号</h3>
+                  <p className="text-stone-600 mb-4">深圳合擎源动科技有限公司</p>
+                  <div className="w-32 h-32 bg-stone-100 rounded-lg overflow-hidden border border-stone-200 flex items-center justify-center">
+                    {/* Placeholder for QR Code. Replace src with actual image path */}
+                    <img src="https://storage.googleapis.com/aistudio-user-content/01955891-76a0-760f-9f79-99436329e4b7/01955891-76a0-760f-9f79-99436329e4b7_1740973722230_image.png" alt="微信公众号二维码" className="w-full h-full object-cover" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 

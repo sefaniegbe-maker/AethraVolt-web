@@ -196,15 +196,15 @@ const Home = () => {
                 {t('home.tech.desc')}
               </p>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <div className="grid grid-cols-3 gap-4 sm:gap-8">
                 {[
                   { label: t('home.tech.stat_accuracy'), value: "95%+" },
                   { label: t('home.tech.stat_speed'), value: "<10ms" },
                   { label: t('home.tech.stat_efficiency'), value: "15%" }
                 ].map((stat, i) => (
-                  <div key={i} className="border-l border-stone-800 pl-6">
-                    <div className="text-3xl font-sans font-medium text-white mb-1 tracking-tight">{stat.value}</div>
-                    <div className="text-sm text-stone-400 font-light">{stat.label}</div>
+                  <div key={i} className="border-l border-stone-800 pl-4 sm:pl-6">
+                    <div className="text-2xl sm:text-3xl font-sans font-medium text-white mb-1 tracking-tight">{stat.value}</div>
+                    <div className="text-xs sm:text-sm text-stone-400 font-light">{stat.label}</div>
                   </div>
                 ))}
               </div>

@@ -55,16 +55,18 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
           <Link to="/" className="flex items-center gap-2 group relative z-50">
             {/* Animated Logo Container */}
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1.5, ease: "easeInOut" }}
-              className="flex items-center font-sans font-bold text-2xl text-white"
-            >
-              <span>AethraVolt</span>
-              <span className="mx-3 text-stone-500 font-light text-xl">|</span>
-              <span className="text-xl text-stone-300 font-medium tracking-wider">合擎源动</span>
-            </motion.div>
+            <div className="flex items-center font-sans font-bold text-2xl text-white overflow-hidden w-[140px] h-8 relative">
+              <motion.div 
+                initial={{ x: "100%" }}
+                animate={{ x: ["100%", "-100%"] }}
+                transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
+                className="absolute whitespace-nowrap"
+              >
+                Aethra<span className="text-blue-600">V</span>olt
+              </motion.div>
+            </div>
+            <span className="mx-1 text-stone-500 font-light text-xl">|</span>
+            <span className="text-xl text-stone-300 font-medium tracking-wider">合擎源动</span>
           </Link>
 
           {/* Desktop Nav */}
@@ -220,6 +222,14 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                   <span>info@aethravolt.com</span>
                 </li>
               </ul>
+              
+              <div className="mt-8">
+                <p className="text-stone-300 font-sans text-sm mb-3">企业公众号：深圳合擎源动科技有限公司</p>
+                <div className="w-24 h-24 bg-white p-1 rounded-lg">
+                  {/* Placeholder for QR Code. Replace src with actual image path */}
+                  <img src="https://storage.googleapis.com/aistudio-user-content/01955891-76a0-760f-9f79-99436329e4b7/01955891-76a0-760f-9f79-99436329e4b7_1740973722230_image.png" alt="微信公众号二维码" className="w-full h-full object-cover rounded" />
+                </div>
+              </div>
             </div>
           </div>
           
