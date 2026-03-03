@@ -19,7 +19,8 @@ const Home = () => {
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               className="text-4xl md:text-6xl text-white mb-8 max-w-3xl font-sans leading-tight font-medium tracking-tight"
             >
-              引领能源数字化与碳管理未来
+              {t('home.hero.title')}<br />
+              <span className="text-gradient-blue">{t('home.hero.subtitle')}</span>
             </motion.h1>
             
             <motion.p 
@@ -50,11 +51,11 @@ const Home = () => {
         {/* Abstract Visual Element */}
         <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1/3 h-full hidden lg:block pointer-events-none opacity-60">
            <svg viewBox="0 0 400 800" className="w-full h-full">
-             <path d="M200,0 Q300,200 100,400 T200,800" fill="none" stroke="#D97757" strokeWidth="1" className="opacity-30" />
+             <path d="M200,0 Q300,200 100,400 T200,800" fill="none" stroke="#3b82f6" strokeWidth="1" className="opacity-30" />
              <path d="M250,0 Q350,200 150,400 T250,800" fill="none" stroke="#191919" strokeWidth="1" className="opacity-10" />
              <defs>
                <radialGradient id="grad1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-                 <stop offset="0%" style={{stopColor:'#D97757', stopOpacity:1}} />
+                 <stop offset="0%" style={{stopColor:'#3b82f6', stopOpacity:1}} />
                  <stop offset="100%" style={{stopColor:'#F4F1EA', stopOpacity:0}} />
                </radialGradient>
              </defs>
@@ -67,7 +68,7 @@ const Home = () => {
       <section className="py-20 bg-transparent border-t border-stone-800">
         <div className="container mx-auto px-6 md:px-12">
           <div className="flex justify-center mb-12">
-            <div className="w-16 h-1 bg-[#D97757]"></div>
+            <div className="w-16 h-1 bg-gradient-blue"></div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
             <motion.div 
@@ -127,35 +128,17 @@ const Home = () => {
               {
                 icon: <Activity className="w-8 h-8" />,
                 title: "Aethra · 臻电™",
-                desc: "针对高端制造业痛点，提供基于AI的主动式电能治理方案，保障生产“大动脉”稳定运行。",
-                features: [
-                  "三相不平衡治理: 解决负荷分配不均难题",
-                  "谐波抑制: 保护精密制造设备寿命",
-                  "无功补偿: 提升功率因数至99%以上",
-                  "AI主动防御: 毫秒级响应电压波动"
-                ]
+                desc: "针对高端制造业痛点，提供基于AI的主动式电能治理方案，保障生产“大动脉”稳定运行。"
               },
               {
                 icon: <Cpu className="w-8 h-8" />,
                 title: "Aethra · 驭能™",
-                desc: "构建“源-网-荷-储”多维灵活性资源池，实现AI驱动的能源自动驾驶，将成本中心转化为收益资产。",
-                features: [
-                  "AI削峰填谷: 降低容量电费与尖峰电费",
-                  "智能水蓄冷: 错峰制冷，优化空调能耗",
-                  "VPP收益: 聚合柔性负荷参与市场交易",
-                  "绿电最大化: 提升光伏/储能自用率"
-                ]
+                desc: "构建“源-网-荷-储”多维灵活性资源池，实现AI驱动的能源自动驾驶，将成本中心转化为收益资产。"
               },
               {
                 icon: <Leaf className="w-8 h-8" />,
                 title: "Aethra · 绿擎™",
-                desc: "以能源数字化和AI驱动，提供可量化、可核查的碳管理报告，助力企业实现全球供应链的绿色合规。",
-                features: [
-                  "AethraGrid平台: 能源管理AI中枢",
-                  "EMS+MES联动: 产线级能耗监控与预警",
-                  "碳足迹追踪: 实时生成国际标准碳报告",
-                  "ESG合规服务: 满足CBAM要求"
-                ]
+                desc: "以能源数字化和AI驱动，提供可量化、可核查的碳管理报告，助力企业实现全球供应链的绿色合规。"
               }
             ].map((item, index) => (
               <div key={index} className="card-editorial group">
@@ -163,16 +146,9 @@ const Home = () => {
                   {item.icon}
                 </div>
                 <h3 className="text-2xl font-sans font-medium mb-4 text-white tracking-tight">{item.title}</h3>
-                <p className="text-stone-400 leading-relaxed mb-6 text-sm min-h-[60px] font-light">
+                <p className="text-stone-400 leading-relaxed text-sm font-light">
                   {item.desc}
                 </p>
-                <div className="space-y-3">
-                  {item.features.map((feature, fIndex) => (
-                    <div key={fIndex} className="flex items-start gap-2 text-sm text-stone-400 font-light">
-                      <span>{feature}</span>
-                    </div>
-                  ))}
-                </div>
               </div>
             ))}
           </div>
