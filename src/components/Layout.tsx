@@ -216,12 +216,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                   <span>{t('footer.address')}</span>
                 </li>
                 <li className="flex items-center gap-3">
-                  <Phone size={18} className="shrink-0" />
-                  <span>0755-8888888</span>
-                </li>
-                <li className="flex items-center gap-3">
                   <Mail size={18} className="shrink-0" />
-                  <span>AethraVolt@fusionvpp.com</span>
+                  <span>info@aethravolt.com</span>
                 </li>
               </ul>
             </div>

@@ -73,18 +73,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-serif font-bold text-lg mb-2">邮件联系</h3>
-                  <p className="text-stone-600 mb-1">stefanie.ning@fusionvpp.com</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-6 p-6 bg-white rounded-xl border border-stone-200">
-                <div className="w-12 h-12 bg-stone-100 rounded-full flex items-center justify-center shrink-0 text-ink">
-                  <Phone size={24} />
-                </div>
-                <div>
-                  <h3 className="font-serif font-bold text-lg mb-2">电话联系</h3>
-                  <p className="text-stone-600">18905577397</p>
-                  <p className="text-sm text-stone-400 mt-1">周一至周五, 9:00 - 18:00</p>
+                  <p className="text-stone-600 mb-1">info@aethravolt.com</p>
                 </div>
               </div>
             </div>
