@@ -24,19 +24,13 @@ const CaseDetail = () => {
       {/* Hero */}
       <div className="relative h-[60vh] bg-stone-900 overflow-hidden flex items-center justify-center">
         {/* Background Image */}
-        {caseItem.image_url ? (
+        {caseItem.image_url && (
           <img 
             src={caseItem.image_url} 
             alt={caseItem.title} 
             className="absolute inset-0 w-full h-full object-cover opacity-60"
             referrerPolicy="no-referrer"
           />
-        ) : (
-          <div className="absolute inset-0 bg-stone-900/80 flex flex-col items-center justify-center text-stone-600">
-            <div className="w-16 h-16 rounded-full bg-stone-800/50 flex items-center justify-center mb-4">
-              <span className="font-sans tracking-widest uppercase text-sm font-light">图片位置</span>
-            </div>
-          </div>
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/40 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full p-8 md:p-16">

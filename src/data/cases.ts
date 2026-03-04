@@ -33,7 +33,7 @@ export const casesData = [
     description: '采用“绿电 + 水蓄冷 + AI调度”综合方案，降低制冷系统用能成本，提升绿色电力使用比例。',
     capacity: '水蓄冷+绿电',
     savings: '运行成本优化',
-    image_url: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1000',
+    image_url: 'https://images.unsplash.com/photo-1516937941344-00b4e0337589?auto=format&fit=crop&q=80&w=1000',
     results: ['制冷系统运行成本优化', '峰段电力使用比例下降', '绿电利用率提升', '能耗结构更加平衡', '为零碳工厂认证提供支撑'],
     background: '该项目为高能耗制造企业，空调及冷却系统能耗占比高。夏季高峰时段制冷负荷集中，导致容量电费及尖峰电费压力巨大。\n\n企业希望在不影响生产工艺的前提下，降低制冷系统用能成本，同时提升绿色电力使用比例。',
     situation: {
