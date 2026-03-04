@@ -23,12 +23,21 @@ const CaseDetail = () => {
     <div className="pt-24 pb-20 min-h-screen bg-paper">
       {/* Hero */}
       <div className="relative h-[60vh] bg-stone-900 overflow-hidden flex items-center justify-center">
-        {/* Empty Image Placeholder */}
-        <div className="absolute inset-0 bg-stone-900/80 flex flex-col items-center justify-center text-stone-600">
-          <div className="w-16 h-16 rounded-full bg-stone-800/50 flex items-center justify-center mb-4">
-            <span className="font-sans tracking-widest uppercase text-sm font-light">图片位置</span>
+        {/* Background Image */}
+        {caseItem.image_url ? (
+          <img 
+            src={caseItem.image_url} 
+            alt={caseItem.title} 
+            className="absolute inset-0 w-full h-full object-cover opacity-60"
+            referrerPolicy="no-referrer"
+          />
+        ) : (
+          <div className="absolute inset-0 bg-stone-900/80 flex flex-col items-center justify-center text-stone-600">
+            <div className="w-16 h-16 rounded-full bg-stone-800/50 flex items-center justify-center mb-4">
+              <span className="font-sans tracking-widest uppercase text-sm font-light">图片位置</span>
+            </div>
           </div>
-        </div>
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/40 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full p-8 md:p-16">
           <div className="container mx-auto px-6 md:px-12">
@@ -50,19 +59,48 @@ const CaseDetail = () => {
       <div className="container mx-auto px-6 md:px-12 py-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
           <div className="md:col-span-2">
-            <h2 className="text-2xl font-serif font-bold mb-6 text-ink">项目背景与挑战</h2>
-            <p className="text-stone-600 text-lg leading-relaxed mb-12 font-sans">
-              {caseItem.description}
+            <h2 className="text-2xl font-serif font-bold mb-6 text-ink">项目背景</h2>
+            <p className="text-stone-600 text-lg leading-relaxed mb-12 font-sans whitespace-pre-line">
+              {caseItem.background || caseItem.description}
             </p>
+
+            {caseItem.situation && (
+              <>
+                <h2 className="text-2xl font-serif font-bold mb-6 text-ink">项目情况</h2>
+                <div className="bg-stone-50 rounded-xl p-8 mb-12 border border-stone-100">
+                  <ul className="space-y-4 text-stone-600 font-sans">
+                    {caseItem.situation.scene && <li><strong>场景类型：</strong>{caseItem.situation.scene}</li>}
+                    {caseItem.situation.energy && <li><strong>能源结构：</strong>{caseItem.situation.energy}</li>}
+                    {caseItem.situation.load && <li><strong>主要负荷：</strong>{caseItem.situation.load}</li>}
+                    {caseItem.situation.goal && <li><strong>项目目标：</strong>{caseItem.situation.goal}</li>}
+                  </ul>
+                </div>
+              </>
+            )}
 
             <h2 className="text-2xl font-serif font-bold mb-6 text-ink">解决方案</h2>
             <div className="text-stone-600 text-lg leading-relaxed mb-12 font-sans">
-              AethraVolt 为该项目提供了定制化的零碳解决方案，通过部署 AethraEdge 边缘控制器与 AethraGrid 能源管理平台，实现了能源的数字化管理与优化调度。
-              <ul className="list-disc pl-6 mt-6 space-y-4 marker:text-accent">
-                <li>部署 <strong>AethraEdge</strong> 边缘控制器，实现毫秒级智能调节。</li>
-                <li>建设分布式光伏与储能系统，提高绿电使用比例。</li>
-                <li>集成 <strong>AethraGrid</strong> 能源管理云平台，实现全厂能流可视化与碳排放实时监测。</li>
-              </ul>
+              {caseItem.solution ? (
+                <div className="space-y-8">
+                  {caseItem.solution.map((sol: any, idx: number) => (
+                    <div key={idx}>
+                      <h3 className="text-xl font-bold text-ink mb-2">
+                        {idx + 1}. {sol.title}
+                      </h3>
+                      <p>{sol.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <>
+                  AethraVolt 为该项目提供了定制化的零碳解决方案，通过部署 AethraEdge 边缘控制器与 AethraGrid 能源管理平台，实现了能源的数字化管理与优化调度。
+                  <ul className="list-disc pl-6 mt-6 space-y-4 marker:text-accent">
+                    <li>部署 <strong>AethraEdge</strong> 边缘控制器，实现毫秒级智能调节。</li>
+                    <li>建设分布式光伏与储能系统，提高绿电使用比例。</li>
+                    <li>集成 <strong>AethraGrid</strong> 能源管理云平台，实现全厂能流可视化与碳排放实时监测。</li>
+                  </ul>
+                </>
+              )}
             </div>
           </div>
 

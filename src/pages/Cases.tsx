@@ -60,12 +60,12 @@ const Cases = () => {
                 
                 <div className="grid grid-cols-2 gap-4 sm:gap-6 mb-8">
                   <div className="bg-stone-900/40 border border-stone-800 rounded-2xl p-5 sm:p-6">
-                    <div className="text-2xl sm:text-3xl font-sans font-medium text-white tracking-tight mb-2">{item.capacity}</div>
-                    <div className="text-xs sm:text-sm text-stone-500 uppercase tracking-wide font-light">装机容量</div>
+                    <div className="text-xl sm:text-2xl font-sans font-medium text-white tracking-tight mb-2">{item.capacity}</div>
+                    <div className="text-xs sm:text-sm text-stone-500 uppercase tracking-wide font-light">核心方案</div>
                   </div>
                   <div className="bg-stone-900/40 border border-stone-800 rounded-2xl p-5 sm:p-6">
-                    <div className="text-2xl sm:text-3xl font-sans font-medium text-white tracking-tight mb-2">{item.savings}</div>
-                    <div className="text-xs sm:text-sm text-stone-500 uppercase tracking-wide font-light">经济效益</div>
+                    <div className="text-xl sm:text-2xl font-sans font-medium text-white tracking-tight mb-2">{item.savings}</div>
+                    <div className="text-xs sm:text-sm text-stone-500 uppercase tracking-wide font-light">核心价值</div>
                   </div>
                 </div>
 
