@@ -66,7 +66,7 @@ const About = () => {
             </div>
             <div className="relative h-full min-h-[500px] bg-stone-900 rounded-xl overflow-hidden border border-stone-800">
               <img 
-                src="https://image.pollinations.ai/prompt/AI%20energy%20hub%20panorama%2C%20Central%3A%20abstract%20AI%20core%20%28energy%20brain%29%2C%20Periphery%3A%20factories%2C%20parks%2C%20farms%2C%20wind%20power%2C%20photovoltaics%2C%20Connections%3A%20glowing%20energy%20flow%20lines%2C%20High%20tech%2C%20futuristic%2C%20high%20quality%2C%20high%20resolution?width=1200&height=800&nologo=true" 
+                src="https://i.ibb.co/twXq4nTK/069bfd65-5d9d-492e-8cef-14a593596232.jpg" 
                 alt="AI能源中枢调度全景图" 
                 className="absolute inset-0 w-full h-full object-cover opacity-80 hover:opacity-100 transition-all duration-700 mix-blend-luminosity hover:mix-blend-normal"
               />
