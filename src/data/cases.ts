@@ -58,7 +58,7 @@ export const casesData = [
     description: '采用“光伏 + 负荷协同调度”模式，降低运营成本，打造绿色低碳示范园区。',
     capacity: '光伏+协同调度',
     savings: '运行能耗降低',
-    image_url: 'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&q=80&w=1000',
+    image_url: 'https://i.ibb.co/TM9kwG5x/image.png',
     results: ['污水处理用电结构优化', '园区绿电占比提升', '运行能耗降低', '园区实现零碳转型示范效应'],
     background: '该项目为产业园区配套污水处理厂，运行负荷稳定但持续耗能，电费支出长期占运营成本较大比例。\n\n园区希望通过新能源系统建设，降低运营成本，同时打造绿色低碳示范园区。',
     situation: {
