@@ -221,6 +221,12 @@ async function startServer() {
     res.json({ status: "ok" });
   });
 
+  // 404 handler for API routes to prevent falling through to SPA fallback
+  app.use("/api/*", (req, res) => {
+    console.log(`404 API Request: ${req.method} ${req.originalUrl}`);
+    res.status(404).json({ error: `API endpoint not found: ${req.originalUrl}` });
+  });
+
   // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({

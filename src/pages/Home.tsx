@@ -4,6 +4,8 @@ import { ArrowRight, Zap, BarChart3, Globe2, ShieldCheck, ChevronRight, Trending
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 
+import CountUp from '../components/CountUp';
+
 const Home = () => {
   const { t } = useLanguage();
 
@@ -11,6 +13,21 @@ const Home = () => {
     <>
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center pt-20 bg-transparent overflow-hidden">
+        {/* Background Video */}
+        <div className="absolute inset-0 z-0">
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+            className="w-full h-full object-cover opacity-60"
+          >
+            <source src="/video.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div className="absolute inset-0 bg-black/40" />
+        </div>
+
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <div className="max-w-4xl">
             <motion.h1 
@@ -48,20 +65,7 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Abstract Visual Element */}
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1/3 h-full hidden lg:block pointer-events-none opacity-60">
-           <svg viewBox="0 0 400 800" className="w-full h-full">
-             <path d="M200,0 Q300,200 100,400 T200,800" fill="none" stroke="#3b82f6" strokeWidth="1" className="opacity-30" />
-             <path d="M250,0 Q350,200 150,400 T250,800" fill="none" stroke="#191919" strokeWidth="1" className="opacity-10" />
-             <defs>
-               <radialGradient id="grad1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-                 <stop offset="0%" style={{stopColor:'#3b82f6', stopOpacity:1}} />
-                 <stop offset="100%" style={{stopColor:'#F4F1EA', stopOpacity:0}} />
-               </radialGradient>
-             </defs>
-             <circle cx="100" cy="400" r="150" fill="url(#grad1)" className="opacity-20 mix-blend-multiply" />
-           </svg>
-        </div>
+        {/* Abstract Visual Element - Removed as video replaces it */}
       </section>
 
       {/* Stats Section */}
@@ -78,8 +82,10 @@ const Home = () => {
               transition={{ duration: 1, ease: "easeOut" }}
               className="flex flex-col items-center justify-center"
             >
-              <div className="text-5xl md:text-6xl lg:text-7xl font-sans font-medium text-gradient-blue mb-6 tracking-tight">1GW+</div>
-              <div className="text-stone-300 text-lg font-light tracking-wider">管理绿色能源规模</div>
+              <div className="text-5xl md:text-6xl lg:text-7xl font-sans font-medium text-gradient-blue mb-6 tracking-tight">
+                <CountUp end={1} suffix="GW+" />
+              </div>
+              <div className="text-stone-300 text-lg font-light tracking-wider">累计运营可再生能源资产</div>
             </motion.div>
             
             <motion.div 
@@ -89,8 +95,10 @@ const Home = () => {
               transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
               className="flex flex-col items-center justify-center"
             >
-              <div className="text-5xl md:text-6xl lg:text-7xl font-sans font-medium text-gradient-blue mb-6 tracking-tight">亿美元级</div>
-              <div className="text-stone-300 text-lg font-light tracking-wider">累计节省能源成本</div>
+              <div className="text-5xl md:text-6xl lg:text-7xl font-sans font-medium text-gradient-blue mb-6 tracking-tight">
+                <CountUp end={5} suffix="亿度" />
+              </div>
+              <div className="text-stone-300 text-lg font-light tracking-wider">累计节约电能</div>
             </motion.div>
             
             <motion.div 
@@ -100,8 +108,10 @@ const Home = () => {
               transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
               className="flex flex-col items-center justify-center"
             >
-              <div className="text-5xl md:text-6xl lg:text-7xl font-sans font-medium text-gradient-blue mb-6 tracking-tight">160 万吨</div>
-              <div className="text-stone-300 text-lg font-light tracking-wider">减少碳排放</div>
+              <div className="text-5xl md:text-6xl lg:text-7xl font-sans font-medium text-gradient-blue mb-6 tracking-tight">
+                <CountUp end={30} suffix="万吨" />
+              </div>
+              <div className="text-stone-300 text-lg font-light tracking-wider">累计减少碳排放</div>
             </motion.div>
           </div>
         </div>

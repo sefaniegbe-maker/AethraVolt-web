@@ -10,9 +10,22 @@ const Products = () => {
 
   useEffect(() => {
     fetch('/api/products')
-      .then(res => res.json())
-      .then(data => setProducts(data))
-      .catch(err => console.error(err));
+      .then(res => {
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+        return res.json();
+      })
+      .then(data => {
+        if (Array.isArray(data)) {
+          setProducts(data);
+        } else {
+          console.error('Expected array of products, got:', data);
+          setProducts([]);
+        }
+      })
+      .catch(err => {
+        console.error('Failed to fetch products:', err);
+        setProducts([]);
+      });
   }, []);
 
   const categories = ['全部', '智能设备', '软件系统', '解决方案'];

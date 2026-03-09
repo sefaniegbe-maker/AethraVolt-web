@@ -21,7 +21,7 @@ export const translations = {
       hero: {
         title: 'AI驱动能源自主',
         subtitle: '定义零碳新质生产力',
-        desc: '以数据为关键要素，用AI重构区域能源体系，打造绿色的零碳新质生产力。',
+        desc: '用可再生能源与AI技术驱动能源低碳未来。我们不仅提供能源解决方案，更构建可持续发展的底层能源能力。',
         cta_explore: '探索解决方案',
         cta_about: '了解我们',
       },

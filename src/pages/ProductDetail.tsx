@@ -9,7 +9,10 @@ const ProductDetail = () => {
 
   useEffect(() => {
     fetch(`/api/products/${id}`)
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+        return res.json();
+      })
       .then(data => {
         setProduct(data);
         setLoading(false);
@@ -17,6 +20,7 @@ const ProductDetail = () => {
       .catch(err => {
         console.error(err);
         setLoading(false);
+        setProduct(null);
       });
   }, [id]);
 

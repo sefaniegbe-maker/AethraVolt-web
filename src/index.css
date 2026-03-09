@@ -4,54 +4,57 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   
-  --color-paper: #050505;
-  --color-ink: #ffffff;
-  --color-stone-50: #fafafa;
-  --color-stone-100: #f5f5f5;
-  --color-stone-200: #e5e5e5;
-  --color-stone-300: #d4d4d4;
-  --color-stone-400: #a3a3a3;
-  --color-stone-500: #737373;
-  --color-stone-600: #525252;
-  --color-stone-700: #404040;
-  --color-stone-800: #262626;
-  --color-stone-900: #171717;
-  
-  --color-accent: #3b82f6;
+  --color-bg-primary: #0A0A0A;
+  --color-bg-secondary: #1C1C1E;
+  --color-bg-module: #2A2A2D;
+  --color-accent-primary: #2E8BFF;
+  --color-accent-highlight: #00E5FF;
+  --color-text-primary: #F5F7FA;
+  --color-text-secondary: #A1A1AA;
 }
 
 @layer base {
   body {
-    @apply text-white font-sans antialiased;
-    background-color: #050505;
-    background-image: radial-gradient(circle at 50% 0%, #111827 0%, #050505 70%);
+    @apply text-[var(--color-text-primary)] font-sans antialiased;
+    background-color: var(--color-bg-primary);
     min-height: 100vh;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-sans font-medium tracking-tight text-white;
+    @apply font-bold tracking-tight text-white;
   }
 }
 
-/* Custom Utilities for the Editorial Look */
 @layer components {
-  .text-gradient-blue {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-300;
+  .text-gradient-energy {
+    @apply text-white; /* Removed gradient for minimalism, or keep subtle */
   }
   
-  .bg-gradient-blue {
-    @apply bg-gradient-to-r from-blue-600 to-cyan-500;
+  .bg-gradient-energy {
+    @apply bg-white; /* Simplified */
   }
 
   .btn-primary {
-    @apply px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-lg font-sans font-medium hover:opacity-90 transition-opacity duration-300 shadow-[0_0_15px_rgba(59,130,246,0.3)];
+    @apply px-6 py-3 bg-white text-black rounded-lg font-medium text-sm tracking-wide transition-all duration-300 hover:bg-gray-200 hover:scale-[1.02] active:scale-[0.98];
   }
   
   .btn-outline {
-    @apply px-6 py-3 border border-stone-800 text-white rounded-lg font-sans font-medium hover:bg-stone-800 transition-colors duration-300;
+    @apply px-6 py-3 border border-white/20 text-white rounded-lg font-medium text-sm tracking-wide hover:bg-white/10 transition-all duration-300 hover:border-white/40;
   }
   
-  .card-editorial {
-    @apply bg-stone-900/40 backdrop-blur-sm border border-stone-800 rounded-2xl p-8 transition-all duration-300 hover:border-blue-500/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.1)];
+  /* Portfolite-style Grid Card */
+  .bento-card {
+    @apply bg-[#111] border border-white/10 rounded-xl p-8 transition-all duration-300 hover:border-white/30 hover:bg-[#161616] flex flex-col h-full;
+  }
+
+  .section-padding {
+    @apply py-24;
+  }
+  
+  /* Grid lines utility */
+  .grid-lines {
+    background-size: 40px 40px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   }
 }
