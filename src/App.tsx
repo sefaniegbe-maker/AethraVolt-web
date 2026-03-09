@@ -1,7 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, createContext, useContext } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion';
 import { Globe, ChevronDown, Menu, X, MapPin, Mail, ArrowRight } from 'lucide-react';
 import { ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps';
+import { translations } from './i18n';
+
+// --- Language Context ---
+const LanguageContext = createContext({
+  lang: '中文',
+  t: translations['中文'],
+  setLang: (l: string) => {}
+});
 
 // --- AnimatedCounter Component ---
 const AnimatedCounter = ({ value, suffix = '', duration = 2 }: { value: number, suffix?: string, duration?: number }) => {
@@ -34,10 +42,10 @@ const AnimatedCounter = ({ value, suffix = '', duration = 2 }: { value: number, 
 
 // --- Navbar Component ---
 const Navbar = () => {
+  const { lang, t, setLang } = useContext(LanguageContext);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
-  const [language, setLanguage] = useState('CN');
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -46,15 +54,15 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: '首页', href: '#home' },
-    { name: '产品中心', href: '#product' },
-    { name: '案例中心', href: '#cases' },
-    { name: '关于我们', href: '#about' },
-    { name: '联系我们', href: '#contact' },
+    { name: t.nav.home, href: '#home' },
+    { name: t.nav.product, href: '#product' },
+    { name: t.nav.cases, href: '#cases' },
+    { name: t.nav.about, href: '#about' },
+    { name: t.nav.contact, href: '#contact' },
   ];
 
   const languages = [
-    { code: 'CN', label: '简体中文' },
+    { code: '中文', label: '中文' },
     { code: 'EN', label: 'English' },
     { code: 'DE', label: 'Deutsch' },
     { code: 'VN', label: 'Tiếng Việt' },
@@ -112,7 +120,7 @@ const Navbar = () => {
               className="flex items-center gap-1 text-xs font-light tracking-widest px-3 py-1.5 rounded-full border border-white/20 hover:bg-white/10 transition-colors text-white"
             >
               <Globe size={12} />
-              <span>{language}</span>
+              <span>{lang}</span>
               <ChevronDown size={10} />
             </button>
             
@@ -124,15 +132,15 @@ const Navbar = () => {
                   exit={{ opacity: 0, y: 10 }}
                   className="absolute right-0 top-full mt-4 w-32 bg-black/80 border border-white/10 rounded-2xl shadow-2xl py-2 overflow-hidden backdrop-blur-2xl"
                 >
-                  {languages.map((lang) => (
+                  {languages.map((l) => (
                     <button
-                      key={lang.code}
-                      onClick={() => { setLanguage(lang.code); setIsLangMenuOpen(false); }}
+                      key={l.code}
+                      onClick={() => { setLang(l.code); setIsLangMenuOpen(false); }}
                       className={`w-full text-left px-4 py-2 text-xs tracking-widest hover:bg-white/10 transition-colors ${
-                        language === lang.code ? 'text-[#0066FF]' : 'text-white/70'
+                        lang === l.code ? 'text-[#00E5FF]' : 'text-white/70'
                       }`}
                     >
-                      {lang.label}
+                      {l.label}
                     </button>
                   ))}
                 </motion.div>
@@ -171,15 +179,15 @@ const Navbar = () => {
                 </a>
               ))}
               <div className="pt-8 flex gap-4 flex-wrap">
-                {languages.map((lang) => (
+                {languages.map((l) => (
                   <button
-                    key={lang.code}
-                    onClick={() => { setLanguage(lang.code); setIsMobileMenuOpen(false); }}
+                    key={l.code}
+                    onClick={() => { setLang(l.code); setIsMobileMenuOpen(false); }}
                     className={`px-6 py-2 rounded-full border text-sm tracking-widest ${
-                      language === lang.code ? 'bg-white text-black border-white' : 'border-white/20 text-white/60'
+                      lang === l.code ? 'bg-white text-black border-white' : 'border-white/20 text-white/60'
                     }`}
                   >
-                    {lang.label}
+                    {l.label}
                   </button>
                 ))}
               </div>
@@ -193,6 +201,7 @@ const Navbar = () => {
 
 // --- Hero Section ---
 const Hero = () => {
+  const { t } = useContext(LanguageContext);
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 1000], [0, 400]);
   const opacity = useTransform(scrollY, [0, 600], [1, 0]);
@@ -222,7 +231,7 @@ const Hero = () => {
         }}
         transition={{ type: "spring", damping: 40, stiffness: 200, mass: 0.5 }}
         style={{
-          background: 'radial-gradient(circle, rgba(0,102,255,0.15) 0%, rgba(0,200,83,0.05) 40%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(0,102,255,0.15) 0%, rgba(0,229,255,0.05) 40%, transparent 70%)',
         }}
       />
 
@@ -232,14 +241,11 @@ const Hero = () => {
           loop 
           muted 
           playsInline
-          className="object-cover w-full h-full opacity-60 mix-blend-screen"
+          className="object-cover w-full h-full opacity-80 mix-blend-screen"
         >
-          {/* 使用用户上传的视频作为背景 */}
-          <source src="/uploaded_video_1.mp4" type="video/mp4" />
-          <source src="/uploaded_video.mp4" type="video/mp4" />
-          <source src="https://cdn.pixabay.com/video/2021/08/04/83866-584705244_large.mp4" type="video/mp4" />
+          <source src="https://cdn.pixabay.com/video/2020/05/12/38865-421035541_large.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black"></div>
       </motion.div>
 
       <div className="container relative z-20 mx-auto px-6 text-center mt-20">
@@ -250,24 +256,20 @@ const Hero = () => {
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-5xl mx-auto"
         >
-          <h1 className="text-4xl md:text-6xl lg:text-[4.5rem] font-thin text-white leading-tight mb-8 tracking-wide">
-            AI+能源驱动的<br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] via-white to-[#00C853] font-light">
-              “零碳新质生产力”运营商
+          <h1 className="text-4xl md:text-6xl lg:text-[4.5rem] font-thin text-white leading-tight mb-16 tracking-wide">
+            {t.hero.title1}<br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] via-white to-[#00E5FF] font-light">
+              {t.hero.title2}
             </span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-white/70 font-light tracking-widest mb-16 max-w-3xl mx-auto">
-            用可再生能源与AI技术驱动能源低碳未来
-          </p>
-          
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <a href="#product" className="w-full sm:w-auto px-10 py-4 rounded-full bg-white/5 hover:bg-white/10 border border-white/20 text-white font-light tracking-widest transition-all duration-500 backdrop-blur-md relative overflow-hidden group">
-              <span className="relative z-10">探索解决方案</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0066FF]/20 to-[#00C853]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <span className="relative z-10">{t.hero.btn1}</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#0066FF]/20 to-[#00E5FF]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </a>
             <a href="#about" className="w-full sm:w-auto px-10 py-4 rounded-full bg-transparent hover:bg-white/5 border border-white/10 text-white font-light tracking-widest transition-all duration-500 backdrop-blur-md">
-              了解我们
+              {t.hero.btn2}
             </a>
           </div>
         </motion.div>
@@ -278,48 +280,107 @@ const Hero = () => {
 
 // --- Product Section Component ---
 const ProductSection = () => {
+  const { t } = useContext(LanguageContext);
   const [activeTab, setActiveTab] = useState<number | null>(null);
 
   const tabs = [
     {
-      title: "1+5 产品矩阵",
-      content: "以 AethraCore AI 模型为核心，端-边-云架构驱动能源数字化转型。涵盖智能微网管理、虚拟电厂调度、碳资产管理、能效优化控制及设备预测性维护五大核心模块，实现能源全链路的智能化闭环。"
+      title: t.product.tab1,
+      content: t.product.tab1Desc
     },
     {
-      title: "六维建设体系",
-      content: "科学算碳、源头减碳、过程脱碳、智能控碳、协同降碳、抵消披露。构建全生命周期的碳管理体系，从底层数据采集到顶层战略规划，赋能企业实现零碳转型。"
+      title: t.product.tab2,
+      content: t.product.tab2Desc
     }
   ];
 
   return (
     <section id="product" className="relative h-screen flex items-center overflow-hidden bg-black">
       <div className="absolute inset-0 w-full h-full z-0">
-        <img src="https://picsum.photos/seed/dashboard/1920/1080?blur=1" alt="Carbon Asset Management" className="w-full h-full object-cover opacity-30 mix-blend-screen" referrerPolicy="no-referrer" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent"></div>
+        <img src="/uploaded_image_8.png" alt="Carbon Asset Management" className="w-full h-full object-cover opacity-40 mix-blend-screen" referrerPolicy="no-referrer" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/70 to-transparent"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/80"></div>
         
-        {/* 模拟 360 旋转模型和参数面板的视觉占位 */}
-        <div className="absolute right-[10%] top-1/2 -translate-y-1/2 w-[600px] h-[600px] hidden lg:flex items-center justify-center">
+        {/* 动态数据可视化特效 */}
+        <div className="absolute right-[5%] top-1/2 -translate-y-1/2 w-[600px] h-[600px] hidden lg:flex items-center justify-center">
+          {/* 中心发光球体 */}
           <motion.div 
-            animate={{ rotateY: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="w-full h-full border border-[#0066FF]/20 rounded-full flex items-center justify-center relative"
-            style={{ transformStyle: 'preserve-3d' }}
+            animate={{ scale: [1, 1.1, 1], opacity: [0.4, 0.7, 0.4] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute w-48 h-48 bg-[#0066FF] rounded-full blur-[100px]"
+          />
+          <motion.div 
+            animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.5, 0.2] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="absolute w-64 h-64 bg-[#00E5FF] rounded-full blur-[120px]"
+          />
+
+          {/* 动态数据环 */}
+          <svg className="absolute w-full h-full" viewBox="0 0 600 600">
+            <motion.circle 
+              cx="300" cy="300" r="200" 
+              fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1"
+              strokeDasharray="4 4"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+              style={{ transformOrigin: "center" }}
+            />
+            <motion.circle 
+              cx="300" cy="300" r="250" 
+              fill="none" stroke="rgba(0,102,255,0.2)" strokeWidth="2"
+              strokeDasharray="100 200"
+              animate={{ rotate: -360 }}
+              transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+              style={{ transformOrigin: "center" }}
+            />
+            <motion.circle 
+              cx="300" cy="300" r="150" 
+              fill="none" stroke="rgba(0,229,255,0.15)" strokeWidth="1"
+              strokeDasharray="50 50"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+              style={{ transformOrigin: "center" }}
+            />
+          </svg>
+
+          {/* 悬浮数据卡片 */}
+          <motion.div 
+            animate={{ y: [0, -15, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-[15%] right-[15%] bg-black/60 backdrop-blur-md border border-white/10 p-5 rounded-xl shadow-[0_0_30px_rgba(0,102,255,0.15)] w-48"
           >
-            <div className="absolute w-[80%] h-[80%] border border-[#00C853]/20 rounded-full" style={{ transform: 'rotateX(60deg)' }}></div>
-            <div className="absolute w-[60%] h-[60%] border border-white/10 rounded-full" style={{ transform: 'rotateX(60deg) rotateY(60deg)' }}></div>
-            <div className="w-32 h-32 bg-gradient-to-br from-[#0066FF] to-[#00C853] rounded-full blur-xl opacity-50"></div>
-            
-            {/* 模拟参数面板锚点 */}
-            <motion.div 
-              className="absolute top-[20%] right-[10%] w-4 h-4 bg-white rounded-full shadow-[0_0_15px_#0066FF] cursor-pointer group"
-              whileHover={{ scale: 1.2 }}
-            >
-              <div className="absolute top-1/2 left-full ml-4 -translate-y-1/2 w-48 bg-black/80 backdrop-blur-md border border-white/10 p-4 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                <div className="text-xs text-[#00C853] mb-1">实时碳排量</div>
-                <div className="text-xl font-mono text-white">1,245.8 tCO₂</div>
-              </div>
-            </motion.div>
+            <div className="text-xs text-white/60 mb-2 tracking-wider">{t.product.efficiency}</div>
+            <div className="text-3xl font-mono text-[#00E5FF] font-light">98.5%</div>
+            <div className="mt-3 h-1 w-full bg-white/10 rounded-full overflow-hidden">
+              <motion.div 
+                className="h-full bg-gradient-to-r from-[#0066FF] to-[#00E5FF]" 
+                initial={{ width: "0%" }}
+                animate={{ width: "98.5%" }}
+                transition={{ duration: 2, delay: 0.5 }}
+              />
+            </div>
+          </motion.div>
+
+          <motion.div 
+            animate={{ y: [0, 15, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="absolute bottom-[20%] left-[10%] bg-black/60 backdrop-blur-md border border-white/10 p-5 rounded-xl shadow-[0_0_30px_rgba(0,229,255,0.15)] w-56"
+          >
+            <div className="text-xs text-white/60 mb-2 tracking-wider">{t.product.carbon}</div>
+            <div className="text-3xl font-mono text-[#0066FF] font-light">1,245.8 <span className="text-sm text-white/40">tCO₂</span></div>
+            <div className="flex items-center gap-2 mt-3 text-xs text-[#00E5FF]">
+              <ArrowRight size={14} className="-rotate-45" />
+              <span>{t.product.compare}</span>
+            </div>
+          </motion.div>
+
+          <motion.div 
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+            className="absolute top-[40%] left-[5%] bg-black/60 backdrop-blur-md border border-white/10 p-3 rounded-xl flex items-center gap-3"
+          >
+            <div className="w-2.5 h-2.5 rounded-full bg-[#00E5FF] shadow-[0_0_10px_#00E5FF] animate-pulse" />
+            <div className="text-sm text-white/80 tracking-wide">{t.product.ai}</div>
           </motion.div>
         </div>
       </div>
@@ -333,7 +394,7 @@ const ProductSection = () => {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="text-5xl md:text-7xl font-thin text-white mb-6 tracking-wide"
           >
-            AethraGrid
+            {t.product.title}
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 30 }}
@@ -342,7 +403,7 @@ const ProductSection = () => {
             transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="text-xl md:text-3xl text-white/60 font-light mb-16 tracking-wide"
           >
-            AI能源管理云平台
+            {t.product.subtitle}
           </motion.p>
           
           <div className="flex flex-col gap-6">
@@ -392,38 +453,44 @@ const ProductSection = () => {
 
 // --- Cases Section ---
 const CasesSection = () => {
+  const { t } = useContext(LanguageContext);
   const [activeCase, setActiveCase] = useState<number | null>(null);
 
   const cases = [
     { 
-      title: '光储一体化项目', 
-      category: '零碳工厂', 
-      img: '/uploaded_image_2.jpg',
-      desc: '通过部署“光储一体化 + AI调度系统”方案，实现削峰填谷与电价套利，显著降低用电成本。'
+      title: t.cases.c1, 
+      category: t.cases.c1c, 
+      img: '/uploaded_image_4.jpg',
+      desc: t.cases.c1d
     },
     { 
-      title: '绿电 + 水蓄冷项目', 
-      category: '零碳工厂', 
-      img: '/uploaded_image_3.jpg',
-      desc: '采用“绿电 + 水蓄冷 + AI调度”综合方案，降低制冷系统用能成本，提升绿色电力使用比例。'
+      title: t.cases.c2, 
+      category: t.cases.c2c, 
+      img: '/uploaded_image_7.jpg',
+      desc: t.cases.c2d
     },
     { 
-      title: '光伏 + 污水处理协同项目', 
-      category: '零碳园区', 
-      img: '/uploaded_image_1.jpg',
-      desc: '采用“光伏 + 负荷协同调度”模式，降低运营成本，打造绿色低碳示范园区。'
+      title: t.cases.c3, 
+      category: t.cases.c3c, 
+      img: '/uploaded_image_5.jpg',
+      desc: t.cases.c3d
     },
     { 
-      title: '德国综合体光储充一体化项目', 
-      category: '零碳园区', 
-      img: '/uploaded_image.jpg',
-      desc: '采用“光储充一体化 + AI调度”系统，实现能源自给率提升，满足欧洲绿色合规标准。'
+      title: t.cases.c4, 
+      category: t.cases.c4c, 
+      img: '/uploaded_image_6.jpg',
+      desc: t.cases.c4d
     }
   ];
 
   return (
     <section id="cases" className="py-32 bg-black relative">
-      <div className="container mx-auto px-6 md:px-12 lg:px-24">
+      <div className="absolute inset-0 w-full h-full z-0">
+        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1920&auto=format&fit=crop" alt="Cases Background" className="w-full h-full object-cover opacity-20" referrerPolicy="no-referrer" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black"></div>
+      </div>
+      
+      <div className="container mx-auto px-6 md:px-12 lg:px-24 relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -431,8 +498,8 @@ const CasesSection = () => {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="mb-20"
         >
-          <h2 className="text-5xl md:text-7xl font-thin text-white tracking-wide mb-6">案例中心</h2>
-          <p className="text-xl text-white/60 font-light tracking-widest">全球化标杆项目落地</p>
+          <h2 className="text-5xl md:text-7xl font-thin text-white tracking-wide mb-6">{t.cases.title}</h2>
+          <p className="text-xl text-white/60 font-light tracking-widest">{t.cases.subtitle}</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -451,7 +518,7 @@ const CasesSection = () => {
               
               <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full flex flex-col justify-end h-full">
                 <div className="transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
-                  <div className="text-[#00C853] text-sm font-medium tracking-widest mb-3 opacity-80">{item.category}</div>
+                  <div className="text-[#00E5FF] text-sm font-medium tracking-widest mb-3 opacity-80">{item.category}</div>
                   <h3 className="text-2xl md:text-3xl font-light text-white tracking-wide mb-4">{item.title}</h3>
                   
                   <AnimatePresence>
@@ -475,19 +542,25 @@ const CasesSection = () => {
 
 // --- Global Map Section ---
 const GlobalMapSection = () => {
+  const { t } = useContext(LanguageContext);
   const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
   
   const markers = [
-    { name: "中国", coordinates: [104.1954, 35.8617] },
-    { name: "美国", coordinates: [-95.7129, 37.0902] },
-    { name: "德国", coordinates: [10.4515, 51.1657] },
-    { name: "越南", coordinates: [108.2772, 14.0583] },
-    { name: "泰国", coordinates: [100.9925, 15.8700] },
-    { name: "澳大利亚", coordinates: [133.7751, -25.2744] }
+    { name: t.map.cn, coordinates: [104.1954, 35.8617] },
+    { name: t.map.us, coordinates: [-95.7129, 37.0902] },
+    { name: t.map.de, coordinates: [10.4515, 51.1657] },
+    { name: t.map.vn, coordinates: [108.2772, 14.0583] },
+    { name: t.map.th, coordinates: [100.9925, 15.8700] },
+    { name: t.map.au, coordinates: [133.7751, -25.2744] }
   ];
 
   return (
     <section className="py-32 bg-black relative overflow-hidden">
+      <div className="absolute inset-0 w-full h-full z-0">
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1920&auto=format&fit=crop" alt="Map Background" className="w-full h-full object-cover opacity-20" referrerPolicy="no-referrer" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black"></div>
+      </div>
+      
       <div className="container mx-auto px-6 md:px-12 z-10 relative">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
@@ -496,8 +569,8 @@ const GlobalMapSection = () => {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-6xl font-thin text-white tracking-widest mb-6">全球布局</h2>
-          <p className="text-xl text-white/40 font-light tracking-widest">业务覆盖网络</p>
+          <h2 className="text-4xl md:text-6xl font-thin text-white tracking-widest mb-6">{t.map.title}</h2>
+          <p className="text-xl text-white/40 font-light tracking-widest">{t.map.subtitle}</p>
         </motion.div>
 
         <div className="w-full max-w-5xl mx-auto opacity-80">
@@ -524,7 +597,7 @@ const GlobalMapSection = () => {
               <Marker key={name} coordinates={coordinates as [number, number]}>
                 <motion.circle
                   r={4}
-                  fill="#00C853"
+                  fill="#00E5FF"
                   animate={{
                     scale: [1, 2, 1],
                     opacity: [1, 0.5, 1],
@@ -554,9 +627,15 @@ const GlobalMapSection = () => {
 
 // --- About Us Section ---
 const AboutUsSection = () => {
+  const { t } = useContext(LanguageContext);
   return (
     <section id="about" className="py-32 bg-black relative border-t border-white/5">
-      <div className="container mx-auto px-6 md:px-12 lg:px-24">
+      <div className="absolute inset-0 w-full h-full z-0">
+        <img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?q=80&w=1920&auto=format&fit=crop" alt="About Background" className="w-full h-full object-cover opacity-20" referrerPolicy="no-referrer" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black"></div>
+      </div>
+      
+      <div className="container mx-auto px-6 md:px-12 lg:px-24 relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -564,7 +643,7 @@ const AboutUsSection = () => {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="mb-20"
         >
-          <h2 className="text-5xl md:text-7xl font-thin text-white tracking-wide mb-6">关于我们</h2>
+          <h2 className="text-5xl md:text-7xl font-thin text-white tracking-wide mb-6">{t.about.title}</h2>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
@@ -575,15 +654,15 @@ const AboutUsSection = () => {
             transition={{ duration: 1, delay: 0.2 }}
           >
             <div className="mb-12">
-              <h3 className="text-[#0066FF] text-sm font-medium tracking-widest mb-4">核心愿景</h3>
+              <h3 className="text-[#0066FF] text-sm font-medium tracking-widest mb-4">{t.about.vTitle}</h3>
               <p className="text-2xl md:text-3xl font-light text-white leading-relaxed">
-                以优质负荷为核心，以AI为引擎，成为全球领先的零碳新质生产力运营商。
+                {t.about.vDesc}
               </p>
             </div>
             <div>
-              <h3 className="text-[#00C853] text-sm font-medium tracking-widest mb-4">核心定位</h3>
+              <h3 className="text-[#00E5FF] text-sm font-medium tracking-widest mb-4">{t.about.pTitle}</h3>
               <p className="text-xl md:text-2xl font-light text-white/80 leading-relaxed">
-                AI+数据驱动的“零碳新质生产力”能源运营商
+                {t.about.pDesc}
               </p>
             </div>
           </motion.div>
@@ -596,20 +675,20 @@ const AboutUsSection = () => {
             className="grid grid-cols-2 gap-8"
           >
             <div>
-              <h3 className="text-white/40 text-sm font-medium tracking-widest mb-6 border-b border-white/10 pb-2">聚焦领域</h3>
+              <h3 className="text-white/40 text-sm font-medium tracking-widest mb-6 border-b border-white/10 pb-2">{t.about.fTitle}</h3>
               <ul className="space-y-4 text-lg font-light text-white/80">
-                <li>低碳绿能</li>
-                <li>能源精益运营</li>
-                <li>ESG价值创造</li>
+                <li>{t.about.f1}</li>
+                <li>{t.about.f2}</li>
+                <li>{t.about.f3}</li>
               </ul>
             </div>
             <div>
-              <h3 className="text-white/40 text-sm font-medium tracking-widest mb-6 border-b border-white/10 pb-2">客户价值</h3>
+              <h3 className="text-white/40 text-sm font-medium tracking-widest mb-6 border-b border-white/10 pb-2">{t.about.cTitle}</h3>
               <ul className="space-y-4 text-lg font-light text-white/80">
-                <li>省成本</li>
-                <li>创营收</li>
-                <li>高效率</li>
-                <li>ESG标杆</li>
+                <li>{t.about.c1}</li>
+                <li>{t.about.c2}</li>
+                <li>{t.about.c3}</li>
+                <li>{t.about.c4}</li>
               </ul>
             </div>
           </motion.div>
@@ -621,8 +700,14 @@ const AboutUsSection = () => {
 
 // --- Data Section ---
 const DataSection = () => {
+  const { t } = useContext(LanguageContext);
   return (
     <section id="about" className="py-40 bg-black relative overflow-hidden">
+      <div className="absolute inset-0 w-full h-full z-0">
+        <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=1920&auto=format&fit=crop" alt="Data Background" className="w-full h-full object-cover opacity-20" referrerPolicy="no-referrer" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-black/70 to-black"></div>
+      </div>
+      
       <div className="container mx-auto px-6 md:px-12 z-10 relative">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
@@ -631,15 +716,15 @@ const DataSection = () => {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-32"
         >
-          <h2 className="text-4xl md:text-6xl font-thin text-white tracking-widest mb-6">价值创造</h2>
-          <p className="text-xl text-white/40 font-light tracking-widest">用数据定义零碳新质生产力</p>
+          <h2 className="text-4xl md:text-6xl font-thin text-white tracking-widest mb-6">{t.data.title}</h2>
+          <p className="text-xl text-white/40 font-light tracking-widest">{t.data.subtitle}</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 text-center mb-24">
           {[
-            { label: '累计运营可再生能源资产', value: 1, suffix: 'GW+' },
-            { label: '累计节约电能', value: 5, suffix: '亿度' },
-            { label: '累计减少碳排放', value: 30, suffix: '万吨' }
+            { label: t.data.s1, value: 1, suffix: 'GW+' },
+            { label: t.data.s2, value: 5, suffix: '亿度' },
+            { label: t.data.s3, value: 30, suffix: '万吨' }
           ].map((stat, idx) => (
             <motion.div 
               key={idx}
@@ -649,7 +734,7 @@ const DataSection = () => {
               transition={{ delay: idx * 0.1, duration: 1, ease: [0.16, 1, 0.3, 1] }}
               className="group"
             >
-              <div className="text-6xl md:text-8xl font-thin text-white mb-6 group-hover:text-[#0066FF] transition-colors duration-700">
+              <div className="text-6xl md:text-8xl font-thin text-white mb-6 group-hover:text-[#00E5FF] transition-colors duration-700">
                 <AnimatedCounter value={stat.value} suffix={stat.suffix} />
               </div>
               <div className="text-lg font-light tracking-widest text-white/80">{stat.label}</div>
@@ -664,7 +749,7 @@ const DataSection = () => {
           transition={{ delay: 0.5, duration: 1 }}
           className="text-center text-xl md:text-2xl text-white/60 font-light tracking-widest max-w-4xl mx-auto"
         >
-          我们不仅提供能源解决方案，更构建可持续发展的底层能源能力。
+          {t.data.desc}
         </motion.p>
       </div>
     </section>
@@ -673,8 +758,9 @@ const DataSection = () => {
 
 // --- Footer Section ---
 const Footer = () => {
+  const { t } = useContext(LanguageContext);
   return (
-    <footer id="contact" className="bg-black pt-32 pb-12 border-t border-white/5">
+    <footer id="contact" className="bg-black pt-32 pb-12 border-t border-white/5 relative z-10">
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
           <div className="lg:col-span-2">
@@ -682,7 +768,7 @@ const Footer = () => {
               Aethra<span className="text-[#0066FF]">Volt</span>
             </span>
             <p className="text-xl font-light text-white/60 mb-8 max-w-md leading-relaxed tracking-wide">
-              用可再生能源与AI技术驱动能源低碳未来
+              {t.footer.desc}
             </p>
             <a href="mailto:info@aethravolt.com" className="inline-flex items-center gap-3 text-white/40 hover:text-white transition-colors font-light tracking-wider">
               <Mail size={16} strokeWidth={1} /> info@aethravolt.com
@@ -690,9 +776,9 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-sm font-medium text-white/80 mb-8 tracking-widest">快速链接</h4>
+            <h4 className="text-sm font-medium text-white/80 mb-8 tracking-widest">{t.footer.links}</h4>
             <ul className="space-y-6">
-              {['首页', '产品中心', '案例中心', '关于我们'].map((item, idx) => (
+              {[t.nav.home, t.nav.product, t.nav.cases, t.nav.about].map((item, idx) => (
                 <li key={idx}>
                   <a href={`#${['home', 'product', 'cases', 'about'][idx]}`} className="text-white/40 hover:text-white transition-colors font-light tracking-widest text-sm">
                     {item}
@@ -703,20 +789,20 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-sm font-medium text-white/80 mb-8 tracking-widest">全球总部</h4>
+            <h4 className="text-sm font-medium text-white/80 mb-8 tracking-widest">{t.footer.hq}</h4>
             <ul className="space-y-8">
               <li className="flex items-start gap-4 text-white/40">
                 <MapPin size={18} strokeWidth={1} className="shrink-0 text-white/60 mt-1" />
                 <div>
-                  <div className="text-white/80 font-light tracking-widest mb-2 text-sm">中国 · 深圳</div>
-                  <div className="text-xs font-light tracking-wider leading-relaxed">广东省深圳市南山区<br/>清华信息港科研楼</div>
+                  <div className="text-white/80 font-light tracking-widest mb-2 text-sm">{t.footer.sz}</div>
+                  <div className="text-xs font-light tracking-wider leading-relaxed whitespace-pre-line">{t.footer.szDesc}</div>
                 </div>
               </li>
               <li className="flex items-start gap-4 text-white/40">
                 <MapPin size={18} strokeWidth={1} className="shrink-0 text-white/60 mt-1" />
                 <div>
-                  <div className="text-white/80 font-light tracking-widest mb-2 text-sm">美国 · 加州</div>
-                  <div className="text-xs font-light tracking-wider leading-relaxed">San Diego, California<br/>USA</div>
+                  <div className="text-white/80 font-light tracking-widest mb-2 text-sm">{t.footer.ca}</div>
+                  <div className="text-xs font-light tracking-wider leading-relaxed whitespace-pre-line">{t.footer.caDesc}</div>
                 </div>
               </li>
             </ul>
@@ -724,10 +810,10 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-white/5 pt-12 flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-white/30 font-light tracking-widest">
-          <p>© 2025 AethraVolt 合擎源动. All rights reserved.</p>
+          <p>{t.footer.rights}</p>
           <div className="flex gap-8">
-            <a href="#" className="hover:text-white transition-colors">隐私政策</a>
-            <a href="#" className="hover:text-white transition-colors">服务条款</a>
+            <a href="#" className="hover:text-white transition-colors">{t.footer.privacy}</a>
+            <a href="#" className="hover:text-white transition-colors">{t.footer.terms}</a>
           </div>
         </div>
       </div>
@@ -737,22 +823,27 @@ const Footer = () => {
 
 // --- Main App Component ---
 export default function App() {
+  const [lang, setLang] = useState('中文');
+  const t = translations[lang] || translations['EN'];
+
   return (
-    <div className="bg-black text-white min-h-screen font-sans selection:bg-white/20 selection:text-white scroll-smooth">
-      <Navbar />
-      <Hero />
-      
-      <ProductSection />
+    <LanguageContext.Provider value={{ lang, t, setLang }}>
+      <div className="bg-black text-white min-h-screen font-sans selection:bg-white/20 selection:text-white scroll-smooth">
+        <Navbar />
+        <Hero />
+        
+        <ProductSection />
 
-      <CasesSection />
+        <CasesSection />
 
-      <DataSection />
-      
-      <GlobalMapSection />
+        <DataSection />
+        
+        <GlobalMapSection />
 
-      <AboutUsSection />
+        <AboutUsSection />
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </LanguageContext.Provider>
   );
 }
