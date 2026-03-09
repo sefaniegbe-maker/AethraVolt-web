@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion';
-import { Globe, ChevronDown, Menu, X, MapPin, Mail } from 'lucide-react';
+import { Globe, ChevronDown, Menu, X, MapPin, Mail, ArrowRight } from 'lucide-react';
+import { ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps';
 
 // --- AnimatedCounter Component ---
 const AnimatedCounter = ({ value, suffix = '', duration = 2 }: { value: number, suffix?: string, duration?: number }) => {
@@ -46,9 +47,10 @@ const Navbar = () => {
 
   const navLinks = [
     { name: '首页', href: '#home' },
-    { name: '核心产品', href: '#product' },
+    { name: '产品中心', href: '#product' },
     { name: '案例中心', href: '#cases' },
     { name: '关于我们', href: '#about' },
+    { name: '联系我们', href: '#contact' },
   ];
 
   const languages = [
@@ -233,6 +235,7 @@ const Hero = () => {
           className="object-cover w-full h-full opacity-60 mix-blend-screen"
         >
           {/* 使用用户上传的视频作为背景 */}
+          <source src="/uploaded_video_1.mp4" type="video/mp4" />
           <source src="/uploaded_video.mp4" type="video/mp4" />
           <source src="https://cdn.pixabay.com/video/2021/08/04/83866-584705244_large.mp4" type="video/mp4" />
         </video>
@@ -273,27 +276,56 @@ const Hero = () => {
   );
 };
 
-// --- Parallax Section Component ---
-const ParallaxSection = ({ id, title, subtitle, bgImage, keywords, align = 'left' }: any) => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  });
-  
-  const y = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1.1, 1, 1.1]);
+// --- Product Section Component ---
+const ProductSection = () => {
+  const [activeTab, setActiveTab] = useState<number | null>(null);
+
+  const tabs = [
+    {
+      title: "1+5 产品矩阵",
+      content: "以 AethraCore AI 模型为核心，端-边-云架构驱动能源数字化转型。涵盖智能微网管理、虚拟电厂调度、碳资产管理、能效优化控制及设备预测性维护五大核心模块，实现能源全链路的智能化闭环。"
+    },
+    {
+      title: "六维建设体系",
+      content: "科学算碳、源头减碳、过程脱碳、智能控碳、协同降碳、抵消披露。构建全生命周期的碳管理体系，从底层数据采集到顶层战略规划，赋能企业实现零碳转型。"
+    }
+  ];
 
   return (
-    <section id={id} ref={ref} className="relative h-screen flex items-center overflow-hidden bg-black">
-      <motion.div style={{ y, scale }} className="absolute inset-0 w-full h-[130%] -top-[15%] z-0">
-        <img src={bgImage} alt={title} className="w-full h-full object-cover opacity-50" referrerPolicy="no-referrer" />
-        <div className={`absolute inset-0 bg-gradient-to-r ${align === 'left' ? 'from-black/90 via-black/40 to-transparent' : 'from-transparent via-black/40 to-black/90'}`}></div>
+    <section id="product" className="relative h-screen flex items-center overflow-hidden bg-black">
+      <div className="absolute inset-0 w-full h-full z-0">
+        <img src="https://picsum.photos/seed/dashboard/1920/1080?blur=1" alt="Carbon Asset Management" className="w-full h-full object-cover opacity-30 mix-blend-screen" referrerPolicy="no-referrer" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/80"></div>
-      </motion.div>
+        
+        {/* 模拟 360 旋转模型和参数面板的视觉占位 */}
+        <div className="absolute right-[10%] top-1/2 -translate-y-1/2 w-[600px] h-[600px] hidden lg:flex items-center justify-center">
+          <motion.div 
+            animate={{ rotateY: 360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="w-full h-full border border-[#0066FF]/20 rounded-full flex items-center justify-center relative"
+            style={{ transformStyle: 'preserve-3d' }}
+          >
+            <div className="absolute w-[80%] h-[80%] border border-[#00C853]/20 rounded-full" style={{ transform: 'rotateX(60deg)' }}></div>
+            <div className="absolute w-[60%] h-[60%] border border-white/10 rounded-full" style={{ transform: 'rotateX(60deg) rotateY(60deg)' }}></div>
+            <div className="w-32 h-32 bg-gradient-to-br from-[#0066FF] to-[#00C853] rounded-full blur-xl opacity-50"></div>
+            
+            {/* 模拟参数面板锚点 */}
+            <motion.div 
+              className="absolute top-[20%] right-[10%] w-4 h-4 bg-white rounded-full shadow-[0_0_15px_#0066FF] cursor-pointer group"
+              whileHover={{ scale: 1.2 }}
+            >
+              <div className="absolute top-1/2 left-full ml-4 -translate-y-1/2 w-48 bg-black/80 backdrop-blur-md border border-white/10 p-4 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                <div className="text-xs text-[#00C853] mb-1">实时碳排量</div>
+                <div className="text-xl font-mono text-white">1,245.8 tCO₂</div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
 
       <div className="container relative z-10 mx-auto px-6 md:px-12 lg:px-24">
-        <div className={`max-w-2xl ${align === 'right' ? 'ml-auto text-right' : ''}`}>
+        <div className="max-w-2xl">
           <motion.h2 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -301,39 +333,54 @@ const ParallaxSection = ({ id, title, subtitle, bgImage, keywords, align = 'left
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="text-5xl md:text-7xl font-thin text-white mb-6 tracking-wide"
           >
-            {title}
+            AethraGrid
           </motion.h2>
-          {subtitle && (
-            <motion.p 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-xl md:text-3xl text-white/60 font-light mb-16 tracking-wide"
-            >
-              {subtitle}
-            </motion.p>
-          )}
+          <motion.p 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="text-xl md:text-3xl text-white/60 font-light mb-16 tracking-wide"
+          >
+            AI能源管理云平台
+          </motion.p>
           
-          <div className={`flex flex-col gap-10 ${align === 'right' ? 'items-end' : 'items-start'}`}>
-            {keywords.map((kw: any, idx: number) => (
+          <div className="flex flex-col gap-6">
+            {tabs.map((tab, idx) => (
               <motion.div 
                 key={idx}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 1, delay: 0.2 + idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative cursor-pointer"
+                className="group relative cursor-pointer border-l-2 border-white/20 pl-6 py-2 hover:border-[#0066FF] transition-colors"
+                onClick={() => setActiveTab(activeTab === idx ? null : idx)}
               >
-                <div className="text-2xl md:text-3xl font-light text-white/80 inline-block pb-2 transition-colors duration-500 group-hover:text-white">
-                  {kw.word}
-                  <div className={`h-[1px] w-0 bg-white group-hover:w-full transition-all duration-700 ease-out mt-2 ${align === 'right' ? 'ml-auto' : ''}`}></div>
+                <div className="flex items-center justify-between">
+                  <div className={`text-2xl md:text-3xl font-light transition-colors duration-500 ${activeTab === idx ? 'text-white' : 'text-white/60 group-hover:text-white/80'}`}>
+                    {tab.title}
+                  </div>
+                  <motion.div
+                    animate={{ rotate: activeTab === idx ? 90 : 0 }}
+                    className="text-white/40 group-hover:text-white/80"
+                  >
+                    <ArrowRight strokeWidth={1} />
+                  </motion.div>
                 </div>
-                <div className="h-0 overflow-hidden opacity-0 group-hover:h-auto group-hover:opacity-100 group-hover:mt-6 transition-all duration-700 ease-out">
-                  <p className="text-white/50 font-light text-lg max-w-md leading-relaxed">
-                    {kw.desc}
-                  </p>
-                </div>
+                <AnimatePresence>
+                  {activeTab === idx && (
+                    <motion.div 
+                      initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                      animate={{ height: 'auto', opacity: 1, marginTop: 24 }}
+                      exit={{ height: 0, opacity: 0, marginTop: 0 }}
+                      className="overflow-hidden"
+                    >
+                      <p className="text-white/50 font-light text-lg leading-relaxed">
+                        {tab.content}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
             ))}
           </div>
@@ -345,11 +392,33 @@ const ParallaxSection = ({ id, title, subtitle, bgImage, keywords, align = 'left
 
 // --- Cases Section ---
 const CasesSection = () => {
+  const [activeCase, setActiveCase] = useState<number | null>(null);
+
   const cases = [
-    { title: '光储一体化项目', category: '零碳工厂', img: 'https://picsum.photos/seed/solar1/800/600' },
-    { title: '绿电 + 水蓄冷项目', category: '零碳工厂', img: 'https://picsum.photos/seed/cooling1/800/600' },
-    { title: '光伏 + 污水处理协同项目', category: '零碳园区', img: 'https://picsum.photos/seed/water1/800/600' },
-    { title: '德国光储充一体化农场项目', category: '零碳园区', img: 'https://picsum.photos/seed/germany1/800/600' }
+    { 
+      title: '光储一体化项目', 
+      category: '零碳工厂', 
+      img: '/uploaded_image_2.jpg',
+      desc: '通过部署“光储一体化 + AI调度系统”方案，实现削峰填谷与电价套利，显著降低用电成本。'
+    },
+    { 
+      title: '绿电 + 水蓄冷项目', 
+      category: '零碳工厂', 
+      img: '/uploaded_image_3.jpg',
+      desc: '采用“绿电 + 水蓄冷 + AI调度”综合方案，降低制冷系统用能成本，提升绿色电力使用比例。'
+    },
+    { 
+      title: '光伏 + 污水处理协同项目', 
+      category: '零碳园区', 
+      img: '/uploaded_image_1.jpg',
+      desc: '采用“光伏 + 负荷协同调度”模式，降低运营成本，打造绿色低碳示范园区。'
+    },
+    { 
+      title: '德国综合体光储充一体化项目', 
+      category: '零碳园区', 
+      img: '/uploaded_image.jpg',
+      desc: '采用“光储充一体化 + AI调度”系统，实现能源自给率提升，满足欧洲绿色合规标准。'
+    }
   ];
 
   return (
@@ -375,15 +444,175 @@ const CasesSection = () => {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1, duration: 1, ease: [0.16, 1, 0.3, 1] }}
               className="group relative aspect-[4/3] overflow-hidden rounded-2xl cursor-pointer"
+              onClick={() => setActiveCase(activeCase === idx ? null : idx)}
             >
               <img src={item.img} alt={item.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-100" referrerPolicy="no-referrer" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-              <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                <div className="text-[#00C853] text-sm font-medium tracking-widest mb-3 opacity-80">{item.category}</div>
-                <h3 className="text-2xl md:text-3xl font-light text-white tracking-wide">{item.title}</h3>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+              
+              <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full flex flex-col justify-end h-full">
+                <div className="transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
+                  <div className="text-[#00C853] text-sm font-medium tracking-widest mb-3 opacity-80">{item.category}</div>
+                  <h3 className="text-2xl md:text-3xl font-light text-white tracking-wide mb-4">{item.title}</h3>
+                  
+                  <AnimatePresence>
+                    {(activeCase === idx || true) && ( // Always render but control height/opacity via group-hover for CSS-only interaction, or use state for click
+                      <div className="h-0 overflow-hidden opacity-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-700 ease-out">
+                        <p className="text-white/70 font-light text-sm md:text-base leading-relaxed">
+                          {item.desc}
+                        </p>
+                      </div>
+                    )}
+                  </AnimatePresence>
+                </div>
               </div>
             </motion.div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// --- Global Map Section ---
+const GlobalMapSection = () => {
+  const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
+  
+  const markers = [
+    { name: "中国", coordinates: [104.1954, 35.8617] },
+    { name: "美国", coordinates: [-95.7129, 37.0902] },
+    { name: "德国", coordinates: [10.4515, 51.1657] },
+    { name: "越南", coordinates: [108.2772, 14.0583] },
+    { name: "泰国", coordinates: [100.9925, 15.8700] },
+    { name: "澳大利亚", coordinates: [133.7751, -25.2744] }
+  ];
+
+  return (
+    <section className="py-32 bg-black relative overflow-hidden">
+      <div className="container mx-auto px-6 md:px-12 z-10 relative">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center mb-20"
+        >
+          <h2 className="text-4xl md:text-6xl font-thin text-white tracking-widest mb-6">全球布局</h2>
+          <p className="text-xl text-white/40 font-light tracking-widest">业务覆盖网络</p>
+        </motion.div>
+
+        <div className="w-full max-w-5xl mx-auto opacity-80">
+          <ComposableMap projectionConfig={{ scale: 140 }} className="w-full h-auto">
+            <Geographies geography={geoUrl}>
+              {({ geographies }) =>
+                geographies.map((geo) => (
+                  <Geography
+                    key={geo.rsmKey}
+                    geography={geo}
+                    fill="#1a1a1a"
+                    stroke="#333333"
+                    strokeWidth={0.5}
+                    style={{
+                      default: { outline: "none" },
+                      hover: { fill: "#222", outline: "none" },
+                      pressed: { outline: "none" },
+                    }}
+                  />
+                ))
+              }
+            </Geographies>
+            {markers.map(({ name, coordinates }) => (
+              <Marker key={name} coordinates={coordinates as [number, number]}>
+                <motion.circle
+                  r={4}
+                  fill="#00C853"
+                  animate={{
+                    scale: [1, 2, 1],
+                    opacity: [1, 0.5, 1],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+                <circle r={2} fill="#0066FF" />
+                <text
+                  textAnchor="middle"
+                  y={-10}
+                  style={{ fontFamily: "Inter", fill: "rgba(255,255,255,0.7)", fontSize: "10px", fontWeight: 300 }}
+                >
+                  {name}
+                </text>
+              </Marker>
+            ))}
+          </ComposableMap>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// --- About Us Section ---
+const AboutUsSection = () => {
+  return (
+    <section id="about" className="py-32 bg-black relative border-t border-white/5">
+      <div className="container mx-auto px-6 md:px-12 lg:px-24">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-20"
+        >
+          <h2 className="text-5xl md:text-7xl font-thin text-white tracking-wide mb-6">关于我们</h2>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.2 }}
+          >
+            <div className="mb-12">
+              <h3 className="text-[#0066FF] text-sm font-medium tracking-widest mb-4">核心愿景</h3>
+              <p className="text-2xl md:text-3xl font-light text-white leading-relaxed">
+                以优质负荷为核心，以AI为引擎，成为全球领先的零碳新质生产力运营商。
+              </p>
+            </div>
+            <div>
+              <h3 className="text-[#00C853] text-sm font-medium tracking-widest mb-4">核心定位</h3>
+              <p className="text-xl md:text-2xl font-light text-white/80 leading-relaxed">
+                AI+数据驱动的“零碳新质生产力”能源运营商
+              </p>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.4 }}
+            className="grid grid-cols-2 gap-8"
+          >
+            <div>
+              <h3 className="text-white/40 text-sm font-medium tracking-widest mb-6 border-b border-white/10 pb-2">聚焦领域</h3>
+              <ul className="space-y-4 text-lg font-light text-white/80">
+                <li>低碳绿能</li>
+                <li>能源精益运营</li>
+                <li>ESG价值创造</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-white/40 text-sm font-medium tracking-widest mb-6 border-b border-white/10 pb-2">客户价值</h3>
+              <ul className="space-y-4 text-lg font-light text-white/80">
+                <li>省成本</li>
+                <li>创营收</li>
+                <li>高效率</li>
+                <li>ESG标杆</li>
+              </ul>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -445,7 +674,7 @@ const DataSection = () => {
 // --- Footer Section ---
 const Footer = () => {
   return (
-    <footer className="bg-black pt-32 pb-12 border-t border-white/5">
+    <footer id="contact" className="bg-black pt-32 pb-12 border-t border-white/5">
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
           <div className="lg:col-span-2">
@@ -463,7 +692,7 @@ const Footer = () => {
           <div>
             <h4 className="text-sm font-medium text-white/80 mb-8 tracking-widest">快速链接</h4>
             <ul className="space-y-6">
-              {['首页', '核心产品', '案例中心', '关于我们'].map((item, idx) => (
+              {['首页', '产品中心', '案例中心', '关于我们'].map((item, idx) => (
                 <li key={idx}>
                   <a href={`#${['home', 'product', 'cases', 'about'][idx]}`} className="text-white/40 hover:text-white transition-colors font-light tracking-widest text-sm">
                     {item}
@@ -513,21 +742,16 @@ export default function App() {
       <Navbar />
       <Hero />
       
-      <ParallaxSection 
-        id="product"
-        title="AethraGrid"
-        subtitle="AI能源管理云平台"
-        bgImage="https://picsum.photos/seed/energycloud/1920/1080?blur=2"
-        align="left"
-        keywords={[
-          { word: "1+5 产品矩阵", desc: "以 AethraCore AI 模型为核心，端-边-云架构驱动能源数字化转型。" },
-          { word: "六维建设体系", desc: "科学算碳、源头减碳、过程脱碳、智能控碳、协同降碳、抵消披露。" }
-        ]}
-      />
+      <ProductSection />
 
       <CasesSection />
 
       <DataSection />
+      
+      <GlobalMapSection />
+
+      <AboutUsSection />
+
       <Footer />
     </div>
   );
