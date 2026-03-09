@@ -47,8 +47,7 @@ const Navbar = () => {
   const navLinks = [
     { name: '首页', href: '#home' },
     { name: '核心产品', href: '#product' },
-    { name: '技术亮点', href: '#tech' },
-    { name: '零碳实践', href: '#cases' },
+    { name: '案例中心', href: '#cases' },
     { name: '关于我们', href: '#about' },
   ];
 
@@ -67,10 +66,29 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
-        <a href="#home" className="flex items-center gap-2 z-50 group">
-          <span className="font-medium text-xl tracking-widest text-white transition-colors group-hover:text-white/80">
-            Aethra<span className="text-[#0066FF]">Volt</span>
-          </span>
+        <a href="#home" className="flex items-center z-50 group h-10">
+          <div className="relative flex items-center h-full">
+            <motion.div
+              initial={false}
+              animate={{ opacity: isScrolled ? 0 : 1, scale: isScrolled ? 0.8 : 1, filter: isScrolled ? 'blur(4px)' : 'blur(0px)' }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="absolute left-0 font-medium text-3xl tracking-widest text-white whitespace-nowrap"
+              style={{ pointerEvents: isScrolled ? 'none' : 'auto' }}
+            >
+              A<span className="text-[#0066FF]">E</span>
+            </motion.div>
+            <motion.div
+              initial={false}
+              animate={{ opacity: isScrolled ? 1 : 0, scale: isScrolled ? 1 : 0.9, x: isScrolled ? 0 : -20, filter: isScrolled ? 'blur(0px)' : 'blur(4px)' }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="font-medium text-xl tracking-widest text-white flex items-center whitespace-nowrap"
+              style={{ pointerEvents: isScrolled ? 'auto' : 'none' }}
+            >
+              Aethra<span className="text-[#0066FF]">V</span>olt
+              <span className="mx-3 text-white/30 font-light text-sm">|</span>
+              <span className="text-sm text-white/80 font-light tracking-widest">合擎源动</span>
+            </motion.div>
+          </div>
         </a>
 
         {/* Desktop Nav */}
@@ -178,39 +196,72 @@ const Hero = () => {
   const opacity = useTransform(scrollY, [0, 600], [1, 0]);
   const filter = useTransform(scrollY, [0, 600], ['blur(0px)', 'blur(20px)']);
   const scale = useTransform(scrollY, [0, 1000], [1, 1.1]);
+  const textY = useTransform(scrollY, [0, 1000], [0, -150]);
+  const textRotateX = useTransform(scrollY, [0, 1000], [0, 15]);
+
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const handleMouseMove = (e: React.MouseEvent) => {
+    setMousePosition({ x: e.clientX, y: e.clientY });
+  };
 
   return (
-    <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden bg-black">
+    <section 
+      id="home" 
+      className="relative h-screen flex items-center justify-center overflow-hidden bg-black"
+      onMouseMove={handleMouseMove}
+      style={{ perspective: '1000px' }}
+    >
+      {/* Mouse Follow Glow */}
+      <motion.div 
+        className="absolute w-[800px] h-[800px] rounded-full pointer-events-none z-10 mix-blend-screen hidden md:block"
+        animate={{
+          x: mousePosition.x - 400,
+          y: mousePosition.y - 400,
+        }}
+        transition={{ type: "spring", damping: 40, stiffness: 200, mass: 0.5 }}
+        style={{
+          background: 'radial-gradient(circle, rgba(0,102,255,0.15) 0%, rgba(0,200,83,0.05) 40%, transparent 70%)',
+        }}
+      />
+
       <motion.div style={{ y, opacity, filter, scale }} className="absolute inset-0 w-full h-full z-0">
         <video 
           autoPlay 
           loop 
           muted 
           playsInline
-          className="object-cover w-full h-full opacity-60"
+          className="object-cover w-full h-full opacity-60 mix-blend-screen"
         >
-          <source src="https://cdn.pixabay.com/video/2020/05/14/38863-421566835_large.mp4" type="video/mp4" />
+          {/* 使用用户上传的视频作为背景 */}
+          <source src="/uploaded_video.mp4" type="video/mp4" />
+          <source src="https://cdn.pixabay.com/video/2021/08/04/83866-584705244_large.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black"></div>
       </motion.div>
 
-      <div className="container relative z-10 mx-auto px-6 text-center mt-20">
+      <div className="container relative z-20 mx-auto px-6 text-center mt-20">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ opacity: 0, y: 40, rotateX: 10 }}
+          animate={{ opacity: 1, y: 0, rotateX: 0 }}
+          style={{ y: textY, rotateX: textRotateX }}
+          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-5xl mx-auto"
         >
-          <h1 className="text-4xl md:text-6xl lg:text-[5rem] font-thin text-white leading-tight mb-16 tracking-wide">
+          <h1 className="text-4xl md:text-6xl lg:text-[4.5rem] font-thin text-white leading-tight mb-8 tracking-wide">
             AI+能源驱动的<br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/50">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] via-white to-[#00C853] font-light">
               “零碳新质生产力”运营商
             </span>
           </h1>
           
+          <p className="text-xl md:text-2xl text-white/70 font-light tracking-widest mb-16 max-w-3xl mx-auto">
+            用可再生能源与AI技术驱动能源低碳未来
+          </p>
+          
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <a href="#product" className="w-full sm:w-auto px-10 py-4 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-light tracking-widest transition-all duration-500 backdrop-blur-md">
-              探索解决方案
+            <a href="#product" className="w-full sm:w-auto px-10 py-4 rounded-full bg-white/5 hover:bg-white/10 border border-white/20 text-white font-light tracking-widest transition-all duration-500 backdrop-blur-md relative overflow-hidden group">
+              <span className="relative z-10">探索解决方案</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#0066FF]/20 to-[#00C853]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </a>
             <a href="#about" className="w-full sm:w-auto px-10 py-4 rounded-full bg-transparent hover:bg-white/5 border border-white/10 text-white font-light tracking-widest transition-all duration-500 backdrop-blur-md">
               了解我们
@@ -292,6 +343,53 @@ const ParallaxSection = ({ id, title, subtitle, bgImage, keywords, align = 'left
   );
 };
 
+// --- Cases Section ---
+const CasesSection = () => {
+  const cases = [
+    { title: '光储一体化项目', category: '零碳工厂', img: 'https://picsum.photos/seed/solar1/800/600' },
+    { title: '绿电 + 水蓄冷项目', category: '零碳工厂', img: 'https://picsum.photos/seed/cooling1/800/600' },
+    { title: '光伏 + 污水处理协同项目', category: '零碳园区', img: 'https://picsum.photos/seed/water1/800/600' },
+    { title: '德国光储充一体化农场项目', category: '零碳园区', img: 'https://picsum.photos/seed/germany1/800/600' }
+  ];
+
+  return (
+    <section id="cases" className="py-32 bg-black relative">
+      <div className="container mx-auto px-6 md:px-12 lg:px-24">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-20"
+        >
+          <h2 className="text-5xl md:text-7xl font-thin text-white tracking-wide mb-6">案例中心</h2>
+          <p className="text-xl text-white/60 font-light tracking-widest">全球化标杆项目落地</p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {cases.map((item, idx) => (
+            <motion.div 
+              key={idx}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="group relative aspect-[4/3] overflow-hidden rounded-2xl cursor-pointer"
+            >
+              <img src={item.img} alt={item.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-100" referrerPolicy="no-referrer" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                <div className="text-[#00C853] text-sm font-medium tracking-widest mb-3 opacity-80">{item.category}</div>
+                <h3 className="text-2xl md:text-3xl font-light text-white tracking-wide">{item.title}</h3>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 // --- Data Section ---
 const DataSection = () => {
   return (
@@ -308,12 +406,11 @@ const DataSection = () => {
           <p className="text-xl text-white/40 font-light tracking-widest">用数据定义零碳新质生产力</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 text-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 text-center mb-24">
           {[
-            { label: '聚合管理绿色能源', value: 1, suffix: 'GW+', desc: '分布式优质负荷' },
-            { label: '节约能源成本', value: 1, suffix: '亿+', desc: '美元累计创造' },
-            { label: '等效减少碳排放', value: 100, suffix: '万吨', desc: 'CO₂减排量' },
-            { label: '全球化布局', value: 6, suffix: '国', desc: '业务覆盖网络' }
+            { label: '累计运营可再生能源资产', value: 1, suffix: 'GW+' },
+            { label: '累计节约电能', value: 5, suffix: '亿度' },
+            { label: '累计减少碳排放', value: 30, suffix: '万吨' }
           ].map((stat, idx) => (
             <motion.div 
               key={idx}
@@ -326,11 +423,20 @@ const DataSection = () => {
               <div className="text-6xl md:text-8xl font-thin text-white mb-6 group-hover:text-[#0066FF] transition-colors duration-700">
                 <AnimatedCounter value={stat.value} suffix={stat.suffix} />
               </div>
-              <div className="text-lg font-light tracking-widest text-white/80 mb-3">{stat.label}</div>
-              <div className="text-sm text-white/30 font-light tracking-wider">{stat.desc}</div>
+              <div className="text-lg font-light tracking-widest text-white/80">{stat.label}</div>
             </motion.div>
           ))}
         </div>
+        
+        <motion.p 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5, duration: 1 }}
+          className="text-center text-xl md:text-2xl text-white/60 font-light tracking-widest max-w-4xl mx-auto"
+        >
+          我们不仅提供能源解决方案，更构建可持续发展的底层能源能力。
+        </motion.p>
       </div>
     </section>
   );
@@ -357,9 +463,9 @@ const Footer = () => {
           <div>
             <h4 className="text-sm font-medium text-white/80 mb-8 tracking-widest">快速链接</h4>
             <ul className="space-y-6">
-              {['首页', '核心产品', '技术亮点', '零碳实践'].map((item, idx) => (
+              {['首页', '核心产品', '案例中心', '关于我们'].map((item, idx) => (
                 <li key={idx}>
-                  <a href={`#${['home', 'product', 'tech', 'cases'][idx]}`} className="text-white/40 hover:text-white transition-colors font-light tracking-widest text-sm">
+                  <a href={`#${['home', 'product', 'cases', 'about'][idx]}`} className="text-white/40 hover:text-white transition-colors font-light tracking-widest text-sm">
                     {item}
                   </a>
                 </li>
@@ -374,7 +480,7 @@ const Footer = () => {
                 <MapPin size={18} strokeWidth={1} className="shrink-0 text-white/60 mt-1" />
                 <div>
                   <div className="text-white/80 font-light tracking-widest mb-2 text-sm">中国 · 深圳</div>
-                  <div className="text-xs font-light tracking-wider leading-relaxed">广东省深圳市南山区<br/>高新科技园</div>
+                  <div className="text-xs font-light tracking-wider leading-relaxed">广东省深圳市南山区<br/>清华信息港科研楼</div>
                 </div>
               </li>
               <li className="flex items-start gap-4 text-white/40">
@@ -419,29 +525,7 @@ export default function App() {
         ]}
       />
 
-      <ParallaxSection 
-        id="tech"
-        title="AethraEdge"
-        subtitle="边缘智能与自动驾驶"
-        bgImage="https://picsum.photos/seed/edgeai/1920/1080?blur=2"
-        align="right"
-        keywords={[
-          { word: "边缘能量控制", desc: "毫秒级响应，非侵入式接入，重构能源用电效率。" },
-          { word: "AI 自动驾驶", desc: "自适应调节，实现源网荷储协同，将成本中心转化为收益资产。" }
-        ]}
-      />
-
-      <ParallaxSection 
-        id="cases"
-        title="零碳实践"
-        subtitle="全球化标杆项目落地"
-        bgImage="https://picsum.photos/seed/solarfactory/1920/1080?blur=2"
-        align="left"
-        keywords={[
-          { word: "零碳工厂", desc: "光储一体化与绿电水蓄冷项目，打造绿色制造标杆。" },
-          { word: "零碳园区", desc: "光伏与污水处理融合，德国光储充一体化海外实践。" }
-        ]}
-      />
+      <CasesSection />
 
       <DataSection />
       <Footer />
