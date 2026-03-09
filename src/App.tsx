@@ -765,7 +765,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
           <div className="lg:col-span-2">
             <span className="font-medium text-2xl tracking-widest text-white mb-8 block">
-              Aethra<span className="text-[#0066FF]">Volt</span>
+              Aethra<span className="text-[#0066FF]">V</span>olt
             </span>
             <p className="text-xl font-light text-white/60 mb-8 max-w-md leading-relaxed tracking-wide">
               {t.footer.desc}
