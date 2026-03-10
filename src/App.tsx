@@ -301,86 +301,18 @@ const ProductSection = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/70 to-transparent"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/80"></div>
         
-        {/* 动态数据可视化特效 */}
-        <div className="absolute right-[5%] top-1/2 -translate-y-1/2 w-[600px] h-[600px] hidden lg:flex items-center justify-center">
-          {/* 中心发光球体 */}
-          <motion.div 
-            animate={{ scale: [1, 1.1, 1], opacity: [0.4, 0.7, 0.4] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute w-48 h-48 bg-[#0066FF] rounded-full blur-[100px]"
-          />
-          <motion.div 
-            animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.5, 0.2] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute w-64 h-64 bg-[#00E5FF] rounded-full blur-[120px]"
-          />
-
-          {/* 动态数据环 */}
-          <svg className="absolute w-full h-full" viewBox="0 0 600 600">
-            <motion.circle 
-              cx="300" cy="300" r="200" 
-              fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1"
-              strokeDasharray="4 4"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-              style={{ transformOrigin: "center" }}
-            />
-            <motion.circle 
-              cx="300" cy="300" r="250" 
-              fill="none" stroke="rgba(0,102,255,0.2)" strokeWidth="2"
-              strokeDasharray="100 200"
-              animate={{ rotate: -360 }}
-              transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-              style={{ transformOrigin: "center" }}
-            />
-            <motion.circle 
-              cx="300" cy="300" r="150" 
-              fill="none" stroke="rgba(0,229,255,0.15)" strokeWidth="1"
-              strokeDasharray="50 50"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-              style={{ transformOrigin: "center" }}
-            />
-          </svg>
-
-          {/* 悬浮数据卡片 */}
-          <motion.div 
-            animate={{ y: [0, -15, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-[15%] right-[15%] bg-black/60 backdrop-blur-md border border-white/10 p-5 rounded-xl shadow-[0_0_30px_rgba(0,102,255,0.15)] w-48"
+        {/* 产品界面展示 */}
+        <div className="absolute right-[-5%] top-1/2 -translate-y-1/2 w-[60vw] max-w-[900px] hidden lg:flex items-center justify-center perspective-[2000px]">
+          <motion.div
+            initial={{ opacity: 0, rotateY: 15, x: 100 }}
+            whileInView={{ opacity: 1, rotateY: -5, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+            className="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(0,102,255,0.2)]"
+            style={{ transformStyle: 'preserve-3d' }}
           >
-            <div className="text-xs text-white/60 mb-2 tracking-wider">{t.product.efficiency}</div>
-            <div className="text-3xl font-mono text-[#00E5FF] font-light">98.5%</div>
-            <div className="mt-3 h-1 w-full bg-white/10 rounded-full overflow-hidden">
-              <motion.div 
-                className="h-full bg-gradient-to-r from-[#0066FF] to-[#00E5FF]" 
-                initial={{ width: "0%" }}
-                animate={{ width: "98.5%" }}
-                transition={{ duration: 2, delay: 0.5 }}
-              />
-            </div>
-          </motion.div>
-
-          <motion.div 
-            animate={{ y: [0, 15, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute bottom-[20%] left-[10%] bg-black/60 backdrop-blur-md border border-white/10 p-5 rounded-xl shadow-[0_0_30px_rgba(0,229,255,0.15)] w-56"
-          >
-            <div className="text-xs text-white/60 mb-2 tracking-wider">{t.product.carbon}</div>
-            <div className="text-3xl font-mono text-[#0066FF] font-light">1,245.8 <span className="text-sm text-white/40">tCO₂</span></div>
-            <div className="flex items-center gap-2 mt-3 text-xs text-[#00E5FF]">
-              <ArrowRight size={14} className="-rotate-45" />
-              <span>{t.product.compare}</span>
-            </div>
-          </motion.div>
-
-          <motion.div 
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-            className="absolute top-[40%] left-[5%] bg-black/60 backdrop-blur-md border border-white/10 p-3 rounded-xl flex items-center gap-3"
-          >
-            <div className="w-2.5 h-2.5 rounded-full bg-[#00E5FF] shadow-[0_0_10px_#00E5FF] animate-pulse" />
-            <div className="text-sm text-white/80 tracking-wide">{t.product.ai}</div>
+            <img src="/uploaded_image_9.png" alt="AethraGrid Dashboard" className="w-full h-auto object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#0066FF]/10 to-transparent pointer-events-none"></div>
           </motion.div>
         </div>
       </div>
