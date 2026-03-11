@@ -42,7 +42,7 @@ export const Hero = () => {
           transition={{ duration: 1, delay: 0.4 }}
           className="text-4xl md:text-6xl lg:text-7xl font-light tracking-tight text-white mb-6 leading-tight max-w-5xl"
         >
-          <span className="text-gradient-tech font-medium">AI+能源</span>驱动的<br className="hidden md:block" />
+          驱动的<br className="hidden md:block" />
           “零碳新质生产力”运营商
         </motion.h1>
 

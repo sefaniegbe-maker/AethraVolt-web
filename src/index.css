@@ -17,12 +17,6 @@
     @apply text-[var(--color-text-primary)] font-sans antialiased bg-[#0A0A0A];
     min-height: 100vh;
     overflow-x: hidden;
-    cursor: none; /* For custom cursor */
-  }
-  
-  /* Hide default cursor on links/buttons too */
-  a, button, input, textarea, select {
-    cursor: none;
   }
 }
 
