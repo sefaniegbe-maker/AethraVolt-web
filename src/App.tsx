@@ -510,11 +510,10 @@ const CasesSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="group relative aspect-[4/3] overflow-hidden rounded-2xl cursor-pointer"
+              className="group relative aspect-[4/3] overflow-hidden rounded-2xl cursor-pointer bg-white/5 border border-white/10 transition-colors duration-500 hover:bg-white/10"
               onClick={() => setActiveCase(activeCase === idx ? null : idx)}
             >
-              <img src={item.img} alt={item.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-100" referrerPolicy="no-referrer" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
               
               <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full flex flex-col justify-end h-full">
                 <div className="transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">

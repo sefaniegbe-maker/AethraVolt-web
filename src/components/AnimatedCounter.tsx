@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { useInView, useMotionValue, useSpring } from 'framer-motion';
+import { useInView, useMotionValue, useSpring } from 'motion/react';
 
 interface AnimatedCounterProps {
   value: number;
@@ -9,7 +9,7 @@ interface AnimatedCounterProps {
   className?: string;
 }
 
-const AnimatedCounter: React.FC<AnimatedCounterProps> = ({ 
+export const AnimatedCounter: React.FC<AnimatedCounterProps> = ({ 
   value, 
   suffix = '', 
   prefix = '', 
@@ -42,4 +42,4 @@ const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
   return <span ref={ref} className={className} />;
 };
 
-export default AnimatedCounter;
+
